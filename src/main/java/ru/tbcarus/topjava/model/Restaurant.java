@@ -16,7 +16,7 @@ public class Restaurant extends AbstractNamedEntity{
     public static final String BY_NAME = "Restaurant.getByName";
     public static final String ALL_SORTED = "Restaurant.getAllSorted";
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
     private List<Dish> dishes;
 
     public Restaurant() {

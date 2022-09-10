@@ -30,11 +30,11 @@ VALUES ('Бёдра', 7, 100004),
        ('Пиво', 7, 100006),
        ('Меринда', 4, 100006);
 
-INSERT INTO vote(user_id, restaurant_id)
-VALUES (100000, 100005),
-       (100001, 100004),
-       (100002, 100006),
-       (100003, 100005);
+INSERT INTO vote(user_id, restaurant_id, date)
+VALUES (100000, 100005, '2022-09-01'),
+       (100001, 100004, '2022-09-01'),
+       (100002, 100006, '2022-09-01'),
+       (100003, 100005, '2022-09-01');
 
 INSERT INTO user_roles (user_id, role)
 VALUES (100000, 'ADMIN'),

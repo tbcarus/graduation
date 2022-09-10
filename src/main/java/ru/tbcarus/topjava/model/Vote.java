@@ -2,6 +2,7 @@ package ru.tbcarus.topjava.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NamedQueries({
@@ -9,24 +10,24 @@ import java.time.LocalDateTime;
         @NamedQuery(name = Vote.ALL_SORTED, query = "SELECT v FROM Vote v " +
                 "LEFT JOIN FETCH v.user " +
                 "LEFT JOIN FETCH v.restaurant" +
-                " ORDER BY v.dateTime, v.user.name, v.user.email DESC"),
+                " ORDER BY v.date, v.user.name, v.user.email DESC"),
         @NamedQuery(name = Vote.ALL_TODAY, query = "SELECT v FROM Vote v " +
                 "LEFT JOIN FETCH v.user " +
-                "LEFT JOIN FETCH v.restaurant WHERE v.dateTime>=:today " +
+                "LEFT JOIN FETCH v.restaurant WHERE v.date>=:today " +
                 " ORDER BY v.user.name, v.user.email DESC"),
         @NamedQuery(name = Vote.ALL_BY_USER, query = "SELECT v FROM Vote v " +
                 "LEFT JOIN FETCH v.user " +
                 "WHERE v.user.id=:userId " +
-                "ORDER BY v.dateTime DESC"),
+                "ORDER BY v.date DESC"),
         @NamedQuery(name = Vote.GET, query = "SELECT v FROM Vote v " +
                 "LEFT JOIN FETCH v.user " +
-                "WHERE v.user.id=:userId AND v.dateTime>=:today"),
+                "WHERE v.user.id=:userId AND v.date>=:today"),
         @NamedQuery(name = Vote.ALL_BETWEEN, query = "SELECT v FROM Vote v " +
-                "WHERE v.dateTime between :startDate AND :andDate " +
-                "ORDER BY v.dateTime, v.user.name, v.user.email DESC"),
+                "WHERE v.date between :startDate AND :andDate " +
+                "ORDER BY v.date, v.user.name, v.user.email DESC"),
         @NamedQuery(name = Vote.ALL_BETWEEN_BY_USER, query = "SELECT v FROM Vote v LEFT JOIN FETCH v.user " +
-                "WHERE v.user.id=:userId AND v.dateTime between :startDate AND :andDate " +
-                "ORDER BY v.dateTime DESC"),
+                "WHERE v.user.id=:userId AND v.date between :startDate AND :andDate " +
+                "ORDER BY v.date DESC"),
 
 })
 @Entity
@@ -41,16 +42,20 @@ public class Vote extends AbstractBaseEntity{
     public static final String ALL_BETWEEN = "Vote.getBetween";
     public static final String ALL_BETWEEN_BY_USER = "Vote.getBetweenByUser";
 
-    @Column(name = "date_time", nullable = false, columnDefinition = "timestamp default now()")
-    @NotNull
-    private LocalDateTime dateTime;
+//    @Column(name = "date_time", nullable = false, columnDefinition = "timestamp default now()")
+//    @NotNull
+//    private LocalDateTime dateTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "date", nullable = false, columnDefinition = "date default date(now())")
+    @NotNull
+    private LocalDate date;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     @NotNull
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @NotNull
     private Restaurant restaurant;
@@ -58,13 +63,18 @@ public class Vote extends AbstractBaseEntity{
     public Vote() {
     }
 
-    public Vote(LocalDateTime dateTime, User user, Restaurant restaurant) {
-        this(null, dateTime, user, restaurant);
+    public Vote(LocalDate date) {
+        super(null);
+        this.date = date;
     }
 
-    public Vote(Integer id, LocalDateTime dateTime, User user, Restaurant restaurant) {
+    public Vote(LocalDate date, User user, Restaurant restaurant) {
+        this(null, date, user, restaurant);
+    }
+
+    public Vote(Integer id, LocalDate date, User user, Restaurant restaurant) {
         super(id);
-        this.dateTime = dateTime;
+        this.date = date;
         this.user = user;
         this.restaurant = restaurant;
     }
@@ -83,6 +93,22 @@ public class Vote extends AbstractBaseEntity{
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+    }
+
+//    public LocalDateTime getDateTime() {
+//        return dateTime;
+//    }
+//
+//    public void setDateTime(LocalDateTime dateTime) {
+//        this.dateTime = dateTime;
+//    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override
