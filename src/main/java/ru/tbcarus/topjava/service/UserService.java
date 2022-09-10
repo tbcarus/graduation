@@ -19,7 +19,7 @@ public class UserService {
         this.repository = userRepository;
     }
 
-    public User create (User user) {
+    public User create(User user) {
         Assert.notNull(user, "tbca: user mest be not null");
         return repository.save(user);
     }

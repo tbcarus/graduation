@@ -5,7 +5,7 @@ import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.web.SecurityUtil;
 
 @Controller
-public class ProfileRestController extends AbstractUserController {
+public class ProfileUserController extends AbstractUserController {
     public User get() {
         return super.get(SecurityUtil.authUserId());
     }
