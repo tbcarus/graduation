@@ -26,6 +26,6 @@ public class AdminVoteController extends AbstractVoteController {
     }
 
     public void update(Vote vote, int id, int restaurantId) {
-        super.update(vote, id, authUserId(), restaurantId);
+        super.update(vote, id, restaurantId);
     }
 }

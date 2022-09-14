@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.service.VoteService;
 import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.web.SecurityUtil;
 
 import java.util.List;
 
@@ -30,16 +31,16 @@ public abstract class AbstractVoteController {
         return service.get(id, userId);
     }
 
-    public Vote create(Vote vote, int userId, int restaurantId) {
+    public Vote create(Vote vote, int restaurantId) {
         log.info("create {}", vote);
         ValidationUtil.checkNew(vote);
-        return service.create(vote, userId, restaurantId);
+        return service.create(vote, SecurityUtil.authUserId(), restaurantId);
     }
 
-    public void update(Vote vote, int id, int userId, int restaurantId) {
+    public void update(Vote vote, int id, int restaurantId) {
         log.info("update {} with id={}", vote, id);
         ValidationUtil.assureIdConsistent(vote, id);
-        service.update(vote, userId, restaurantId);
+        service.update(vote, SecurityUtil.authUserId(), restaurantId);
     }
 
     public void delete(int id, int userId) {

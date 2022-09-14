@@ -7,9 +7,10 @@ import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.repository.datajpa.RestaurantRepository;
 import ru.tbcarus.topjava.repository.datajpa.UserRepository;
 import ru.tbcarus.topjava.repository.datajpa.VoteRepository;
-import ru.tbcarus.topjava.util.DateTimeUtil;
 import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.util.VoteUtils;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -44,12 +45,25 @@ public class VoteService {
     }
 
     public Vote create(Vote vote, int userId, int restaurantId) {
-        return save(vote, userId, restaurantId);
+        if (voteRepository.getByDate(LocalDate.now()) == null) {
+            vote.setUser(userRepository.findById(userId).get());
+            vote.setRestaurant(restaurantRepository.findById(restaurantId).get());
+            return voteRepository.save(vote);
+        } else {
+            update(vote, userId, restaurantId);
+        }
+        return null;
+
+//        return save(vote, userId, restaurantId);
     }
 
     public void update(Vote vote, int userId, int restaurantId) {
-        Vote v = save(vote, userId, restaurantId);
-        ValidationUtil.checkNotFoundWithId(v, vote.id());
+        Assert.notNull(vote, "vote must be not null");
+        Vote currentVote = voteRepository.getByDate(vote.getDate());
+        voteRepository.update(restaurantRepository.findById(restaurantId).get(), currentVote.id());
+
+//        Vote v = save(vote, userId, restaurantId);
+//        ValidationUtil.checkNotFoundWithId(v, vote.id());
     }
 
     private Vote save(Vote vote, int userId, int restaurantId) {
@@ -58,7 +72,7 @@ public class VoteService {
             return null;
         }
         Vote currentVote = voteRepository.getByDate(vote.getDate());
-        if (currentVote != null && LocalTime.now().isBefore(DateTimeUtil.timeForRevote)) {
+        if (currentVote != null && LocalTime.now().isBefore(VoteUtils.timeForRevote)) {
             voteRepository.update(restaurantRepository.findById(restaurantId).get(), currentVote.id());
             return null;
         }
