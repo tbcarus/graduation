@@ -2,7 +2,10 @@ package ru.tbcarus.topjava.web;
 
 import org.slf4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.model.Restaurant;
+import ru.tbcarus.topjava.web.Dish.AdminDishController;
+import ru.tbcarus.topjava.web.Dish.ProfileDishController;
 import ru.tbcarus.topjava.web.restaurant.ProfileRestaurantController;
 import ru.tbcarus.topjava.web.vote.ProfileVoteController;
 
@@ -15,12 +18,13 @@ import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class RestaurantServlet extends HttpServlet {
-    private static final Logger log = getLogger(RestaurantServlet.class);
+public class DishServlet extends HttpServlet {
+    private static final Logger log = getLogger(DishServlet.class);
 
     private ClassPathXmlApplicationContext springContext;
     private ProfileRestaurantController restaurantController;
     private ProfileVoteController voteController;
+    private ProfileDishController dishController;
 
     @Override
     public void init() {
@@ -30,6 +34,7 @@ public class RestaurantServlet extends HttpServlet {
         springContext.refresh();
         restaurantController = springContext.getBean(ProfileRestaurantController.class);
         voteController = springContext.getBean(ProfileVoteController.class);
+        dishController = springContext.getBean(ProfileDishController.class);
     }
 
     @Override
@@ -42,15 +47,19 @@ public class RestaurantServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userId = Integer.parseInt(request.getParameter("userId"));
         SecurityUtil.setAuthUserId(userId);
-        response.sendRedirect("restaurants");
+//        response.sendRedirect("dishes");
+        doGet(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        log.debug("forward to restaurants");
+        log.debug("forward to dishes");
 
-        List<Restaurant> restaurants = restaurantController.getAll();
-        request.setAttribute("restaurants", restaurants);
-        request.getRequestDispatcher("/restaurants.jsp").forward(request, response);
+        int restaurantId = Integer.parseInt(request.getParameter("restaurantId"));
+        List<Dish> dishes = dishController.getAllByRestaurantIdToday(restaurantId);
+        request.setAttribute("dishes", dishes);
+        Restaurant restaurant = restaurantController.get(restaurantId);
+        request.setAttribute("restaurant", restaurant);
+        request.getRequestDispatcher("/dishes.jsp").forward(request, response);
     }
 }

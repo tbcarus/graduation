@@ -18,6 +18,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     @Query("DELETE FROM Restaurant r WHERE r.id=:id")
     int delete(@Param("id") int id);
 
-    @Query("SELECT r FROM Restaurant r ORDER BY r.name DESC")
+    @Query("SELECT r FROM Restaurant r ORDER BY r.name ASC")
     List<Restaurant> getAll();
 }

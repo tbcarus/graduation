@@ -45,10 +45,13 @@ public class RestaurantService {
 
     private Restaurant save(Restaurant restaurant) {
         Assert.notNull(restaurant, "tbca: reataurant mest be not null");
+        if(restaurant.isNew()) {
+            return  restaurantRepository.save(restaurant);
+        }
         if (!restaurant.isNew() && restaurantRepository.findById(restaurant.getId()).get() == null) {
             return null;
         } else {
-            restaurant.setDishes(dishRepository.getAll(restaurant.getId()));
+            restaurant.setDishes(dishRepository.getAllByRestaurantId(restaurant.getId()));
             return restaurantRepository.save(restaurant);
         }
     }

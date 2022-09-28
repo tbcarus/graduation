@@ -45,7 +45,7 @@ public class VoteService {
     }
 
     public Vote create(Vote vote, int userId, int restaurantId) {
-        if (voteRepository.getByDate(LocalDate.now()) == null) {
+        if (voteRepository.getByDateAndUserId(LocalDate.now(), userId) == null) {
             vote.setUser(userRepository.findById(userId).get());
             vote.setRestaurant(restaurantRepository.findById(restaurantId).get());
             return voteRepository.save(vote);
@@ -59,7 +59,7 @@ public class VoteService {
 
     public void update(Vote vote, int userId, int restaurantId) {
         Assert.notNull(vote, "vote must be not null");
-        Vote currentVote = voteRepository.getByDate(vote.getDate());
+        Vote currentVote = voteRepository.getByDateAndUserId(vote.getDate(), userId);
         voteRepository.update(restaurantRepository.findById(restaurantId).get(), currentVote.id());
 
 //        Vote v = save(vote, userId, restaurantId);
@@ -71,7 +71,7 @@ public class VoteService {
         if (!vote.isNew() && voteRepository.findById(vote.getId()).get() == null) {
             return null;
         }
-        Vote currentVote = voteRepository.getByDate(vote.getDate());
+        Vote currentVote = voteRepository.getByDateAndUserId(vote.getDate(), userId);
         if (currentVote != null && LocalTime.now().isBefore(VoteUtils.timeForRevote)) {
             voteRepository.update(restaurantRepository.findById(restaurantId).get(), currentVote.id());
             return null;

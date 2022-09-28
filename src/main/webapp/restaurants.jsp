@@ -29,8 +29,9 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
                 <table border="1">
                     <thead>
                     <tr>
-                        <th width="500px">Name</th>
+                        <th width="300px">Name</th>
                         <th>Price</th>
+                        <th>Date</th>
                     </tr>
                     </thead>
                     <c:forEach var="dish" items="${restaurant.dishes}">
@@ -39,6 +40,7 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
                         <tr>
                             <td>${dish.name}</td>
                             <td>${dish.price}</td>
+                            <td>${dish.inputDate}</td>
                         </tr>
                     </c:forEach>
                 </table>

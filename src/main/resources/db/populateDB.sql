@@ -7,7 +7,7 @@ ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO users(name, email, password)
 VALUES ('Admin', 'admin@gov.ru', 'superAdmin'), --100000
-       ('Ivan', 'iavn@mail.ru', 'ivanpass'),    --100001
+       ('Ivan', 'ivan@mail.ru', 'ivanpass'),    --100001
        ('Maria', 'maria@mail.ru', 'mariapass'), --100002
        ('Vasily', 'vasily@mail.ru', 'vasilypass'); --100003
 
@@ -29,6 +29,9 @@ VALUES ('Бёдра', 7, 100004),
        ('Воппер', 8, 100006),
        ('Пиво', 7, 100006),
        ('Меринда', 4, 100006);
+
+INSERT INTO dish(name, price, restaurant_id, input_date)
+VALUES ('Блюдо на другую дату', 10, 100006, '2022-01-01');
 
 INSERT INTO vote(user_id, restaurant_id, date)
 VALUES (100000, 100005, '2022-09-01'),

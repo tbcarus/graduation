@@ -10,11 +10,11 @@ import java.util.List;
 
 @Controller
 public class ProfileRestaurantController extends AbstractRestaurantController {
-    public List<Restaurant> getAll(){
-        return super.getAll();
-    }
-
-    public Restaurant get(int restaurantId) {
-        return super.get(restaurantId);
-    }
+//    public List<Restaurant> getAll(){
+//        return super.getAll();
+//    }
+//
+//    public Restaurant get(int restaurantId) {
+//        return super.get(restaurantId);
+//    }
 }
