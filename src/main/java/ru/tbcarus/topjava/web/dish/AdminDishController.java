@@ -1,14 +1,8 @@
-package ru.tbcarus.topjava.web.Dish;
+package ru.tbcarus.topjava.web.dish;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import ru.tbcarus.topjava.model.Dish;
-import ru.tbcarus.topjava.model.Restaurant;
-import ru.tbcarus.topjava.service.RestaurantService;
 import ru.tbcarus.topjava.util.ValidationUtil;
-import ru.tbcarus.topjava.web.restaurant.AbstractRestaurantController;
-
-import java.util.List;
 
 @Controller
 public class AdminDishController extends AbstractDishController {
@@ -24,9 +18,9 @@ public class AdminDishController extends AbstractDishController {
         service.delete(id);
     }
 
-    public void update(Dish dish, int restaurantId) {
+    public void update(Dish dish, int id, int restaurantId) {
         log.info("update {} with restaurantId={}", dish, restaurantId);
-        ValidationUtil.assureIdConsistent(dish, restaurantId);
+        ValidationUtil.assureIdConsistent(dish, id);
         service.update(dish, restaurantId);
     }
 }

@@ -1,13 +1,11 @@
-package ru.tbcarus.topjava.web.Dish;
+package ru.tbcarus.topjava.web.dish;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.service.DishService;
 import ru.tbcarus.topjava.util.DateTimeUtil;
-import ru.tbcarus.topjava.util.ValidationUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +15,10 @@ public abstract class AbstractDishController {
 
     @Autowired
     protected DishService service;
+
+    public Dish get(int id) {
+        return service.get(id);
+    }
 
     public List<Dish> getAll() {
         log.info("getAll");

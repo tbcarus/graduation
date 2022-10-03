@@ -4,8 +4,7 @@ import org.slf4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.model.Restaurant;
-import ru.tbcarus.topjava.web.Dish.AdminDishController;
-import ru.tbcarus.topjava.web.Dish.ProfileDishController;
+import ru.tbcarus.topjava.web.dish.ProfileDishController;
 import ru.tbcarus.topjava.web.restaurant.ProfileRestaurantController;
 import ru.tbcarus.topjava.web.vote.ProfileVoteController;
 

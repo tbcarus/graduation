@@ -23,7 +23,7 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
     @Query("SELECT v FROM Vote v WHERE v.user.id = :userId ORDER BY v.date DESC")
     List<Vote> getAllByUserId(@Param("userId") int userId);
 
-    @Query("SELECT v FROM Vote v ORDER BY v.date DESC")
+    @Query("SELECT v FROM Vote v ORDER BY v.date, v.id DESC")
     List<Vote> getAll();
 
     @Query("SELECT v FROM Vote v WHERE v.date = :date")

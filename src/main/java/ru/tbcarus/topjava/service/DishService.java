@@ -24,7 +24,11 @@ public class DishService {
         this.dishRepository = dishRepository;
     }
 
-    public Dish get(int id, int restaurantId) {
+    public Dish get(int id) {
+        return ValidationUtil.checkNotFoundWithId(dishRepository.findById(id).orElse(null), id);
+    }
+
+    public Dish getByRestaurant(int id, int restaurantId) {
         return dishRepository.get(id, restaurantId);
     }
 
@@ -59,9 +63,9 @@ public class DishService {
 
     private Dish save(Dish dish, int restaurantId) {
         Assert.notNull(dish, "tbca: dish mest be not null");
-        if(dish.isNew()) {
-            return  dishRepository.save(dish);
-        }
+//        if(dish.isNew()) {
+//            return  dishRepository.save(dish);
+//        }
         if (!dish.isNew() && dishRepository.findById(dish.getId()).get() == null) {
             return null;
         } else {

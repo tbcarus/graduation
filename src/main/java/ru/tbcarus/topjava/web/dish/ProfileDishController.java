@@ -1,7 +1,6 @@
-package ru.tbcarus.topjava.web.Dish;
+package ru.tbcarus.topjava.web.dish;
 
 import org.springframework.stereotype.Controller;
-import ru.tbcarus.topjava.web.restaurant.AbstractRestaurantController;
 
 @Controller
 public class ProfileDishController extends AbstractDishController {

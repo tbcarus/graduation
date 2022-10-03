@@ -29,7 +29,11 @@ public class VoteService {
     }
 
     public Vote get(int id, int userId) {
-        return ValidationUtil.checkNotFoundWithId(voteRepository.findById(id).orElse(null), id);
+        Vote vote = voteRepository.findById(id).orElse(null);
+        if (vote != null && vote.getUser().getId() != userId) {
+            vote = null;
+        }
+        return ValidationUtil.checkNotFoundWithId(vote, id);
     }
 
     public void delete(int id, int userId) {

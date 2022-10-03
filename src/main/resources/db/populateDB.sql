@@ -1,8 +1,13 @@
-DELETE FROM user_roles;
-DELETE FROM vote;
-DELETE FROM dish;
-DELETE FROM restaurant;
-DELETE FROM users;
+DELETE
+FROM user_roles;
+DELETE
+FROM vote;
+DELETE
+FROM dish;
+DELETE
+FROM restaurant;
+DELETE
+FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO users(name, email, password)
@@ -12,7 +17,7 @@ VALUES ('Admin', 'admin@gov.ru', 'superAdmin'), --100000
        ('Vasily', 'vasily@mail.ru', 'vasilypass'); --100003
 
 INSERT INTO restaurant(name)
-VALUES ('KFC'),   --100004
+VALUES ('KFC'),       --100004
        ('McDonalds'), --100005
        ('Burger King'); --100006
 
@@ -31,13 +36,21 @@ VALUES ('Бёдра', 7, 100004),
        ('Меринда', 4, 100006);
 
 INSERT INTO dish(name, price, restaurant_id, input_date)
-VALUES ('Блюдо на другую дату', 10, 100006, '2022-01-01');
+VALUES ('Блюдо на другую дату BGK', 10, 100006, '2022-01-01'),
+       ('Блюдо на другую дату KFC', 12, 100004, '2022-01-01');
+
 
 INSERT INTO vote(user_id, restaurant_id, date)
-VALUES (100000, 100005, '2022-09-01'),
-       (100001, 100004, '2022-09-01'),
-       (100002, 100006, '2022-09-01'),
-       (100003, 100005, '2022-09-01');
+VALUES (100000, 100005, '2022-01-01'),
+       (100001, 100004, '2022-01-01'),
+       (100002, 100006, '2022-01-01'),
+       (100003, 100005, '2022-01-01');
+
+INSERT INTO vote(user_id, restaurant_id)
+VALUES (100001, 100005),
+       (100002, 100004),
+       (100003, 100006);
+
 
 INSERT INTO user_roles (user_id, role)
 VALUES (100000, 'ADMIN'),
