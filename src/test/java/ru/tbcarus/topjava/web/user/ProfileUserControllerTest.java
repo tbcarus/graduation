@@ -1,17 +1,20 @@
 package ru.tbcarus.topjava.web.user;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
+import ru.tbcarus.topjava.repository.JpaUtil;
 import ru.tbcarus.topjava.repository.datajpa.UserRepository;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
 
@@ -29,6 +32,18 @@ public class ProfileUserControllerTest {
     private AdminUserController controller;
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    @Autowired
+    protected JpaUtil jpaUtil;
+
+    @Before
+    public void setup() {
+        cacheManager.getCache("users").clear();
+        jpaUtil.clear2ndLevelHibernateCache();
+    }
 
     @Test
     public void create() {
