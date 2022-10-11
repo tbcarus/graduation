@@ -3,25 +3,27 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="ru.tbcarus.topjava.util.DateTimeUtil" %>
 
-<html>
+<fmt:setBundle basename="messages.app"/>
+
+<html lang="ru">
 <head>
-    <title>Votes</title>
+    <title><fmt:message key="vote.title"/></title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h3><a href="index.html">Home</a></h3>
+<h3><a href="/vote"><fmt:message key="app.home"/></a></h3>
 <hr>
 ${DateTimeUtil.toString(DateTimeUtil.getNow())}
-<h2>Votes</h2>
-<a href="votes?action=create">To Vote</a>
+<h2><fmt:message key="vote.title"/></h2>
+<a href="votes?action=create"><fmt:message key="vote.toVote"/></a>
 <br><br>
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
-        <th>Date</th>
-        <th>User name</th>
-        <th>Restaurant</th>
+        <th><fmt:message key="vote.date"/></th>
+        <th><fmt:message key="vote.userName"/></th>
+        <th><fmt:message key="restaurant.restaurant"/></th>
     </tr>
     </thead>
     <c:forEach var="vote" items="${requestScope.votesTo}">
@@ -37,13 +39,13 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
             <td>${restaurant.name}</td>
             <td>
                 <c:if test="${vote.canRevote}">
-                    <a href="votes?action=update&id=${vote.id}">Update</a>
+                    <a href="votes?action=update&id=${vote.id}"><fmt:message key="common.update"/></a>
                 </c:if>
                 <c:if test="${!vote.canRevote}">
                     Can't revote
                 </c:if>
             </td>
-            <td><a href="votes?action=delete&id=${vote.id}">Delete</a>
+            <td><a href="votes?action=delete&id=${vote.id}"><fmt:message key="common.delete"/></a>
             </td>
         </tr>
 

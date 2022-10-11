@@ -3,6 +3,8 @@ package ru.tbcarus.topjava.web;
 import org.slf4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.util.DateTimeUtil;
 import ru.tbcarus.topjava.util.VoteUtils;
@@ -24,24 +26,14 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class VoteServlet extends HttpServlet {
     private static final Logger log = getLogger(VoteServlet.class);
 
-    private ClassPathXmlApplicationContext springContext;
     private ProfileVoteController voteController;
     private ProfileRestaurantController restaurantController;
 
     @Override
     public void init() {
-        springContext = new ClassPathXmlApplicationContext(new String[]{"spring/spring-app.xml", "spring/spring-db.xml"}, false);
-//       springContext.setConfigLocations("spring/spring-app.xml", "spring/spring-db.xml");
-        springContext.getEnvironment();
-        springContext.refresh();
+        WebApplicationContext springContext = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
         voteController = springContext.getBean(ProfileVoteController.class);
         restaurantController = springContext.getBean(ProfileRestaurantController.class);
-    }
-
-    @Override
-    public void destroy() {
-        springContext.close();
-        super.destroy();
     }
 
     @Override

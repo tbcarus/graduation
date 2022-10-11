@@ -4,18 +4,20 @@
 <%@ page import="ru.tbcarus.topjava.util.DateTimeUtil" %>
 <%@ page import="ru.tbcarus.topjava.web.SecurityUtil" %>
 
-<html>
+<fmt:setBundle basename="messages.app"/>
+
+<html lang="ru">
 <head>
-    <title>Dishes</title>
+    <title><fmt:message key="dishes.tittle"/></title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h3><a href="index.html">Home</a></h3>
+<h3><a href="/vote"><fmt:message key="app.home"/></a></h3>
 <hr>
 ${DateTimeUtil.toString(DateTimeUtil.getNow())}
 <br>
 UserId - ${SecurityUtil.authUserId()}
-<h2>Dishes</h2>
+<h2><fmt:message key="dishes.tittle"/></h2>
 <table border="1">
     <thead>
     <tr>
@@ -26,9 +28,9 @@ UserId - ${SecurityUtil.authUserId()}
         </th>
     </tr>
     <tr>
-        <th>Dish</th>
-        <th>Price</th>
-        <th>Date</th>
+        <th><fmt:message key="dishes.date"/></th>
+        <th><fmt:message key="dishes.price"/></th>
+        <th><fmt:message key="dishes.date"/></th>
     </tr>
     </thead>
     <c:forEach var="dish" items="${requestScope.dishes}">

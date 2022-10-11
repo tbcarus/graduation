@@ -2,6 +2,8 @@ package ru.tbcarus.topjava.web;
 
 import org.slf4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.web.dish.ProfileDishController;
@@ -20,26 +22,16 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class DishServlet extends HttpServlet {
     private static final Logger log = getLogger(DishServlet.class);
 
-    private ClassPathXmlApplicationContext springContext;
     private ProfileRestaurantController restaurantController;
     private ProfileVoteController voteController;
     private ProfileDishController dishController;
 
     @Override
     public void init() {
-        springContext = new ClassPathXmlApplicationContext(new String[]{"spring/spring-app.xml", "spring/spring-db.xml"}, false);
-//       springContext.setConfigLocations("spring/spring-app.xml", "spring/spring-db.xml");
-        springContext.getEnvironment();
-        springContext.refresh();
+        WebApplicationContext springContext = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
         restaurantController = springContext.getBean(ProfileRestaurantController.class);
         voteController = springContext.getBean(ProfileVoteController.class);
         dishController = springContext.getBean(ProfileDishController.class);
-    }
-
-    @Override
-    public void destroy() {
-        springContext.close();
-        super.destroy();
     }
 
     @Override

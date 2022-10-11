@@ -1,5 +1,8 @@
 package ru.tbcarus.topjava.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,6 +20,7 @@ public class Restaurant extends AbstractNamedEntity{
     public static final String ALL_SORTED = "Restaurant.getAllSorted";
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Dish> dishes;
 
     public Restaurant() {

@@ -3,22 +3,24 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="ru.tbcarus.topjava.util.DateTimeUtil" %>
 
-<html>
+<fmt:setBundle basename="messages.app"/>
+
+<html lang="ru">
 <head>
-    <title>Restaurants</title>
+    <title><fmt:message key="restaurant.tittle"/></title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h3><a href="index.html">Home</a></h3>
+<h3><a href="/vote"><fmt:message key="app.home"/></a></h3>
 <hr>
 ${DateTimeUtil.toString(DateTimeUtil.getNow())}
-<h2>Restaurants</h2>
+<h2><fmt:message key="restaurant.tittle"/></h2>
 <table border="1">
     <thead>
     <tr>
-        <th>Restaurants</th>
-        <th>Menu</th>
-        <th>Vote</th>
+        <th><fmt:message key="restaurant.tittle"/></th>
+        <th><fmt:message key="restaurant.menu"/></th>
+        <th><fmt:message key="restaurant.vote"/></th>
     </tr>
     </thead>
     <c:forEach var="restaurant" items="${requestScope.restaurants}">
@@ -29,9 +31,9 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
                 <table border="1">
                     <thead>
                     <tr>
-                        <th width="300px">Name</th>
-                        <th>Price</th>
-                        <th>Date</th>
+                        <th width="300px"><fmt:message key="restaurant.dishName"/></th>
+                        <th><fmt:message key="restaurant.price"/></th>
+                        <th><fmt:message key="restaurant.date"/></th>
                     </tr>
                     </thead>
                     <c:forEach var="dish" items="${restaurant.dishes}">
@@ -45,7 +47,7 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
                     </c:forEach>
                 </table>
             </td>
-            <td><a href="votes?action=vote&restaurantId=${restaurant.id}">Vote</a></td>
+            <td><a href="votes?action=vote&restaurantId=${restaurant.id}"><fmt:message key="restaurant.vote"/></a></td>
         </tr>
 
     </c:forEach>
