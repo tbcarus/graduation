@@ -13,48 +13,22 @@
         </param-value>
     </context-param>
 
+    <!--    Spring-MVC-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
     <servlet>
-        <servlet-name>userServlet</servlet-name>
-        <servlet-class>ru.tbcarus.topjava.web.UserServlet</servlet-class>
-        <load-on-startup>0</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>userServlet</servlet-name>
-        <url-pattern>/users</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>voteServlet</servlet-name>
-        <servlet-class>ru.tbcarus.topjava.web.VoteServlet</servlet-class>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-mvc.xml</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>voteServlet</servlet-name>
-        <url-pattern>/votes</url-pattern>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>restaurantServlet</servlet-name>
-        <servlet-class>ru.tbcarus.topjava.web.RestaurantServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>restaurantServlet</servlet-name>
-        <url-pattern>/restaurants</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>dishServlet</servlet-name>
-        <servlet-class>ru.tbcarus.topjava.web.DishServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>dishServlet</servlet-name>
-        <url-pattern>/dishes</url-pattern>
-    </servlet-mapping>
-
 </web-app>

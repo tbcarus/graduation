@@ -26,7 +26,7 @@ public abstract class AbstractDishController {
     }
 
     public List<Dish> getAllByRestaurantId(int restaurantId){
-        return service.getALlByRestaurantId(restaurantId);
+        return service.getAllByRestaurantId(restaurantId);
     }
 
     public List<Dish> getAllByDate(LocalDate date) {

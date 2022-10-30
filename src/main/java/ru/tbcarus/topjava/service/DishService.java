@@ -40,7 +40,7 @@ public class DishService {
         return dishRepository.getAll();
     }
 
-    public List<Dish> getALlByRestaurantId(int restaurantId) {
+    public List<Dish> getAllByRestaurantId(int restaurantId) {
         return dishRepository.getAllByRestaurantId(restaurantId);
     }
 

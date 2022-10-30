@@ -12,9 +12,9 @@
 <body>
 <h3><a href="/vote"><fmt:message key="app.home"/></a></h3>
 <hr>
-<h2><fmt:message key="user.title"/></h2>
 <c:set var="user" value="${requestScope.user}"/>
-<jsp:useBean id="user" type="ru.tbcarus.topjava.model.User"/>
+<jsp:useBean id="user" class="ru.tbcarus.topjava.model.User" scope="request"/>
+<h2><fmt:message key="user.user"/></h2>
 <table border="1">
     <thead>
     <tr>

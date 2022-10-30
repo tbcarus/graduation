@@ -31,7 +31,7 @@ public class Dish extends AbstractNamedEntity {
     @NotNull
     private LocalDate inputDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference
@@ -48,6 +48,10 @@ public class Dish extends AbstractNamedEntity {
         this.price = dish.getPrice();
         this.inputDate = dish.getInputDate();
         this.restaurant = dish.getRestaurant();
+    }
+
+    public Dish(LocalDate inputDate, Restaurant restaurant) {
+        this(null, 1, inputDate, restaurant);
     }
 
     public Dish(String name, int price, LocalDate inputDate, Restaurant restaurant) {

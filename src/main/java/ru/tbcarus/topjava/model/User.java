@@ -12,6 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
@@ -63,7 +64,11 @@ public class User extends AbstractNamedEntity {
     private Set<Role> roles;
 
     public User() {
+    }
 
+    public User(LocalDateTime registered) {
+        super(null, null);
+        this.registered = registered;
     }
 
     public User(User u) {
