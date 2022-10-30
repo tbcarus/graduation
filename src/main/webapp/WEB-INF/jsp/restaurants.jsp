@@ -1,28 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page import="ru.tbcarus.topjava.util.DateTimeUtil" %>
-
-<fmt:setBundle basename="messages.app"/>
 
 <html lang="ru">
 <head>
-    <title><fmt:message key="restaurant.tittle"/></title>
+    <title><spring:message code="restaurant.tittle"/></title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h3><a href="/vote"><fmt:message key="app.home"/></a></h3>
+<h3><a href="/vote"><spring:message code="app.home"/></a></h3>
 <hr>
 ${DateTimeUtil.toString(DateTimeUtil.getNow())}
-<h2><fmt:message key="restaurant.tittle"/></h2>
-<a href="restaurants/create"><fmt:message key="restaurant.add"/></a>
+<h2><spring:message code="restaurant.tittle"/></h2>
+<a href="restaurants/create"><spring:message code="restaurant.add"/></a>
    <br><br>
 <table border="1">
     <thead>
     <tr>
-        <th><fmt:message key="restaurant.tittle"/></th>
-        <th><fmt:message key="restaurant.menu"/></th>
-        <th><fmt:message key="restaurant.vote"/></th>
+        <th><spring:message code="restaurant.tittle"/></th>
+        <th><spring:message code="restaurant.menu"/></th>
+        <th><spring:message code="restaurant.vote"/></th>
         <th></th>
     </tr>
     </thead>
@@ -34,9 +32,9 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
                 <table border="1">
                     <thead>
                     <tr>
-                        <th width="300px"><fmt:message key="restaurant.dishName"/></th>
-                        <th><fmt:message key="restaurant.price"/></th>
-                        <th><fmt:message key="restaurant.date"/></th>
+                        <th width="300px"><spring:message code="restaurant.dishName"/></th>
+                        <th><spring:message code="restaurant.price"/></th>
+                        <th><spring:message code="restaurant.date"/></th>
                     </tr>
                     </thead>
                     <c:forEach var="dish" items="${restaurant.dishes}">
@@ -53,17 +51,17 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
             <td>
                 <form method="post" action="votes/create-or-update">
                     <input type="hidden" name="restaurant" value="${restaurant.id}">
-                    <button type="submit"><fmt:message key="restaurant.vote"/></button>
+                    <button type="submit"><spring:message code="restaurant.vote"/></button>
                 </form>
             </td>
             <td>
                 <form method="get" action="dishes/create">
                     <input type="hidden" name="restaurant" value="${restaurant.id}">
-                    <button type="submit"><fmt:message key="dishes.add"/></button>
+                    <button type="submit"><spring:message code="dishes.add"/></button>
                 </form>
             </td>
             <td>
-                <a href="restaurants/delete?id=${restaurant.id}"><fmt:message key="common.delete"/></a>
+                <a href="restaurants/delete?id=${restaurant.id}"><spring:message code="common.delete"/></a>
             </td>
         </tr>
     </c:forEach>

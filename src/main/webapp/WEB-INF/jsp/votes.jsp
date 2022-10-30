@@ -1,29 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page import="ru.tbcarus.topjava.util.DateTimeUtil" %>
-
-<fmt:setBundle basename="messages.app"/>
 
 <html lang="ru">
 <head>
-    <title><fmt:message key="vote.title"/></title>
+    <title><spring:message code="vote.title"/></title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h3><a href="/vote"><fmt:message key="app.home"/></a></h3>
+<h3><a href="/vote"><spring:message code="app.home"/></a></h3>
 <hr>
 ${DateTimeUtil.toString(DateTimeUtil.getNow())}
-<h2><fmt:message key="vote.title"/></h2>
-<a href="votes/create"><fmt:message key="vote.toVote"/></a>
+<h2><spring:message code="vote.title"/></h2>
+<a href="votes/create"><spring:message code="vote.toVote"/></a>
 <br><br>
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
-        <th><fmt:message key="vote.date"/></th>
-        <th><fmt:message key="vote.userName"/></th>
-        <th><fmt:message key="restaurant.restaurant"/></th>
+        <th><spring:message code="vote.date"/></th>
+        <th><spring:message code="vote.userName"/></th>
+        <th><spring:message code="restaurant.restaurant"/></th>
     </tr>
     </thead>
     <c:forEach var="vote" items="${requestScope.votesTo}">
@@ -39,13 +37,13 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
             <td>${restaurant.name}</td>
             <td>
                 <c:if test="${vote.canRevote}">
-                    <a href="votes/update?id=${vote.id}"><fmt:message key="common.update"/></a>
+                    <a href="votes/update?id=${vote.id}"><spring:message code="common.update"/></a>
                 </c:if>
                 <c:if test="${!vote.canRevote}">
                     Can't revote
                 </c:if>
             </td>
-            <td><a href="votes/delete?id=${vote.id}"><fmt:message key="common.delete"/></a>
+            <td><a href="votes/delete?id=${vote.id}"><spring:message code="common.delete"/></a>
             </td>
         </tr>
 

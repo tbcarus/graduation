@@ -1,29 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page import="ru.tbcarus.topjava.util.DateTimeUtil" %>
-
-<fmt:setBundle basename="messages.app"/>
 
 <html lang="ru">
 <head>
-    <title><fmt:message key="app.title"/></title>
+    <title><spring:message code="app.title"/></title>
 </head>
 <body>
-<h3><a href="/vote"><fmt:message key="app.home"/></a></h3>
+<h3><a href="/vote"><spring:message code="app.home"/></a></h3>
 <hr>
 <c:set var="user" value="${requestScope.user}"/>
 <jsp:useBean id="user" class="ru.tbcarus.topjava.model.User" scope="request"/>
-<h2><fmt:message key="user.user"/></h2>
+<h2><spring:message code="user.user"/></h2>
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
-        <th><fmt:message key="user.name"/></th>
-        <th><fmt:message key="user.email"/></th>
-        <th><fmt:message key="user.active"/></th>
-        <th><fmt:message key="user.registered"/></th>
-        <th><fmt:message key="user.roles"/></th>
+        <th><spring:message code="user.name"/></th>
+        <th><spring:message code="user.email"/></th>
+        <th><spring:message code="user.active"/></th>
+        <th><spring:message code="user.registered"/></th>
+        <th><spring:message code="user.roles"/></th>
     </tr>
     </thead>
     <tr>

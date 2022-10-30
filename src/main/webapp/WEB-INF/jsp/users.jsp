@@ -1,32 +1,30 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page import="ru.tbcarus.topjava.util.DateTimeUtil" %>
-
-<fmt:setBundle basename="messages.app"/>
 
 <html lang="ru">
 <head>
-    <title><fmt:message key="app.title"/></title>
+    <title><spring:message code="app.title"/></title>
 </head>
 <body>
-<h3><a href="/vote"><fmt:message key="app.home"/></a></h3>
+<h3><a href="/vote"><spring:message code="app.home"/></a></h3>
 <hr>
 <c:set var="selectedUser" value="${requestScope.user}"/>
 <jsp:useBean id="selectedUser" class="ru.tbcarus.topjava.model.User" scope="request"/>
 ${selectedUser.name} - ${selectedUser.id}
-<h2><fmt:message key="user.title"/></h2>
-<a href="users/create"><fmt:message key="user.add"/></a>
+<h2><spring:message code="user.title"/></h2>
+<a href="users/create"><spring:message code="user.add"/></a>
 <br><br>
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
-        <th><fmt:message key="user.name"/></th>
-        <th><fmt:message key="user.email"/></th>
-        <th><fmt:message key="user.active"/></th>
-        <th><fmt:message key="user.registered"/></th>
-        <th><fmt:message key="user.roles"/></th>
+        <th><spring:message code="user.name"/></th>
+        <th><spring:message code="user.email"/></th>
+        <th><spring:message code="user.active"/></th>
+        <th><spring:message code="user.registered"/></th>
+        <th><spring:message code="user.roles"/></th>
     </tr>
     </thead>
     <c:forEach var="user" items="${requestScope.users}">
@@ -43,8 +41,8 @@ ${selectedUser.name} - ${selectedUser.id}
                     ${role.name()}
                 </c:forEach>
             </td>
-            <td><a href="users/update?id=${user.id}"><fmt:message key="common.update"/></a></td>
-            <td><a href="users/delete?id=${user.id}"><fmt:message key="common.delete"/></a></td>
+            <td><a href="users/update?id=${user.id}"><spring:message code="common.update"/></a></td>
+            <td><a href="users/delete?id=${user.id}"><spring:message code="common.delete"/></a></td>
         </tr>
     </c:forEach>
 </table>
