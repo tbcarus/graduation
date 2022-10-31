@@ -3,10 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title><spring:message code="app.title"/></title>
-</head>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
 <h3>Проект <a href="https://github.com/JavaWebinar/topjava" target="_blank">Java Enterprise (Topjava)</a></h3>
 <hr>

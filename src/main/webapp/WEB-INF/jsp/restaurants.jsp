@@ -4,10 +4,7 @@
 <%@ page import="ru.tbcarus.topjava.util.DateTimeUtil" %>
 
 <html lang="ru">
-<head>
-    <title><spring:message code="restaurant.tittle"/></title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
 <h3><a href="/vote"><spring:message code="app.home"/></a></h3>
 <hr>

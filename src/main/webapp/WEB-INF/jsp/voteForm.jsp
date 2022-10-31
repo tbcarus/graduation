@@ -3,10 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html lang="ru">
-<head>
-    <title><spring:message code="vote.vote"/></title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
 <section>
     <h3><a href="/vote"><spring:message code="app.home"/></a></h3>
