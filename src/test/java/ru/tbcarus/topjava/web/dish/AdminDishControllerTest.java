@@ -1,15 +1,13 @@
 package ru.tbcarus.topjava.web.dish;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
+import org.springframework.transaction.annotation.Transactional;
 import ru.tbcarus.topjava.RestaurantTestData;
 import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
@@ -17,12 +15,17 @@ import ru.tbcarus.topjava.util.exception.NotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.tbcarus.topjava.DishTestData.*;
 
 
-@ContextConfiguration({"classpath:spring/spring-app.xml", "classpath:spring/spring-db.xml", "classpath:spring/spring-mvc.xml"})
-@RunWith(SpringRunner.class)
+@SpringJUnitWebConfig(locations = {
+        "classpath:spring/spring-app.xml",
+        "classpath:spring/spring-db.xml",
+        "classpath:spring/spring-mvc.xml"
+})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+//@Transactional
 public class AdminDishControllerTest {
     private static final Logger log = LoggerFactory.getLogger(AdminDishControllerTest.class);
 
@@ -37,7 +40,7 @@ public class AdminDishControllerTest {
 
     @Test
     public void getNotFound() {
-        Assert.assertThrows(NotFoundException.class, () -> controller.get(NOT_FOUND));
+        assertThrows(NotFoundException.class, () -> controller.get(NOT_FOUND));
     }
 
     @Test
@@ -89,18 +92,18 @@ public class AdminDishControllerTest {
     @Test
     public void createDuplicateDish() {
         Dish dish = new Dish(dish2.getName(), 111, dish2.getInputDate(), dish2.getRestaurant());
-        Assert.assertThrows(DataAccessException.class, () -> controller.create(dish, dish.getRestaurant().getId()));
+        assertThrows(DataAccessException.class, () -> controller.create(dish, dish.getRestaurant().getId()));
     }
 
     @Test
     public void delete() {
         controller.delete(dish3.getId());
-        Assert.assertThrows(NotFoundException.class, () -> controller.get(dish3.getId()));
+        assertThrows(NotFoundException.class, () -> controller.get(dish3.getId()));
     }
 
     @Test
     public void deleteNotFound() {
-        Assert.assertThrows(NotFoundException.class, () -> controller.delete(NOT_FOUND));
+        assertThrows(NotFoundException.class, () -> controller.delete(NOT_FOUND));
     }
 
     @Test

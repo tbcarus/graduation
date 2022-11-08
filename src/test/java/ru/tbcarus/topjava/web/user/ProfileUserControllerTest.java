@@ -1,17 +1,15 @@
 package ru.tbcarus.topjava.web.user;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
+import org.springframework.transaction.annotation.Transactional;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.repository.JpaUtil;
@@ -20,11 +18,16 @@ import ru.tbcarus.topjava.util.exception.NotFoundException;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.tbcarus.topjava.UserTestData.*;
 
-@ContextConfiguration({"classpath:spring/spring-app.xml", "classpath:spring/spring-db.xml", "classpath:spring/spring-mvc.xml"})
-@RunWith(SpringRunner.class)
+@SpringJUnitWebConfig(locations = {
+        "classpath:spring/spring-app.xml",
+        "classpath:spring/spring-db.xml",
+        "classpath:spring/spring-mvc.xml"
+})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+//@Transactional
 public class ProfileUserControllerTest {
     private static final Logger log = LoggerFactory.getLogger(ProfileUserControllerTest.class);
 
@@ -39,7 +42,7 @@ public class ProfileUserControllerTest {
     @Autowired
     protected JpaUtil jpaUtil;
 
-    @Before
+    @BeforeEach
     public void setup() {
         cacheManager.getCache("users").clear();
         jpaUtil.clear2ndLevelHibernateCache();
@@ -58,7 +61,7 @@ public class ProfileUserControllerTest {
     @Test
     public void createDuplicateEmail() {
         User newUser = new User(null,"Duplicate", "ivan@mail.ru", "duplicate", Role.USER);
-        Assert.assertThrows(DataAccessException.class, () -> controller.create(newUser));
+        assertThrows(DataAccessException.class, () -> controller.create(newUser));
     }
 
     @Test
@@ -75,7 +78,7 @@ public class ProfileUserControllerTest {
 
     @Test
     public void getNotFound() {
-        Assert.assertThrows(NotFoundException.class, () -> controller.get(NOT_FOUND));
+        assertThrows(NotFoundException.class, () -> controller.get(NOT_FOUND));
     }
 
     @Test
@@ -87,12 +90,12 @@ public class ProfileUserControllerTest {
     @Test
     public void delete() {
         controller.delete(MARIA_ID);
-        Assert.assertThrows(NotFoundException.class, () -> controller.get(MARIA_ID));
+        assertThrows(NotFoundException.class, () -> controller.get(MARIA_ID));
     }
 
     @Test
     public void deleteNotFound() {
-        Assert.assertThrows(NotFoundException.class, () -> controller.get(NOT_FOUND));
+        assertThrows(NotFoundException.class, () -> controller.get(NOT_FOUND));
     }
 
     @Test

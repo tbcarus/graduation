@@ -6,6 +6,7 @@ import ru.tbcarus.topjava.model.User;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import static ru.tbcarus.topjava.model.AbstractBaseEntity.START_SEQ;
 
@@ -36,4 +37,6 @@ public class UserTestData {
         updated.setRoles(Collections.singletonList(Role.ADMIN));
         return updated;
     }
+
+    public static List<User> userList = List.of(admin, ivan, maria, vasily);
 }

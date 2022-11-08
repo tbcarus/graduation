@@ -1,14 +1,11 @@
 package ru.tbcarus.topjava.web.vote;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
+import org.springframework.transaction.annotation.Transactional;
 import ru.tbcarus.topjava.RestaurantTestData;
 import ru.tbcarus.topjava.VoteTestData;
 import ru.tbcarus.topjava.model.Vote;
@@ -17,12 +14,17 @@ import ru.tbcarus.topjava.util.exception.NotFoundException;
 
 import java.util.List;
 
-import static ru.tbcarus.topjava.UserTestData.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static ru.tbcarus.topjava.UserTestData.IVAN_ID;
 import static ru.tbcarus.topjava.VoteTestData.*;
 
-@ContextConfiguration({"classpath:spring/spring-app.xml", "classpath:spring/spring-db.xml", "classpath:spring/spring-mvc.xml"})
-@RunWith(SpringRunner.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@SpringJUnitWebConfig(locations = {
+        "classpath:spring/spring-app.xml",
+        "classpath:spring/spring-db.xml",
+        "classpath:spring/spring-mvc.xml"
+})
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@Transactional
 public class AdminVoteControllerTest {
     private static final Logger log = LoggerFactory.getLogger(AdminVoteControllerTest.class);
 
@@ -40,12 +42,12 @@ public class AdminVoteControllerTest {
 
     @Test
     public void getNotFound() {
-        Assert.assertThrows(NotFoundException.class, () -> service.get(VoteTestData.NOT_FOUND, IVAN_ID));
+        assertThrows(NotFoundException.class, () -> service.get(VoteTestData.NOT_FOUND, IVAN_ID));
     }
 
     @Test
     public void getNotOwn() {
-        Assert.assertThrows(NotFoundException.class, () -> service.get(mariaVote1.getId(), IVAN_ID));
+        assertThrows(NotFoundException.class, () -> service.get(mariaVote1.getId(), IVAN_ID));
     }
 
     @Test
@@ -84,11 +86,11 @@ public class AdminVoteControllerTest {
     @Test
     public void delete() {
         service.delete(ivanVote1.getId(), IVAN_ID);
-        Assert.assertThrows(NotFoundException.class, () -> service.get(ivanVote1.getId(), IVAN_ID));
+        assertThrows(NotFoundException.class, () -> service.get(ivanVote1.getId(), IVAN_ID));
     }
 
     @Test
     public void deleteNotFound() {
-        Assert.assertThrows(NotFoundException.class, () -> service.delete(VoteTestData.NOT_FOUND, IVAN_ID));
+        assertThrows(NotFoundException.class, () -> service.delete(VoteTestData.NOT_FOUND, IVAN_ID));
     }
 }
