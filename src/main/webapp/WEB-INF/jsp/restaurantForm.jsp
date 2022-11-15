@@ -10,7 +10,7 @@
     <hr>
     <h2>${param.id != null ? 'Edit restaurant' : 'Add restaurant'}</h2>
     <jsp:useBean id="restaurant" type="ru.tbcarus.topjava.model.Restaurant" scope="request"/>
-    <form method="post" action="create-or-update">
+    <form method="post" action="restaurants/create-or-update">
         <input type="hidden" name="id" value="${restaurant.id}">
         <table border="0">
             <tr>

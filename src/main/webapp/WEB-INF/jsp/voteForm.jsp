@@ -10,7 +10,7 @@
     <hr>
     <h2>${param.id != null ? 'Edit vote' : 'To vote'}</h2>
     <jsp:useBean id="vote" type="ru.tbcarus.topjava.model.Vote" scope="request"/>
-    <form method="post" action="create-or-update">
+    <form method="post" action="votes/create-or-update">
         <input type="hidden" name="id" value="${vote.id}">
         <dl>
             <dt><spring:message code="restaurant.restaurant"/>:</dt>

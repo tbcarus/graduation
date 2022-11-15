@@ -13,7 +13,7 @@
     <hr>
     <h2>${param.id != null ? 'Edit user' : 'Add user'}</h2>
     <jsp:useBean id="user" type="ru.tbcarus.topjava.model.User" scope="request"/>
-    <form method="post" action="create-or-update">
+    <form method="post" action="users/create-or-update">
         <input type="hidden" name="id" value="${user.id}">
         <table border="0">
             <tr>

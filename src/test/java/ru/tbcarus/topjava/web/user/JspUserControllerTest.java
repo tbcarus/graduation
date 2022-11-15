@@ -1,15 +1,25 @@
 package ru.tbcarus.topjava.web.user;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.tbcarus.topjava.UserTestData;
+import ru.tbcarus.topjava.model.User;
+import ru.tbcarus.topjava.service.UserService;
+import ru.tbcarus.topjava.util.exception.NotFoundException;
 import ru.tbcarus.topjava.web.AbstractControllerTest;
 
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static ru.tbcarus.topjava.UserTestData.IVAN_ID;
+import static ru.tbcarus.topjava.UserTestData.MARIA_ID;
 
 public class JspUserControllerTest extends AbstractControllerTest {
+
+    @Autowired
+    UserService service;
 
     @Test
     public void root() {
@@ -41,7 +51,10 @@ public class JspUserControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void delete() {
+    public void delete() throws Exception {
+        perform(get("/users/delete?id=" + MARIA_ID))
+                .andDo(print());
+        assertThrows(NotFoundException.class, () -> service.get(MARIA_ID));
     }
 
     @Test

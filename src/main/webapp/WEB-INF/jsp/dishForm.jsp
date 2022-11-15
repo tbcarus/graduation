@@ -10,7 +10,7 @@
     <hr>
     <h2>${param.id != null ? 'Edit dish' : 'Add dish'}</h2>
     <jsp:useBean id="dish" type="ru.tbcarus.topjava.model.Dish" scope="request"/>
-    <form method="post" action="create-or-update">
+    <form method="post" action="dishes/create-or-update">
         <input type="hidden" name="id" value="${dish.id}">
         <dl>
             <dt><spring:message code="dishes.dish"/>:</dt>
