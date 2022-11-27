@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.service.DishService;
 import ru.tbcarus.topjava.util.DateTimeUtil;
+import ru.tbcarus.topjava.util.ValidationUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,23 +26,40 @@ public abstract class AbstractDishController {
         return service.getAll();
     }
 
-    public List<Dish> getAllByRestaurantId(int restaurantId){
-        return service.getAllByRestaurantId(restaurantId);
+    public List<Dish> getAllToday() {
+        return getAllByDate(DateTimeUtil.today().toLocalDate());
     }
 
     public List<Dish> getAllByDate(LocalDate date) {
         return service.getAllByDate(date);
     }
 
-    public List<Dish> getAllToday() {
-        return getAllByDate(DateTimeUtil.today().toLocalDate());
+    public List<Dish> getAllByRestaurantIdToday(int restaurantId) {
+        return getAllByRestaurantIdAndDate(restaurantId, DateTimeUtil.today().toLocalDate());
+    }
+
+    public List<Dish> getAllByRestaurantId(int restaurantId){
+        return service.getAllByRestaurantId(restaurantId);
     }
 
     public List<Dish> getAllByRestaurantIdAndDate(int restaurantId, LocalDate date) {
         return service.getAllByRestaurantIdAndDate(restaurantId, date);
     }
 
-    public List<Dish> getAllByRestaurantIdToday(int restaurantId) {
-        return getAllByRestaurantIdAndDate(restaurantId, DateTimeUtil.today().toLocalDate());
+    public Dish create(Dish dish, int restId) {
+        log.info("create {} in restaurantId {}", dish, restId);
+        ValidationUtil.checkNew(dish);
+        return service.create(dish, restId);
+    }
+
+    public void delete(int id) {
+        log.info("delete {}", id);
+        service.delete(id);
+    }
+
+    public void update(Dish dish, int restId, int id) {
+        log.info("update {} with id={} in restaurantId {}", dish, id, restId);
+        ValidationUtil.assureIdConsistent(dish, id);
+        service.update(dish, restId);
     }
 }

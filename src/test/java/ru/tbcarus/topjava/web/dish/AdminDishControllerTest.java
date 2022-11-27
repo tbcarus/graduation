@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
-import org.springframework.transaction.annotation.Transactional;
 import ru.tbcarus.topjava.RestaurantTestData;
 import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
@@ -30,7 +29,7 @@ public class AdminDishControllerTest {
     private static final Logger log = LoggerFactory.getLogger(AdminDishControllerTest.class);
 
     @Autowired
-    private AdminDishController controller;
+    private AdminRestDishController controller;
 
     @Test
     public void get() {

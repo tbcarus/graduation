@@ -2,16 +2,14 @@ package ru.tbcarus.topjava.web.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.tbcarus.topjava.model.User;
-import ru.tbcarus.topjava.web.SecurityUtil;
 
 import static ru.tbcarus.topjava.web.SecurityUtil.authUserId;
 
 @RestController
-@RequestMapping(value = ProfileUserController.REST_URL, consumes = MediaType.APPLICATION_JSON_VALUE)
-public class ProfileUserController extends AbstractUserController {
+@RequestMapping(value = ProfileRestUserController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class ProfileRestUserController extends AbstractUserController {
 
     public static final String REST_URL = "/rest/profile";
 

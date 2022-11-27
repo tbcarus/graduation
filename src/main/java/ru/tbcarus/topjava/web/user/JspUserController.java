@@ -14,6 +14,7 @@ import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.service.RestaurantService;
 import ru.tbcarus.topjava.service.UserService;
+import ru.tbcarus.topjava.util.ValidationUtil;
 import ru.tbcarus.topjava.web.SecurityUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,7 @@ public class JspUserController {
         List<Restaurant> restaurants = restaurantService.getAll();
         model.addAttribute("users", users);
         model.addAttribute("restaurants", restaurants);
+        model.addAttribute("activeUser", userService.get(SecurityUtil.authUserId()));
         return "index";
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 import static ru.tbcarus.topjava.model.AbstractBaseEntity.START_SEQ;
 
 public class UserTestData {
-    public static final MatcherFactory.Matcher<User> USER_MATCHER = MatcherFactory.usingIgnoringFieldsComparator("registered", "roles");
+    public static final MatcherFactory.Matcher<User> USER_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(User.class, "registered", "roles");
 
     public static final int ADMIN_ID = START_SEQ;
     public static final int IVAN_ID = START_SEQ + 1;
@@ -19,7 +19,7 @@ public class UserTestData {
     public static final int VASILY_AD = START_SEQ + 3;
     public static final int NOT_FOUND = 10;
 
-    public static final User admin = new User(ADMIN_ID, "Admin", "admin@gov.ru", "superAdmin", Role.ADMIN);
+    public static final User admin = new User(ADMIN_ID, "Admin", "admin@gov.ru", "superAdmin", Role.ADMIN, Role.USER);
     public static final User ivan = new User(IVAN_ID, "Ivan", "ivan@mail.ru", "ivanpass", Role.USER);
     public static final User maria = new User(MARIA_ID, "Maria", "maria@mail.ru", "mariapass", Role.USER);
     public static final User vasily = new User(VASILY_AD, "Vasily", "vasily@mail.ru", "vasilypass", Role.USER);

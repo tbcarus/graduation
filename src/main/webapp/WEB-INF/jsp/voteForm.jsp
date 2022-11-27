@@ -11,11 +11,11 @@
     <h2>${param.id != null ? 'Edit vote' : 'To vote'}</h2>
     <jsp:useBean id="vote" type="ru.tbcarus.topjava.model.Vote" scope="request"/>
     <form method="post" action="votes/create-or-update">
-        <input type="hidden" name="id" value="${vote.id}">
+        Vote ID: <input type="text" name="voteId" value="${vote.id}">
         <dl>
             <dt><spring:message code="restaurant.restaurant"/>:</dt>
             <dd>
-                <select name="restaurant">
+                <select name="restaurantId">
                     <c:forEach var="r" items="${requestScope.restaurants}">
                         <jsp:useBean id="r" type="ru.tbcarus.topjava.model.Restaurant"/>
                         <option value="${r.id}">${r.name}</option>

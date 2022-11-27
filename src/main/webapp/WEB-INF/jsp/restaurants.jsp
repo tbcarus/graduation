@@ -47,7 +47,7 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
             </td>
             <td>
                 <form method="post" action="votes/create-or-update">
-                    <input type="hidden" name="restaurant" value="${restaurant.id}">
+                    <input type="hidden" name="restaurantId" value="${restaurant.id}">
                     <button type="submit"><spring:message code="restaurant.vote"/></button>
                 </form>
             </td>

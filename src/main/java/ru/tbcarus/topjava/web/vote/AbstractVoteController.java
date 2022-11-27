@@ -31,16 +31,16 @@ public abstract class AbstractVoteController {
         return service.get(id, userId);
     }
 
-    public Vote create(Vote vote, int restaurantId) {
+    public Vote create(Vote vote, int userId, int restaurantId) {
         log.info("create {}", vote);
         ValidationUtil.checkNew(vote);
-        return service.create(vote, SecurityUtil.authUserId(), restaurantId);
+        return service.create(vote, userId, restaurantId);
     }
 
-    public void update(Vote vote, int id, int restaurantId) {
+    public void update(Vote vote, int id, int userId, int restaurantId) {
         log.info("update {} with id={}", vote, id);
         ValidationUtil.assureIdConsistent(vote, id);
-        service.update(vote, SecurityUtil.authUserId(), restaurantId);
+        service.update(vote, userId, restaurantId);
     }
 
     public void delete(int id, int userId) {

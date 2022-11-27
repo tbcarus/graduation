@@ -55,10 +55,12 @@ public class JspVoteController {
     @PostMapping("/create-or-update")
     public String createOrUpdate(HttpServletRequest request) {
         LocalDate date = LocalDate.now();
-        String restaurantIdStr = request.getParameter("id");
-        int restaurantId = Integer.parseInt(restaurantIdStr.isEmpty() ? "0" : restaurantIdStr);
+        String voteIdStr = request.getParameter("voteId");
+        int voteId = Integer.parseInt(Objects.isNull(voteIdStr) || voteIdStr.isEmpty() ? "0" : voteIdStr);
+        String restaurantIdStr = request.getParameter("restaurantId");
+        int restaurantId = Integer.parseInt(restaurantIdStr);
         Vote vote = new Vote(date);
-        if (StringUtils.hasLength(restaurantIdStr)) {
+        if (StringUtils.hasLength(voteIdStr)) {
             voteService.update(vote, authUserId(), restaurantId);
         } else {
             voteService.create(vote, authUserId(), restaurantId);

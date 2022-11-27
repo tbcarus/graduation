@@ -4,7 +4,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
-import ru.tbcarus.topjava.web.user.AdminUserController;
+import ru.tbcarus.topjava.web.user.AdminRestUserController;
 
 import java.util.Arrays;
 
@@ -13,7 +13,7 @@ public class SpringMain {
         // java 7 automatic resource management (ARM)
         try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/inmemory.xml")) {
             System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
-            AdminUserController adminUserController = appCtx.getBean(AdminUserController.class);
+            AdminRestUserController adminUserController = appCtx.getBean(AdminRestUserController.class);
             adminUserController.create(new User(null, "userName", "email@mail.ru", "password", Role.ADMIN));
             System.out.println();
 

@@ -8,7 +8,7 @@ import java.util.List;
 import static ru.tbcarus.topjava.model.AbstractBaseEntity.START_SEQ;
 
 public class DishTestData {
-    public static final MatcherFactory.Matcher<Dish> DISH_MATCHER = MatcherFactory.usingIgnoringFieldsComparator("restaurant");
+    public static final MatcherFactory.Matcher<Dish> DISH_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Dish.class, "restaurant");
 
     public static final int KFC1 = START_SEQ + 7;
     public static final int KFC2 = START_SEQ + 8;

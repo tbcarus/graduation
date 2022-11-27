@@ -11,6 +11,7 @@ import ru.tbcarus.topjava.VoteTestData;
 import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.service.VoteService;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
+import ru.tbcarus.topjava.web.SecurityUtil;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class AdminVoteControllerTest {
     private static final Logger log = LoggerFactory.getLogger(AdminVoteControllerTest.class);
 
     @Autowired
-    private AdminVoteController controller;
+    private AdminRestVoteController controller;
 
     @Autowired
     private VoteService service;
@@ -64,7 +65,7 @@ public class AdminVoteControllerTest {
 
     @Test
     public void create() {
-        Vote created = controller.create(VoteTestData.getNew(), RestaurantTestData.BURGER_KING_ID);
+        Vote created = controller.create(VoteTestData.getNew(), SecurityUtil.authUserId(), RestaurantTestData.BURGER_KING_ID);
         int newId = created.getId();
         Vote newVote = VoteTestData.getNew();
         newVote.setId(newId);

@@ -1,4 +1,4 @@
-package ru.tbcarus.topjava.web.user;
+package ru.tbcarus.topjava.web.restaurant;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -6,32 +6,34 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.model.User;
+import ru.tbcarus.topjava.web.user.AbstractUserController;
 
 import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = AdminUserController.REST_URL, consumes = MediaType.APPLICATION_JSON_VALUE)
-public class AdminUserController extends AbstractUserController {
+@RequestMapping(value = AdminRestRestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class AdminRestRestaurantController extends AbstractRestaurantController {
 
-    public static final String REST_URL = "/rest/admin/users";
-
-    @Override
-    @GetMapping
-    public List<User> getAll() {
-        return super.getAll();
-    }
+    public static final String REST_URL = "/rest/admin/restaurants";
 
     @Override
-    @GetMapping(value = "/{id}")
-    public User get(@PathVariable int id) {
+    @GetMapping("/{id}")
+    public Restaurant get(@PathVariable int id) {
         return super.get(id);
     }
 
+    @Override
+    @GetMapping
+    public List<Restaurant> getAll() {
+        return super.getAll();
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createWithLocations(@RequestBody User user) {
-        User created = super.create(user);
+    public ResponseEntity<Restaurant> createRest(@RequestBody Restaurant restaurant) {
+        Restaurant created = super.create(restaurant);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();
@@ -39,7 +41,7 @@ public class AdminUserController extends AbstractUserController {
     }
 
     @Override
-    @DeleteMapping(value = "{/id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         super.delete(id);
@@ -48,13 +50,7 @@ public class AdminUserController extends AbstractUserController {
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody User user, @PathVariable int id) {
-        super.update(user, id);
-    }
-
-    @Override
-    @GetMapping(value = "/by-email")
-    public User getByMail(@RequestParam String email) {
-        return super.getByMail(email);
+    public void update(@RequestBody Restaurant restaurant, @PathVariable int id) {
+        super.update(restaurant, id);
     }
 }

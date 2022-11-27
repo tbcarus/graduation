@@ -1,8 +1,5 @@
 package ru.tbcarus.topjava;
 
-import ru.tbcarus.topjava.MatcherFactory;
-import ru.tbcarus.topjava.RestaurantTestData;
-import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.model.Vote;
 
 import java.time.LocalDate;
@@ -11,7 +8,7 @@ import java.util.List;
 import static ru.tbcarus.topjava.model.AbstractBaseEntity.START_SEQ;
 
 public class VoteTestData {
-    public static final MatcherFactory.Matcher<Vote> VOTE_MATCHER = MatcherFactory.usingIgnoringFieldsComparator("user", "restaurant");
+    public static final MatcherFactory.Matcher<Vote> VOTE_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Vote.class, "user", "restaurant");
 
     public static final int ADMIN_VOTE1_ID = START_SEQ + 19;
     public static final int IVAN_VOTE1_ID = START_SEQ + 20;

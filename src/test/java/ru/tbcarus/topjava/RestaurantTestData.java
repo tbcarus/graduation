@@ -1,16 +1,11 @@
 package ru.tbcarus.topjava;
 
-import ru.tbcarus.topjava.MatcherFactory;
 import ru.tbcarus.topjava.model.Restaurant;
-import ru.tbcarus.topjava.model.Role;
-import ru.tbcarus.topjava.model.User;
-
-import java.util.Collections;
 
 import static ru.tbcarus.topjava.model.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
-    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingIgnoringFieldsComparator("dishes");
+    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Restaurant.class, "dishes");
 
     public static final int KFC_ID = START_SEQ + 4;
     public static final int MCDONALDS_ID = START_SEQ + 5;

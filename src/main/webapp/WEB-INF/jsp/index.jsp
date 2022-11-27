@@ -7,6 +7,10 @@
 <body>
 <h3>Проект <a href="https://github.com/JavaWebinar/topjava" target="_blank">Java Enterprise (Topjava)</a></h3>
 <hr>
+<c:set var="activeUser" value="${requestScope.activeUser}"/>
+<jsp:useBean id="activeUser" type="ru.tbcarus.topjava.model.User"/>
+Active User: ${activeUser.id()} - ${activeUser.name}
+<br><br>
 <form method="post" action="users">
     <b style="font-size: large"><spring:message code="user.title"/></b>
     <select name="userId">
