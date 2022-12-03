@@ -17,7 +17,7 @@ public class AdminRestVoteController extends AbstractVoteController {
     public static final String REST_URL = "/rest/admin/votes";
 
     @Override
-    @GetMapping()
+    @GetMapping("/vote")
     public List<Vote> getAll() { return super.getAll();}
 
     @GetMapping("/{id}")
@@ -25,7 +25,7 @@ public class AdminRestVoteController extends AbstractVoteController {
         return super.get(id, authUserId());
     }
 
-    @GetMapping
+    @GetMapping()
     public List<VoteTo> getAllTo() {
         return VoteUtils.getTos(super.getAllByUserId(authUserId()));
     }

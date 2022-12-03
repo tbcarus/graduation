@@ -31,14 +31,13 @@ public class AdminRestDishController extends AbstractDishController {
         return super.getAllToday();
     }
 
-    @Override
-    @GetMapping("/dishes/{localDate}")
-    public List<Dish> getAllByDate (@PathVariable LocalDate localDate) {
-        return super.getAllByDate(localDate);
+    @GetMapping("/dishes/by-date")
+    public List<Dish> getAllByDate (@RequestParam String date) {
+        return super.getAllByDate(LocalDate.parse(date));
     }
 
     @Override
-    @GetMapping("{restId}/dishes/all")
+    @GetMapping("/{restId}/dishes/all")
     public List<Dish> getAllByRestaurantId(@PathVariable int restId) {
         return super.getAllByRestaurantId(restId);
     }
@@ -49,13 +48,12 @@ public class AdminRestDishController extends AbstractDishController {
         return super.getAllByRestaurantIdToday(restId);
     }
 
-    @Override
-    @GetMapping("/{restId}/dishes/{localDate}")
-    public List<Dish> getAllByRestaurantIdAndDate (@PathVariable int restId, @PathVariable LocalDate localDate) {
-        return super.getAllByRestaurantIdAndDate(restId, localDate);
+    @GetMapping("/{restId}/dishes/by-date")
+    public List<Dish> getAllByRestaurantIdAndDate (@PathVariable int restId, @RequestParam String date) {
+        return super.getAllByRestaurantIdAndDate(restId, LocalDate.parse(date));
     }
 
-    @PostMapping(value = "{restId}/dishes", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{restId}/dishes", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dish> createRest(@RequestBody Dish dish, @PathVariable int restId) {
         Dish created = super.create(dish, restId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -65,14 +63,14 @@ public class AdminRestDishController extends AbstractDishController {
     }
 
     @Override
-    @DeleteMapping("{restId}/dishes/{id}")
+    @DeleteMapping("/{restId}/dishes/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         super.delete(id);
     }
 
     @Override
-    @PutMapping(value = "{restId}/dishes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{restId}/dishes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody Dish dish, @PathVariable int restId, @PathVariable int id) {
         super.update(dish, restId, id);

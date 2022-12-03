@@ -2,6 +2,9 @@ package ru.tbcarus.topjava;
 
 import ru.tbcarus.topjava.model.Restaurant;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static ru.tbcarus.topjava.model.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
@@ -25,4 +28,6 @@ public class RestaurantTestData {
         updated.setName("UpdatedName");
         return updated;
     }
+
+    public static List<Restaurant> restaurantList = List.of(burgerKing, kfc, mcDonalds);
 }

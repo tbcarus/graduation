@@ -1,6 +1,7 @@
 package ru.tbcarus.topjava.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -29,6 +30,7 @@ public class Dish extends AbstractNamedEntity {
 
     @Column(name = "input_date", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate inputDate;
 
     @ManyToOne(fetch = FetchType.EAGER)

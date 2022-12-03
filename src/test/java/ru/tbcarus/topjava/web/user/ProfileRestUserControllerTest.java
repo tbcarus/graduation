@@ -21,15 +21,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.tbcarus.topjava.UserTestData.*;
 import static ru.tbcarus.topjava.web.user.ProfileRestUserController.REST_URL;
 
-@SpringJUnitWebConfig(locations = {
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml",
-        "classpath:spring/spring-mvc.xml"
-})
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-//@Transactional
+//@SpringJUnitWebConfig(locations = {
+//        "classpath:spring/spring-app.xml",
+//        "classpath:spring/spring-db.xml",
+//        "classpath:spring/spring-mvc.xml"
+//})
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class ProfileRestUserControllerTest extends AbstractControllerTest {
-    private static final Logger log = LoggerFactory.getLogger(ProfileRestUserControllerTest.class);
 
     @Autowired
     UserService userService;

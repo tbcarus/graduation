@@ -10,6 +10,8 @@ import static ru.tbcarus.topjava.model.AbstractBaseEntity.START_SEQ;
 public class DishTestData {
     public static final MatcherFactory.Matcher<Dish> DISH_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Dish.class, "restaurant");
 
+    public static final LocalDate ANOTHER_DATE = LocalDate.of(2022, 1, 1);
+
     public static final int KFC1 = START_SEQ + 7;
     public static final int KFC2 = START_SEQ + 8;
     public static final int KFC3 = START_SEQ + 9;
@@ -30,7 +32,7 @@ public class DishTestData {
     public static final Dish dish1 = new Dish(KFC1, "Бёдра", 7, LocalDate.now(), RestaurantTestData.kfc);
     public static final Dish dish2 = new Dish(KFC2, "Крылья", 5, LocalDate.now(), RestaurantTestData.kfc);
     public static final Dish dish3 = new Dish(KFC3, "Пепси", 3, LocalDate.now(), RestaurantTestData.kfc);
-    public static final Dish dish12 = new Dish(KFC4, "Блюдо на другую дату KFC", 12, LocalDate.of(2022, 1, 1), RestaurantTestData.kfc);
+    public static final Dish dish12 = new Dish(KFC4, "Блюдо на другую дату KFC", 12, ANOTHER_DATE, RestaurantTestData.kfc);
 
     public static final Dish dish4 = new Dish(MCD1, "Роял", 8, LocalDate.now(), RestaurantTestData.mcDonalds);
     public static final Dish dish5 = new Dish(MCD2, "Чизбургер", 4, LocalDate.now(), RestaurantTestData.mcDonalds);
@@ -40,7 +42,7 @@ public class DishTestData {
     public static final Dish dish8 = new Dish(BGK1, "Воппер", 8, LocalDate.now(), RestaurantTestData.burgerKing);
     public static final Dish dish9 = new Dish(BGK2, "Пиво", 7, LocalDate.now(), RestaurantTestData.burgerKing);
     public static final Dish dish10 = new Dish(BGK3, "Меринда", 4, LocalDate.now(), RestaurantTestData.burgerKing);
-    public static final Dish dish11 = new Dish(BGK4, "Блюдо на другую дату BGK", 10, LocalDate.of(2022, 1, 1), RestaurantTestData.burgerKing);
+    public static final Dish dish11 = new Dish(BGK4, "Блюдо на другую дату BGK", 10, ANOTHER_DATE, RestaurantTestData.burgerKing);
 
     public static Dish getNew() {
         return new Dish(null, "New", 11, LocalDate.now(), RestaurantTestData.burgerKing);
@@ -51,6 +53,11 @@ public class DishTestData {
         updated.setName("UpdatedName");
         return updated;
     }
+
+    public static final List<Dish> mcdDishes = List.of(dish5, dish4, dish7, dish6);
+
+    public static final List<Dish> bgkDishesToday = List.of(dish9, dish10, dish8);
+    public static final List<Dish> bgkDishesAll = List.of(dish9, dish10, dish8, dish11);
 
     public static final List<Dish> dishes = List.of(
             dish9, dish10, dish8, dish11,
