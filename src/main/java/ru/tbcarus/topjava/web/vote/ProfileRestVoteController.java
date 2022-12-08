@@ -1,5 +1,6 @@
 package ru.tbcarus.topjava.web.vote;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,7 @@ public class ProfileRestVoteController extends AbstractVoteController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         super.delete(id, authUserId());
     }
@@ -47,6 +49,7 @@ public class ProfileRestVoteController extends AbstractVoteController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestParam int id, @RequestParam int restaurantId) {
         Vote vote = new Vote(DateTimeUtil.getNow().toLocalDate());
         super.update(vote, id, SecurityUtil.authUserId(), restaurantId);
