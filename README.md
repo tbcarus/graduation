@@ -16,3 +16,12 @@ Build a voting system for deciding where to have lunch.
     - If it is after 11:00 then it is too late, vote can't be changed
 
 Each restaurant provides a new menu each day.
+
+Get all users
+curl http://localhost:8080/vote/rest/admin/users
+
+Get user 100001
+curl http://localhost:8080/vote/rest/admin/users/100001
+
+Get user by e-mail
+curl http://localhost:8080/vote/rest/admin/users/by-email?email=maria@mail.ru

@@ -1,5 +1,6 @@
 package ru.tbcarus.topjava.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -21,6 +22,7 @@ public class Restaurant extends AbstractNamedEntity{
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonManagedReference
     private List<Dish> dishes;
 
     public Restaurant() {

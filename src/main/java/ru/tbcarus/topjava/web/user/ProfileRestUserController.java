@@ -29,4 +29,9 @@ public class ProfileRestUserController extends AbstractUserController {
     public void update(@RequestBody User user) {
         super.update(user, authUserId());
     }
+
+    @GetMapping("/text")
+    public String testUTF() {
+        return "Русский текст";
+    }
 }
