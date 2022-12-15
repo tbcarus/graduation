@@ -7,6 +7,9 @@
 <html lang="ru">
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+<jsp:include page="fragments/bodyHeader.jsp"/>
+<div class="jumbotron pt-4">
+    <div class="container">
 <h3><a href="/vote"><spring:message code="app.home"/></a></h3>
 <hr>
 ${DateTimeUtil.toString(DateTimeUtil.getNow())}
@@ -14,7 +17,7 @@ ${DateTimeUtil.toString(DateTimeUtil.getNow())}
 UserId - ${SecurityUtil.authUserId()}
 <h2><spring:message code="dishes.tittle"/></h2>
 <a href="dishes/create"><spring:message code="dishes.add"/></a>
-<table border="1">
+<table class="table table-striped mt-3">
     <thead>
     <tr>
         <th colspan="3">
@@ -48,6 +51,8 @@ UserId - ${SecurityUtil.authUserId()}
         </tr>
     </c:forEach>
 </table>
-
+</div>
+</div>
+<jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
