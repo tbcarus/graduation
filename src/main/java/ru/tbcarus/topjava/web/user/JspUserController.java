@@ -31,27 +31,6 @@ public class JspUserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private RestaurantService restaurantService;
-
-    @GetMapping("/")
-    public String root(Model model) {
-        log.info("root");
-        List<User> users = userService.getAll();
-        List<Restaurant> restaurants = restaurantService.getAll();
-        model.addAttribute("users", users);
-        model.addAttribute("restaurants", restaurants);
-        model.addAttribute("activeUser", userService.get(SecurityUtil.authUserId()));
-        return "index";
-    }
-
-    @GetMapping("/users")
-    public String getUsers(Model model) {
-        log.info("users");
-        model.addAttribute("user", userService.get(SecurityUtil.authUserId()));
-        model.addAttribute("users", userService.getAll());
-        return "users";
-    }
 
     @GetMapping("/users/{id}")
     public String getUser(@PathVariable("id") String id, Model model) {
@@ -113,13 +92,5 @@ public class JspUserController {
             userService.create(user);
         }
         return "redirect:/users";
-    }
-
-    @PostMapping("/users")
-    public String setUser(HttpServletRequest request) {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        log.info("setUser {}", userId);
-        SecurityUtil.setAuthUserId(userId);
-        return "redirect:users";
     }
 }
