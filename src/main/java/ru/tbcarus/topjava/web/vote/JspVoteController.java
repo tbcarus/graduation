@@ -9,6 +9,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.service.RestaurantService;
 import ru.tbcarus.topjava.service.VoteService;
@@ -36,7 +37,9 @@ public class JspVoteController {
     public String getVotes(Model model) {
         log.info("votes");
         List<Vote> votes = voteService.getAllByUserId(authUserId());
+        List<Restaurant> restaurants = restaurantService.getAll();
         model.addAttribute("votesTo", VoteUtils.getTos(votes));
+        model.addAttribute("restaurants", restaurants);
         return "votes";
     }
 

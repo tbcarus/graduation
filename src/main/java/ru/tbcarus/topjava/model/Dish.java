@@ -56,6 +56,10 @@ public class Dish extends AbstractNamedEntity {
         this(null, 1, inputDate, restaurant);
     }
 
+    public Dish(String name, int price, LocalDate inputDate) {
+        this( name, price, inputDate, null);
+    }
+
     public Dish(String name, int price, LocalDate inputDate, Restaurant restaurant) {
         this(null, name, price, inputDate, restaurant);
     }
