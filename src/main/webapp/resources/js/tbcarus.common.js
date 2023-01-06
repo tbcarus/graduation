@@ -8,7 +8,7 @@ function makeEditable(datatableApi) {
 function add() {
     form.find(":input").each(function () {
         this.value = "";
-        this.removeAttribute('disabled');
+        this.removeAttribute('readonly');
     });
     form.find(":input:checkbox").each(function () {
         this.checked = false;
@@ -28,7 +28,7 @@ function edit(email) {
     document.getElementById("id").value = id;
     document.getElementById("name").value = name;
     document.getElementById("email").value = email;
-    document.getElementById("email").setAttribute('disabled', 'disabled');
+    document.getElementById("email").setAttribute('readonly', true);
     document.getElementById("password").value = password;
     document.getElementById("userRole").checked = roles.includes("USER");
     document.getElementById("adminRole").checked = roles.includes("ADMIN");

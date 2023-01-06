@@ -29,7 +29,8 @@ public class AdminUIUserController extends AbstractUserController {
     //OK
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void create(@RequestParam String name,
+    public void create(@RequestParam String id,
+                       @RequestParam String name,
                        @RequestParam String email,
                        @RequestParam String password,
                        @RequestParam(required = false) String userRole,
@@ -41,6 +42,14 @@ public class AdminUIUserController extends AbstractUserController {
         if (adminRole != null) {
             user.setRole(Role.ADMIN);
         }
-        super.create(user);
+        if (id.isEmpty()) {
+            super.create(user);
+        } else {
+            int userId = Integer.parseInt(id);
+            user.setId(userId);
+            super.update(user, userId);
+
+        }
+
     }
 }
