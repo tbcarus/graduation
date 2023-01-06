@@ -12,6 +12,7 @@
 
 <div class="jumbotron pt-4">
     <div class="container">
+
         <h3><a href="/vote"><spring:message code="app.home"/></a></h3>
         <hr>
         <c:set var="selectedUser" value="${requestScope.user}"/>
@@ -50,10 +51,26 @@
                             ${role.name()}
                         </c:forEach>
                     </td>
-                    <td><a href="users/update?id=${user.id}"><span class="fa fa-pencil"></span><spring:message
-                            code="common.update"/></a></td>
-                        <%--                    <td><a href="users/delete?id=${user.id}"><span class="fa fa-remove"></span><spring:message code="common.delete"/></a></td>--%>
-                    <td><a class="delete"><span class="fa fa-remove"></span><spring:message code="common.delete"/></a>
+                    <td>
+                        <a class="edit" id = "${user.email}" style="cursor: pointer" onclick="edit('${user.email}')"
+                           data-id = "${user.id}"
+                           data-name = "${user.name}"
+                           data-password = "${user.password}"
+                           data-roles = "${user.roles}"
+                           >
+                            <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
+                        </a>
+                        <br>
+                        <a href="users/update?id=${user.id}"><span class="fa fa-pencil"></span><spring:message
+                                code="common.update"/> - JSP</a>
+                    </td>
+                        <%--<td><a href="users/delete?id=${user.id}"><span class="fa fa-remove"></span><spring:message code="common.delete"/></a></td>--%>
+                    <td>
+                        <a class="delete" style="cursor: pointer" onclick="deleteRow(${user.id})"> <span
+                                class="fa fa-remove"></span><spring:message code="common.delete"/> - AJAX</a>
+                        <br>
+                        <a href="users/delete?id=${user.id}"><span class="fa fa-remove"></span><spring:message
+                                code="common.delete"/> - JSP</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -89,6 +106,23 @@
                         <label for="password" class="col-form-label"><spring:message code="user.password"/></label>
                         <input type="password" class="form-control" id="password" name="password"
                                placeholder="<spring:message code="user.password"/>">
+                    </div>
+
+                    <div class="form-group">
+                        <c:if test="${user.roles.contains(Role.USER)}">
+                            <input type="checkbox" id="userRole" name="userRole" checked> User
+                        </c:if>
+                        <c:if test="${!user.roles.contains(Role.USER)}">
+                            <input type="checkbox" id="userRole" name="userRole"> User
+                        </c:if>
+                    </div>
+                    <div class="form-group">
+                        <c:if test="${user.roles.contains(Role.ADMIN)}">
+                            <input type="checkbox" id="adminRole" name="adminRole" checked> Admin
+                        </c:if>
+                        <c:if test="${!user.roles.contains(Role.ADMIN)}">
+                            <input type="checkbox" id="adminRole" name="adminRole"> Admin
+                        </c:if>
                     </div>
                 </form>
             </div>

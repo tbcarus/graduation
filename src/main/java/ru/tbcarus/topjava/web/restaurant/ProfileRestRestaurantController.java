@@ -6,12 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.tbcarus.topjava.model.Restaurant;
-import ru.tbcarus.topjava.model.User;
-import ru.tbcarus.topjava.web.user.ProfileRestUserController;
 
 import java.util.List;
-
-import static ru.tbcarus.topjava.web.SecurityUtil.authUserId;
 
 @RestController
 @RequestMapping(value = ProfileRestRestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)

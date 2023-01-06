@@ -3,7 +3,10 @@ const userAjaxUrl = "ui/admin/users/";
 const ctx = {
     ajaxUrl: userAjaxUrl,
     updateTable: function () {
-        $.get(userAjaxUrl, updateTableByData);
+        $.ajax({
+            type: "GET",
+            url: userAjaxUrl,
+        }).done(updateTableByData);
     }
 }
 

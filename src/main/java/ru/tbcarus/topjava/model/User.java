@@ -14,10 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.Set;
+import java.util.*;
 
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NamedQueries({
@@ -126,6 +123,10 @@ public class User extends AbstractNamedEntity {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void setRole(Role role) {
+        roles.add(role);
     }
 
     public void setRoles(Collection<Role> roles) {

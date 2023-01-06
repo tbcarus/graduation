@@ -11,6 +11,7 @@ import ru.tbcarus.topjava.service.UserService;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
 import ru.tbcarus.topjava.web.AbstractControllerTest;
 import ru.tbcarus.topjava.web.json.JsonUtil;
+import ru.tbcarus.topjava.web.user.rest.AdminRestUserController;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

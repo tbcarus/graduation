@@ -36,7 +36,7 @@ public class RootController {
     }
 
     @PostMapping("/users")
-    public String setUser(HttpServletRequest request) {
+    public String setUserToUsers(HttpServletRequest request) {
         int userId = Integer.parseInt(request.getParameter("userId"));
         log.info("setUser {}", userId);
         SecurityUtil.setAuthUserId(userId);

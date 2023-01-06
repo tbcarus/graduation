@@ -4,7 +4,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
-import ru.tbcarus.topjava.web.user.AdminRestUserController;
+import ru.tbcarus.topjava.web.user.rest.AdminRestUserController;
 
 import java.util.Arrays;
 

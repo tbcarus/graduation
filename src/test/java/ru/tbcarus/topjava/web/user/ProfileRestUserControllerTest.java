@@ -1,12 +1,8 @@
 package ru.tbcarus.topjava.web.user;
 
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.service.UserService;
@@ -19,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.tbcarus.topjava.UserTestData.*;
-import static ru.tbcarus.topjava.web.user.ProfileRestUserController.REST_URL;
+import static ru.tbcarus.topjava.web.user.rest.ProfileRestUserController.REST_URL;
 
 //@SpringJUnitWebConfig(locations = {
 //        "classpath:spring/spring-app.xml",

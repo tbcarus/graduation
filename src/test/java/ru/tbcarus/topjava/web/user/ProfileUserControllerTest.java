@@ -14,6 +14,7 @@ import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.repository.JpaUtil;
 import ru.tbcarus.topjava.repository.datajpa.UserRepository;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
+import ru.tbcarus.topjava.web.user.rest.AdminRestUserController;
 
 import java.util.List;
 

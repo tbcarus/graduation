@@ -1,4 +1,4 @@
-package ru.tbcarus.topjava.web.user;
+package ru.tbcarus.topjava.web.user.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.tbcarus.topjava.model.User;
+import ru.tbcarus.topjava.web.user.AbstractUserController;
 
 import java.net.URI;
 import java.util.List;
