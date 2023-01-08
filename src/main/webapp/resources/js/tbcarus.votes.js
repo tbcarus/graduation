@@ -1,8 +1,26 @@
 const userAjaxUrl = "ui/admin/votes/";
 // https://stackoverflow.com/a/5064235/548473
 const ctx = {
-    ajaxUrl: userAjaxUrl
-};
+    ajaxUrl: userAjaxUrl,
+    updateTable: function () {
+        $.ajax({
+            type: "GET",
+            url: userAjaxUrl,
+        }).done(updateTableByData);
+    }
+}
+
+function edit(restaurantId) {
+    let modalWindow = $("#editRow");
+    let element = document.getElementById(restaurantId);
+
+    let id = element.getAttribute("data-id");
+
+    document.getElementById("id").value = id;
+    $('select').val(restaurantId);
+
+    modalWindow.modal();
+}
 
 // $(document).ready(function () {
 $(function () {

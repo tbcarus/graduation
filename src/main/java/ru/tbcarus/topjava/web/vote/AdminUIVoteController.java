@@ -1,5 +1,6 @@
 package ru.tbcarus.topjava.web.vote;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.tbcarus.topjava.model.Vote;
@@ -18,23 +19,29 @@ public class AdminUIVoteController extends AbstractVoteController {
 
     @Override
     @GetMapping("/vote")
-    public List<Vote> getAll() { return super.getAll();}
+    public List<Vote> getAll() {
+        return super.getAll();
+    }
 
     @GetMapping("/{id}")
     public Vote get(@PathVariable int id) {
         return super.get(id, authUserId());
     }
 
+    //OK
     @GetMapping()
     public List<VoteTo> getAllTo() {
         return VoteUtils.getTos(super.getAllByUserId(authUserId()));
     }
 
+    //OK
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id, @RequestParam int userId) {
-        super.delete(id, userId);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        super.delete(id, authUserId());
     }
 
+    //OK
     @PostMapping()
     public void create(@RequestParam int restaurantId) {
         Vote vote = new Vote(LocalDate.now());

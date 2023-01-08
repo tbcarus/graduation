@@ -44,13 +44,25 @@
                     <td>${restaurant.name}</td>
                     <td>
                         <c:if test="${vote.canRevote}">
-                            <a href="votes/update?id=${vote.id}"><spring:message code="common.update"/></a>
+                            <a class="edit" id = "${restaurant.id}" style="cursor: pointer" onclick="edit('${restaurant.id}')"
+                               data-id = "${vote.id}"
+                            >
+                                <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
+                            </a>
+                            <br>
+                            <a href="votes/update?id=${vote.id}">
+                                <span class="fa fa-pencil"><spring:message code="common.update"/> - JSP</a>
                         </c:if>
                         <c:if test="${!vote.canRevote}">
                             Can't revote
                         </c:if>
                     </td>
-                    <td><a href="votes/delete?id=${vote.id}"><spring:message code="common.delete"/></a>
+                    <td>
+                        <a class="delete" style="cursor: pointer" onclick="deleteRow(${vote.id})">
+                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - AJAX</a>
+                        <br>
+                        <a href="votes/delete?id=${vote.id}">
+                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - JSP</a>
                     </td>
                 </tr>
 
