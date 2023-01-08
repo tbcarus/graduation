@@ -43,8 +43,12 @@ public class AdminUIVoteController extends AbstractVoteController {
 
     //OK
     @PostMapping()
-    public void create(@RequestParam int restaurantId) {
+    public void create(@RequestParam(required = false) String id, @RequestParam int restaurantId) {
         Vote vote = new Vote(LocalDate.now());
-        super.create(vote, SecurityUtil.authUserId(), restaurantId);
+        if (!id.isEmpty()) {
+            super.update(vote, Integer.parseInt(id), SecurityUtil.authUserId(), restaurantId);
+        } else {
+            super.create(vote, SecurityUtil.authUserId(), restaurantId);
+        }
     }
 }
