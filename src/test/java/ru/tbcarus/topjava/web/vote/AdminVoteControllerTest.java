@@ -12,6 +12,7 @@ import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.service.VoteService;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
 import ru.tbcarus.topjava.web.SecurityUtil;
+import ru.tbcarus.topjava.web.vote.rest.AdminRestVoteController;
 
 import java.util.List;
 

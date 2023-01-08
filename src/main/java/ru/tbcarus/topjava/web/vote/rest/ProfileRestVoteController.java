@@ -1,4 +1,4 @@
-package ru.tbcarus.topjava.web.vote;
+package ru.tbcarus.topjava.web.vote.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +10,7 @@ import ru.tbcarus.topjava.to.VoteTo;
 import ru.tbcarus.topjava.util.DateTimeUtil;
 import ru.tbcarus.topjava.util.VoteUtils;
 import ru.tbcarus.topjava.web.SecurityUtil;
+import ru.tbcarus.topjava.web.vote.AbstractVoteController;
 
 import java.net.URI;
 import java.util.List;

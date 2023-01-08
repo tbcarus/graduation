@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import ru.tbcarus.topjava.DishTestData;
-import ru.tbcarus.topjava.UserTestData;
 import ru.tbcarus.topjava.VoteTestData;
-import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.service.VoteService;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
@@ -20,14 +17,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ru.tbcarus.topjava.DishTestData.*;
-import static ru.tbcarus.topjava.DishTestData.dish1;
-import static ru.tbcarus.topjava.RestaurantTestData.*;
 import static ru.tbcarus.topjava.UserTestData.admin;
 import static ru.tbcarus.topjava.UserTestData.ivan;
 import static ru.tbcarus.topjava.VoteTestData.*;
 import static ru.tbcarus.topjava.web.SecurityUtil.authUserId;
-import static ru.tbcarus.topjava.web.vote.ProfileRestVoteController.REST_URL;
+import static ru.tbcarus.topjava.web.vote.rest.ProfileRestVoteController.REST_URL;
 
 class ProfileRestVoteControllerTest extends AbstractControllerTest {
 
