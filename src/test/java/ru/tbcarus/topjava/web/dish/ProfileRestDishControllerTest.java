@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.tbcarus.topjava.DishTestData.*;
 import static ru.tbcarus.topjava.RestaurantTestData.kfc;
-import static ru.tbcarus.topjava.web.dish.ProfileRestDishController.REST_URL;
+import static ru.tbcarus.topjava.web.dish.rest.ProfileRestDishController.REST_URL;
 
 
 class ProfileRestDishControllerTest extends AbstractControllerTest {

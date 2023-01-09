@@ -1,4 +1,4 @@
-package ru.tbcarus.topjava.web.dish;
+package ru.tbcarus.topjava.web.dish.rest;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.tbcarus.topjava.model.Dish;
+import ru.tbcarus.topjava.web.dish.AbstractDishController;
 
 import java.util.List;
 

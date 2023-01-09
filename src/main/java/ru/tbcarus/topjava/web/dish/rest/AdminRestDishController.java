@@ -1,4 +1,4 @@
-package ru.tbcarus.topjava.web.dish;
+package ru.tbcarus.topjava.web.dish.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -6,8 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.tbcarus.topjava.model.Dish;
-import ru.tbcarus.topjava.model.Restaurant;
-import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.web.dish.AbstractDishController;
 
 import java.net.URI;
 import java.time.LocalDate;

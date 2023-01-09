@@ -1,11 +1,11 @@
-const userAjaxUrl = "ui/admin/votes/";
+const voteAjaxUrl = "ui/admin/votes/";
 // https://stackoverflow.com/a/5064235/548473
 const ctx = {
-    ajaxUrl: userAjaxUrl,
+    ajaxUrl: voteAjaxUrl,
     updateTable: function () {
         $.ajax({
             type: "GET",
-            url: userAjaxUrl,
+            url: voteAjaxUrl,
         }).done(updateTableByData);
     }
 }

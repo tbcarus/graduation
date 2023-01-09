@@ -40,6 +40,8 @@ public class JspDishController {
         model.addAttribute("dishes", dishes);
         Restaurant restaurant = restaurantService.get(restaurantId);
         model.addAttribute("restaurant", restaurant);
+        List<Restaurant> restaurants = restaurantService.getAll();
+        model.addAttribute("restaurants", restaurants);
         return "dishes";
     }
 

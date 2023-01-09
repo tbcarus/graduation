@@ -6,13 +6,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.tbcarus.topjava.DishTestData;
-import ru.tbcarus.topjava.RestaurantTestData;
 import ru.tbcarus.topjava.model.Dish;
-import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.service.DishService;
-import ru.tbcarus.topjava.util.DateTimeUtil;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
 import ru.tbcarus.topjava.web.AbstractControllerTest;
+import ru.tbcarus.topjava.web.dish.rest.AdminRestDishController;
 import ru.tbcarus.topjava.web.json.JsonUtil;
 
 import java.util.List;

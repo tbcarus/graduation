@@ -27,14 +27,22 @@ public class AdminUIDishController extends AbstractDishController {
 //    }
 
     @GetMapping("/dishes/by-date")
-    public List<Dish> getAllByDate (@RequestParam String date) {
+    public List<Dish> getAllByDate(@RequestParam String date) {
         return super.getAllByDate(LocalDate.parse(date));
     }
 
+    //OK
     @Override
     @GetMapping()
     public List<Dish> getAllByRestaurantId(@RequestParam int restaurantId) {
         return super.getAllByRestaurantId(restaurantId);
+    }
+
+    @Override
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        super.delete(id);
     }
 
     @Override
@@ -44,33 +52,26 @@ public class AdminUIDishController extends AbstractDishController {
     }
 
     @GetMapping("/{restId}/dishes/by-date")
-    public List<Dish> getAllByRestaurantIdAndDate (@PathVariable int restId, @RequestParam String date) {
+    public List<Dish> getAllByRestaurantIdAndDate(@PathVariable int restId, @RequestParam String date) {
         return super.getAllByRestaurantIdAndDate(restId, LocalDate.parse(date));
     }
 
-    //OK
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void create(@RequestParam String restaurantId,
+    public void create(@RequestParam(required = false) String id,
+                       @RequestParam int restaurantId,
                        @RequestParam String name,
-                       @RequestParam String price,
+                       @RequestParam int price,
                        @RequestParam String date) {
-        int dishPrice = Integer.parseInt(price);
-        LocalDate dishDate;
-        try {
-            dishDate = LocalDate.parse(date);
-        } catch (DateTimeParseException e) {
-            dishDate = DateTimeUtil.today().toLocalDate();
+        LocalDate dishDate = LocalDate.parse(date);
+        Dish dish = new Dish(name, price, dishDate);
+        if (id.isEmpty()) {
+            super.create(dish, restaurantId);
+        } else {
+            int dishId = Integer.parseInt(id);
+            dish.setId(dishId);
+            super.update(dish, restaurantId,dishId);
         }
-        Dish dish = new Dish(name, dishPrice, dishDate);
-        super.create(dish, Integer.parseInt(restaurantId));
-    }
-
-    @Override
-    @DeleteMapping("/{restId}/dishes/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id) {
-        super.delete(id);
     }
 
     @Override

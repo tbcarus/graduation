@@ -34,7 +34,7 @@
                                 <input type="date" value="${dish.inputDate}" name="date">
                             </c:if>
                             <c:if test="${param.id != null}">
-                                <input type="date" value="${dish.inputDate}" name="date" disabled>
+                                <input type="date" value="${dish.inputDate}" name="date" readonly>
                             </c:if>
                         </td>
                     </tr>
@@ -42,7 +42,7 @@
                         <td><spring:message code="restaurant.restaurant"/></td>
                         <td>
                             <c:if test="${param.id != null}">
-                                <input type="text" value=${dish.restaurant.name} disabled>
+                                <input type="text" value="${dish.restaurant.name}" readonly>
                                 <input type="hidden" value="${dish.restaurant.id}" name="restaurantId">
                             </c:if>
                             <c:if test="${param.id == null}">

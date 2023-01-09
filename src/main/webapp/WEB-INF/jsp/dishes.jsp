@@ -12,52 +12,70 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron pt-4">
     <div class="container">
-<h3><a href="/vote"><spring:message code="app.home"/></a></h3>
-<hr>
-${DateTimeUtil.toString(DateTimeUtil.getNow())}
-<br>
-UserId - ${SecurityUtil.authUserId()}
-<h2><spring:message code="dishes.tittle"/></h2>
+        <h3><a href="/vote"><spring:message code="app.home"/></a></h3>
+        <hr>
+        ${DateTimeUtil.toString(DateTimeUtil.getNow())}
+        <br>
+        UserId - ${SecurityUtil.authUserId()}
+        <h2><spring:message code="dishes.tittle"/></h2>
         <button class="btn btn-primary" onclick="add()">
             <span class="fa fa-plus"></span>
             <spring:message code="common.add"/>
         </button>
-<a href="dishes/create"><spring:message code="dishes.add"/> - новая страница</a>
-<table class="table table-striped mt-3" id="datatable">
-    <thead>
-    <tr>
-        <th colspan="3">
-            <c:set var="restaurant" value="${requestScope.restaurant}"/>
-            <jsp:useBean id="restaurant" type="ru.tbcarus.topjava.model.Restaurant"/>
-            ${restaurant.name} - ${restaurant.id()}
-        </th>
-    </tr>
-    <tr>
-        <th><spring:message code="dishes.name"/></th>
-        <th><spring:message code="dishes.price"/></th>
-        <th><spring:message code="dishes.date"/></th>
-        <th><spring:message code="common.delete"/></th>
-    </tr>
-    </thead>
-    <c:forEach var="dish" items="${requestScope.dishes}">
-        <jsp:useBean id="dish" type="ru.tbcarus.topjava.model.Dish"/>
-        <tr>
-            <td>
-                <a href="dishes/update?id=${dish.id}">${dish.name}</a>
-            </td>
-            <td>
-                ${dish.price}
-            </td>
-            <td>
-                ${dish.inputDate}
-            </td>
-            <td>
-                <a href="dishes/delete?id=${dish.id}&restaurantId=${restaurant.id}"><spring:message code="common.delete"/></a>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
-</div>
+        <a href="dishes/create"><spring:message code="dishes.add"/> - новая страница</a>
+        <table class="table table-striped mt-3" id="datatable">
+            <thead>
+            <tr>
+                <th colspan="3">
+                    <c:set var="restaurant" value="${requestScope.restaurant}"/>
+                    <jsp:useBean id="restaurant" type="ru.tbcarus.topjava.model.Restaurant"/>
+                    ${restaurant.name} - ${restaurant.id()}
+                </th>
+            </tr>
+            <tr>
+                <th><spring:message code="dishes.name"/></th>
+                <th><spring:message code="dishes.price"/></th>
+                <th><spring:message code="dishes.date"/></th>
+                <th><spring:message code="common.update"/></th>
+                <th><spring:message code="common.delete"/></th>
+            </tr>
+            </thead>
+            <c:forEach var="dish" items="${requestScope.dishes}">
+                <jsp:useBean id="dish" type="ru.tbcarus.topjava.model.Dish"/>
+                <tr>
+                    <td>
+                        <a href="dishes/update?id=${dish.id}">${dish.name}</a>
+                    </td>
+                    <td>
+                            ${dish.price}
+                    </td>
+                    <td>
+                            ${dish.inputDate}
+                    </td>
+                    <td>
+                        <a class="edit" id="${dish.id}" style="cursor: pointer" onclick="edit('${dish.id}')"
+                           data-restaurantId="${dish.restaurant.id}"
+                           data-name="${dish.name}"
+                           data-price = "${dish.price}"
+                           data-date = "${dish.inputDate}"
+                        >
+                            <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
+                        </a>
+                        <br>
+                        <a href="dishes/update?id=${dish.id}">
+                            <span class="fa fa-pencil"><spring:message code="common.update"/> - JSP</a>
+                    </td>
+                    <td>
+                        <a class="delete" style="cursor: pointer" onclick="deleteRow(${dish.id})">
+                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - AJAX</a>
+                        <br>
+                        <a href="dishes/delete?id=${dish.id}&restaurantId=${restaurant.id}">
+                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - JSP</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
 </div>
 
 <div class="modal fade" tabindex="-1" id="editRow">
@@ -69,7 +87,7 @@ UserId - ${SecurityUtil.authUserId()}
             </div>
             <div class="modal-body">
                 <form id="detailsForm">
-                    <input hidden type="text" id="id" name="restaurantId" value="${restaurant.id()}">
+                    <input type="hidden" id="id" name="id" value="${dish.id}">
 
                     <div class="form-group">
                         <label for="name" class="col-form-label"><spring:message code="dishes.name"/></label>
@@ -85,7 +103,25 @@ UserId - ${SecurityUtil.authUserId()}
 
                     <div class="form-group">
                         <label for="price" class="col-form-label"><spring:message code="dishes.date"/></label>
-                        <input type="date" class="form-control" id="date" name="date" value="${DateTimeUtil.getNow().toLocalDate()}"/>
+                        <input type="date" class="form-control" id="date" name="date"
+                               value="${DateTimeUtil.getNow().toLocalDate()}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="restaurantId" class="col-form-label"><spring:message
+                                code="restaurant.restaurant"/></label>
+                        <select class="form-control" id="restaurantId" name="restaurantId">
+                            <option value="" selected disabled hidden><spring:message code="common.select"/></option>
+                            <c:forEach var="r" items="${requestScope.restaurants}">
+                                <jsp:useBean id="r" type="ru.tbcarus.topjava.model.Restaurant"/>
+                                <c:if test="${r.id == restaurant.id}">
+                                    <option value="${r.id}" selected>${r.name}</option>
+                                </c:if>
+                                <c:if test="${r.id != restaurant.id}">
+                                    <option value="${r.id}">${r.name}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
                     </div>
                 </form>
             </div>

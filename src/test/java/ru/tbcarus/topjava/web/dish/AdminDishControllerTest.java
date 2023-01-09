@@ -10,6 +10,7 @@ import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import ru.tbcarus.topjava.RestaurantTestData;
 import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
+import ru.tbcarus.topjava.web.dish.rest.AdminRestDishController;
 
 import java.time.LocalDate;
 import java.util.List;
