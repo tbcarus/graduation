@@ -93,11 +93,8 @@ public class JspDishController {
             dish.setInputDate(inputDate);
             dishService.update(dish, restaurantId);
         } else {
-            Dish dish = new Dish();
-            dish.setName(name);
-            dish.setPrice(price);
-            dish.setInputDate(inputDate);
-            dish.setRestaurant(restaurantService.get(restaurantId));
+            Dish dish = new Dish(name, price, inputDate);
+//            dish.setRestaurant(restaurantService.get(restaurantId));
             dishService.create(dish, restaurantId);
         }
         return "redirect:/dishes?restaurantId=" + restaurantIdParam;
