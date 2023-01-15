@@ -7,8 +7,6 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <script src="resources/js/tbcarus.common.js" defer></script>
-<%--<script src="resources/js/tbcarus.votes.js" defer></script>--%>
-<%--<script src="resources/js/tbcarus.dishes.js" defer></script>--%>
 <script src="resources/js/tbcarus.restaurants.js" defer></script>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron pt-4">
@@ -23,61 +21,40 @@
         </button>
         <a href="restaurants/create"><spring:message code="restaurant.add"/> - новая страница</a>
         <br><br>
-        <table border="1" class="table table-striped mt-3">
+
+        <table border="1" class="table table-striped mt-3" id="datatable">
             <thead>
             <tr>
                 <th><spring:message code="restaurant.tittle"/></th>
-                <th width="300px"><spring:message code="restaurant.dishName"/></th>
-                <th><spring:message code="restaurant.price"/></th>
-                <th><spring:message code="restaurant.date"/></th>
                 <th><spring:message code="restaurant.vote"/></th>
-                <th><spring:message code="dishes.add"/></th>
                 <th><spring:message code="common.delete"/></th>
             </tr>
             </thead>
             <c:forEach var="restaurant" items="${requestScope.restaurants}">
                 <jsp:useBean id="restaurant" type="ru.tbcarus.topjava.model.Restaurant"/>
                 <tr style="border-top-style: solid; border-top-width: 3px">
-                <td style="vertical-align: middle" rowspan="${restaurant.dishes.size()}">
-                    <a href="restaurants/update?id=${restaurant.id}">${restaurant.name}-${restaurant.dishes.size()}</a>
-                </td>
-
-                <c:set var="isFirst" value="${true}"/>
-                <c:forEach var="dish" items="${restaurant.dishes}">
-                    <jsp:useBean id="dish" type="ru.tbcarus.topjava.model.Dish"/>
-                    <c:if test="${!isFirst}">
-                        <tr>
-                    </c:if>
-                    <td>${dish.name}</td>
-                    <td>${dish.price}</td>
-                    <td>${dish.inputDate}</td>
-                    <c:if test="${!isFirst}">
-                        </tr>
-                    </c:if>
-                    <c:if test="${isFirst}">
-                        <td style="vertical-align: middle" rowspan="${restaurant.dishes.size()}">
-                            <form method="post" action="votes/create-or-update">
-                                <input type="hidden" name="restaurantId" value="${restaurant.id}">
-                                <button type="submit"><spring:message code="restaurant.vote"/></button>
-                            </form>
-                        </td>
-                        <td style="vertical-align: middle" rowspan="${restaurant.dishes.size()}">
-                            <form method="get" action="dishes/create">
-                                <input type="hidden" name="restaurant" value="${restaurant.id}">
-                                <button type="submit"><spring:message code="dishes.add"/></button>
-                            </form>
-                        </td>
-                        <td style="vertical-align: middle" rowspan="${restaurant.dishes.size()}">
-                            <a href="restaurants/delete?id=${restaurant.id}"><spring:message code="common.delete"/></a>
-                        </td>
-                        </tr>
-                    </c:if>
-                    <c:set var="isFirst" value="${false}"/>
-                </c:forEach>
-
-
+                    <td style="vertical-align: middle">
+                        ${restaurant.name}-${restaurant.dishes.size()}</a>
+                    </td>
+                    <td style="vertical-align: middle">
+                        <a class="edit" id="${restaurant.id}" style="cursor: pointer" onclick="edit('${restaurant.id}')">
+                            <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
+                        </a>
+                        <br>
+                        <a href="restaurants/update?id=${restaurant.id}">
+                            <span class="fa fa-pencil"><spring:message code="common.update"/> - JSP</a>
+                    </td>
+                    <td style="vertical-align: middle">
+                        <a class="delete" style="cursor: pointer" onclick="deleteRow(${restaurant.id})">
+                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - AJAX</a>
+                        <br>
+                        <a href="restaurants/delete?id=${restaurant.id}">
+                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - JSP</a>
+                    </td>
+                </tr>
             </c:forEach>
         </table>
+
     </div>
 </div>
 
@@ -89,15 +66,14 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="RestaurantDetailsForm">
-                    <input type="" id="id" name="id">
+                <form id="detailsForm">
+                    <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
                         <label for="name" class="col-form-label"><spring:message code="restaurant.name"/></label>
                         <input type="text" class="form-control" id="name" name="name"
                                placeholder="<spring:message code="restaurant.name"/>">
                     </div>
-
                 </form>
             </div>
             <div class="modal-footer">
@@ -105,7 +81,7 @@
                     <span class="fa fa-close"></span>
                     <spring:message code="common.cancel"/>
                 </button>
-                <button type="button" class="btn btn-primary" onclick="saveRestaurant()">
+                <button type="button" class="btn btn-primary" onclick="save()">
                     <span class="fa fa-check"></span>
                     <spring:message code="common.save"/>
                 </button>
