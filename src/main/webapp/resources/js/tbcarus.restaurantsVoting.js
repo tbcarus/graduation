@@ -5,7 +5,7 @@ const ctx = {
     updateTable: function () {
         $.ajax({
             type: "GET",
-            url: voteAjaxUrl
+            url: voteAjaxUrl+"today/"
         }).done(updateTableByData);
     }
 }

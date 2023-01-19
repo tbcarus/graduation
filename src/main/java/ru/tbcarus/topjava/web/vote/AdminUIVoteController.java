@@ -28,6 +28,11 @@ public class AdminUIVoteController extends AbstractVoteController {
         return super.get(id, authUserId());
     }
 
+    @GetMapping("/today")
+    public List<Vote> getToday() {
+        return super.getToday(SecurityUtil.authUserId());
+    }
+
     //OK
     @GetMapping()
     public List<VoteTo> getAllTo() {

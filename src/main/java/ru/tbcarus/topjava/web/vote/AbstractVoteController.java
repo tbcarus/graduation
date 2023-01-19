@@ -8,6 +8,8 @@ import ru.tbcarus.topjava.service.VoteService;
 import ru.tbcarus.topjava.util.ValidationUtil;
 import ru.tbcarus.topjava.web.SecurityUtil;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class AbstractVoteController {
@@ -24,6 +26,11 @@ public abstract class AbstractVoteController {
     public List<Vote> getAllByUserId(int userId) {
         log.info("getAll for user {}", userId);
         return service.getAllByUserId(userId);
+    }
+
+    public List<Vote> getToday(int userId) {
+        log.info("get vote today by user {}", userId);
+        return Collections.singletonList(service.getToday(userId));
     }
 
     public Vote get(int id, int userId) {
