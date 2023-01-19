@@ -42,6 +42,15 @@
             </select>
             <button type="submit"><spring:message code="common.select"/></button>
         </form>
+        <form method="post" action="restaurants/voting">
+            <b style="font-size: large"><spring:message code="restaurant.tittle"/></b>
+            <select name="userId">
+                <c:forEach var="user" items="${requestScope.users}">
+                    <option value="${user.id}">${user.name}</option>
+                </c:forEach>
+            </select>
+            <button type="submit"><spring:message code="vote.vote"/></button>
+        </form>
         <form method="post" action="dishes">
             <b style="font-size: large"><spring:message code="dishes.tittle"/></b>
             <select name="userId">

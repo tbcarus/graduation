@@ -7,6 +7,7 @@ import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.repository.datajpa.RestaurantRepository;
 import ru.tbcarus.topjava.repository.datajpa.UserRepository;
 import ru.tbcarus.topjava.repository.datajpa.VoteRepository;
+import ru.tbcarus.topjava.util.DateTimeUtil;
 import ru.tbcarus.topjava.util.ValidationUtil;
 import ru.tbcarus.topjava.util.VoteUtils;
 
@@ -34,6 +35,10 @@ public class VoteService {
             vote = null;
         }
         return ValidationUtil.checkNotFoundWithId(vote, id);
+    }
+
+    public Vote getToday(int userId) {
+        return voteRepository.getByDateAndUserId(DateTimeUtil.today().toLocalDate(), userId);
     }
 
     public void delete(int id, int userId) {

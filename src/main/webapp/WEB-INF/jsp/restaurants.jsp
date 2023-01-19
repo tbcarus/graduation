@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page import="ru.tbcarus.topjava.util.DateTimeUtil" %>
+<%@ page import="ru.tbcarus.topjava.web.SecurityUtil" %>
 
 <html lang="ru">
 <jsp:include page="fragments/headTag.jsp"/>
@@ -14,6 +15,8 @@
         <h3><a href="/vote"><spring:message code="app.home"/></a></h3>
         <hr>
         ${DateTimeUtil.toString(DateTimeUtil.getNow())}
+        <br>
+        UserId - ${SecurityUtil.authUserId()}
         <h2><spring:message code="restaurant.tittle"/></h2>
         <button class="btn btn-primary" onclick="add()">
             <span class="fa fa-plus"></span>
