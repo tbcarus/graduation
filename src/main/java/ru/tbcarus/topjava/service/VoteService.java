@@ -44,6 +44,10 @@ public class VoteService {
         return voteRepository.getByDateAndUserId(DateTimeUtil.today().toLocalDate(), userId);
     }
 
+    public List<Vote> getAllToday() {
+        return voteRepository.getAllByDate(DateTimeUtil.today().toLocalDate());
+    }
+
     public void delete(int id, int userId) {
         ValidationUtil.checkNotFoundWithId(voteRepository.delete(id, userId) != 0, id);
     }

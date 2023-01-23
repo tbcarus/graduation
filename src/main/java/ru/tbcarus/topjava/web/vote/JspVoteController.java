@@ -43,6 +43,14 @@ public class JspVoteController {
         return "votes";
     }
 
+    @GetMapping("/today")
+    public String getVotesToday(Model model) {
+        log.info("votes today");
+        List<Vote> votes = voteService.getAllToday();
+        model.addAttribute("votes", votes);
+        return "votesList";
+    }
+
     @PostMapping()
     public String setUser(HttpServletRequest request) {
         String action = request.getParameter("button");
