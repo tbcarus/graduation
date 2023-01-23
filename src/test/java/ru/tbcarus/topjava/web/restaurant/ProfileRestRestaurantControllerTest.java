@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.tbcarus.topjava.RestaurantTestData.*;
-import static ru.tbcarus.topjava.web.restaurant.ProfileRestRestaurantController.REST_URL;
+import static ru.tbcarus.topjava.web.restaurant.rest.ProfileRestRestaurantController.REST_URL;
 
 class ProfileRestRestaurantControllerTest extends AbstractControllerTest {
 

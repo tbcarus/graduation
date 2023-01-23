@@ -9,6 +9,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.util.exception.NotFoundException;
+import ru.tbcarus.topjava.web.restaurant.rest.AdminRestRestaurantController;
 
 import java.util.List;
 

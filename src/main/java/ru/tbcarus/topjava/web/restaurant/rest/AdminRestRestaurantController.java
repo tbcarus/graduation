@@ -1,14 +1,12 @@
-package ru.tbcarus.topjava.web.restaurant;
+package ru.tbcarus.topjava.web.restaurant.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.tbcarus.topjava.model.Restaurant;
-import ru.tbcarus.topjava.model.User;
-import ru.tbcarus.topjava.web.user.AbstractUserController;
+import ru.tbcarus.topjava.web.restaurant.AbstractRestaurantController;
 
 import java.net.URI;
 import java.util.List;
