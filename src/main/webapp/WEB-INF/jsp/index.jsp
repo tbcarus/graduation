@@ -66,6 +66,8 @@
             </select>
             <button type="submit"><spring:message code="common.select"/></button>
         </form>
+        <hr>
+        <h4><a href="restaurants/result"><spring:message code="common.results"/></a></h4>
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>

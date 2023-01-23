@@ -40,6 +40,14 @@ public class JspRestaurantController {
         return "restaurants";
     }
 
+    @GetMapping("/result")
+    public String getWinnerToday(Model model) {
+        log.info("get result");
+        Restaurant winnerToday = voteService.getWinnerToday();
+        model.addAttribute("winner", winnerToday);
+        return "votingResult";
+    }
+
     @GetMapping("/voting")
     public String getRestaurantsForVoting(Model model, HttpServletRequest request) {
         log.info("restaurants for voting");

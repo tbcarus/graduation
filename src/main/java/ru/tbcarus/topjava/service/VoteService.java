@@ -3,6 +3,7 @@ package ru.tbcarus.topjava.service;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.repository.datajpa.RestaurantRepository;
 import ru.tbcarus.topjava.repository.datajpa.UserRepository;
@@ -13,6 +14,8 @@ import ru.tbcarus.topjava.util.VoteUtils;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -48,6 +51,37 @@ public class VoteService {
     public List<Vote> getAll() {
         return voteRepository.getAll();
     }
+
+    public Restaurant getWinnerToday() {
+        List<Vote> votes = voteRepository.getAllByDate(DateTimeUtil.today().toLocalDate());
+        List<Restaurant> restaurants = restaurantRepository.getAll();
+        if (votes.size() == 0) {
+            return null;
+        }
+        List<Integer> votesCounter = new ArrayList<>();
+        int currentVotesCount = 0;
+        String currentRestaurantName = votes.get(0).getRestaurant().getName();
+
+        for (Vote v : votes) {
+            if (!currentRestaurantName.equals(v.getRestaurant().getName())) {
+                votesCounter.add(currentVotesCount);
+                currentRestaurantName = v.getRestaurant().getName();
+                currentVotesCount = 0;
+            }
+            currentVotesCount++;
+        }
+        votesCounter.add(currentVotesCount);
+
+        int max = Collections.max(votesCounter);
+        int maxIndex = votesCounter.indexOf(max);
+        votesCounter.remove(maxIndex);
+        Restaurant winnerRestaurant = restaurants.remove(maxIndex);
+        if (votesCounter.contains(max)) {
+            return null;
+        }
+        return winnerRestaurant;
+    }
+
 
     public List<Vote> getAllByUserId(int userId) {
         return voteRepository.getAllByUserId(userId);
