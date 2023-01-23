@@ -6,7 +6,7 @@
 <html lang="ru">
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<h3><a href="/vote"><spring:message code="app.home"/></a></h3>
+<jsp:include page="fragments/bodyCommon.jsp"/>
 <hr>
 <c:set var="user" value="${requestScope.user}"/>
 <jsp:useBean id="user" class="ru.tbcarus.topjava.model.User" scope="request"/>

@@ -9,7 +9,7 @@
 <div class="jumbotron pt-4">
     <div class="container">
         <section>
-            <h3><a href="/vote"><spring:message code="app.home"/></a></h3>
+            <jsp:include page="fragments/bodyCommon.jsp"/>
             <hr>
             <h2>${param.id != null ? 'Edit dish' : 'Add dish'}</h2>
             <jsp:useBean id="dish" type="ru.tbcarus.topjava.model.Dish" scope="request"/>

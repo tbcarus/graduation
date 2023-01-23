@@ -12,12 +12,9 @@
 
 <div class="jumbotron pt-4">
     <div class="container">
-
-        <h3><a href="/vote"><spring:message code="app.home"/></a></h3>
-        <hr>
+        <jsp:include page="fragments/bodyCommon.jsp"/>
         <c:set var="selectedUser" value="${requestScope.user}"/>
         <jsp:useBean id="selectedUser" class="ru.tbcarus.topjava.model.User" scope="request"/>
-        ${selectedUser.name} - ${selectedUser.id}
         <h3 class="text-center"><spring:message code="user.title"/></h3>
         <button class="btn btn-primary" onclick="add()">
             <span class="fa fa-plus"></span>

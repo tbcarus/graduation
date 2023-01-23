@@ -12,9 +12,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="jumbotron pt-4">
     <div class="container">
-        <h3><a href="/vote"><spring:message code="app.home"/></a></h3>
-        <hr>
-        ${DateTimeUtil.toString(DateTimeUtil.getNow())}
+        <jsp:include page="fragments/bodyCommon.jsp"/>
         <h2><spring:message code="vote.title"/></h2>
         <button class="btn btn-primary" onclick="add()">
             <span class="fa fa-plus"></span>
