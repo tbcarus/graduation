@@ -23,14 +23,14 @@ public class ProfileRestVoteController extends AbstractVoteController {
 
     public static final String REST_URL = "/rest/profile/votes";
 
-    @GetMapping("/{id}")
-    public Vote get(@PathVariable int id) {
-        return super.get(id, authUserId());
-    }
-
     @GetMapping
     public List<VoteTo> getAllTo() {
         return VoteUtils.getTos(super.getAllByUserId(authUserId()));
+    }
+
+    @GetMapping("/{id}")
+    public Vote get(@PathVariable int id) {
+        return super.get(id, authUserId());
     }
 
     @DeleteMapping("/{id}")
@@ -39,7 +39,7 @@ public class ProfileRestVoteController extends AbstractVoteController {
         super.delete(id, authUserId());
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping()
     public ResponseEntity<Vote> createRest(@RequestParam int restaurantId) {
         Vote vote = new Vote(DateTimeUtil.getNow().toLocalDate());
         Vote created = super.create(vote, SecurityUtil.authUserId(), restaurantId);
@@ -49,7 +49,7 @@ public class ProfileRestVoteController extends AbstractVoteController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestParam int id, @RequestParam int restaurantId) {
         Vote vote = new Vote(DateTimeUtil.getNow().toLocalDate());

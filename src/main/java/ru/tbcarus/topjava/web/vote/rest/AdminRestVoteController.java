@@ -15,24 +15,25 @@ import static ru.tbcarus.topjava.web.SecurityUtil.authUserId;
 @RequestMapping(value = AdminRestVoteController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminRestVoteController extends AbstractVoteController {
 
-    public static final String REST_URL = "/rest/admin/votes";
+    public static final String REST_URL = "/rest/admin/users";
 
     @Override
-    @GetMapping("/vote")
+    @GetMapping("/votes")
     public List<Vote> getAll() { return super.getAll();}
 
-    @GetMapping("/{id}")
-    public Vote get(@PathVariable int id) {
-        return super.get(id, authUserId());
+    @Override
+    @GetMapping("/{userId}/votes")
+    public List<Vote> getAllByUserId(@PathVariable int userId) {
+        return super.getAllByUserId(userId);
     }
 
-    @GetMapping()
-    public List<VoteTo> getAllTo() {
-        return VoteUtils.getTos(super.getAllByUserId(authUserId()));
+    @GetMapping("/{userId}/votes/{id}")
+    public Vote get(@PathVariable int userId, @PathVariable int id) {
+        return super.get(id, userId);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id, @RequestParam int userId) {
+    @DeleteMapping("/{userId}/votes/{id}")
+    public void delete(@PathVariable int userId, @PathVariable int id) {
         super.delete(id, userId);
     }
 }
