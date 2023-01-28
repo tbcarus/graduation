@@ -16,9 +16,8 @@ public class ProfileRestDishController extends AbstractDishController {
 
     public static final String REST_URL = "/rest/profile/restaurants";
 
-    @Override
-    @GetMapping("/dishes/{id}")
-    public Dish get(@PathVariable int id) {
+    @GetMapping("/{restId}/dishes/{id}")
+    public Dish get(@PathVariable int id, @PathVariable int restId) {
         return super.get(id);
     }
 

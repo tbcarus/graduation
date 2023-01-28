@@ -18,9 +18,8 @@ public class AdminRestDishController extends AbstractDishController {
 
     public static final String REST_URL = "/rest/admin/restaurants";
 
-    @Override
-    @GetMapping("/dishes/{id}")
-    public Dish get(@PathVariable int id) {
+    @GetMapping("/{restId}/dishes/{id}")
+    public Dish get(@PathVariable int id, @PathVariable int restId) {
         return super.get(id);
     }
 
@@ -36,13 +35,13 @@ public class AdminRestDishController extends AbstractDishController {
     }
 
     @Override
-    @GetMapping("/{restId}/dishes/all")
+    @GetMapping("/{restId}/dishes")
     public List<Dish> getAllByRestaurantId(@PathVariable int restId) {
         return super.getAllByRestaurantId(restId);
     }
 
     @Override
-    @GetMapping("/{restId}/dishes")
+    @GetMapping("/{restId}/dishes/today")
     public List<Dish> getAllByRestaurantIdToday(@PathVariable int restId) {
         return super.getAllByRestaurantIdToday(restId);
     }

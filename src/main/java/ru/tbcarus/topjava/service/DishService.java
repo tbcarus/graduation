@@ -70,6 +70,9 @@ public class DishService {
             return null;
         } else {
             dish.setRestaurant(restaurantRepository.findById(restaurantId).get());
+            if (dish.getInputDate() == null) {
+                dish.setInputDate(DateTimeUtil.today().toLocalDate());
+            }
             return dishRepository.save(dish);
         }
     }
