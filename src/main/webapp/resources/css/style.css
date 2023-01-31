@@ -23,6 +23,10 @@ tr[data-meal-excess="true"] {
     color: red;
 }
 
+tr[data-user-enabled="false"] {
+    opacity: 0.3;
+}
+
 header, footer {
     background: none repeat scroll 0 0 #A6C9E2;
     color: #2E6E9E;

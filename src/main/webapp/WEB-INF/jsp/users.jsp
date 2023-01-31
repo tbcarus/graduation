@@ -37,10 +37,10 @@
             <tbody>
             <c:forEach var="user" items="${requestScope.users}">
                 <jsp:useBean id="user" class="ru.tbcarus.topjava.model.User"/>
-                <tr id="${user.id}">
+                <tr id="${user.id}" data-user-enabled="${user.enabled}">
                     <td><a href="users/${user.id}">${user.name}</a></td>
                     <td>${user.email}</td>
-                    <td>${user.enabled} <input type="checkbox" <c:if test="${user.enabled}">checked</c:if>></td>
+                    <td>${user.enabled} <input type="checkbox" <c:if test="${user.enabled}">checked</c:if> onclick="enable($(this), ${user.id})"></td>
                     <td>${DateTimeUtil.toString(user.registered)}</td>
                     <td>
                         <c:forEach var="role" items="${user.roles}">
