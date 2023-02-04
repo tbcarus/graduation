@@ -36,7 +36,7 @@
                         ${restaurant.name}-${restaurant.dishes.size()}</a>
                     </td>
                     <td style="vertical-align: middle">
-                        <a class="edit" id="${restaurant.id}" style="cursor: pointer" onclick="edit('${restaurant.id}')">
+                        <a class="edit" id = "${restaurant.id}" style="cursor: pointer" onclick="updateRow('${restaurant.id}')">
                             <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
                         </a>
                         <br>

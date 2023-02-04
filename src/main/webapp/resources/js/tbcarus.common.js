@@ -13,16 +13,18 @@ function makeEditable(datatableApi) {
 }
 
 function add() {
-    form.find('input[type=text], [type=number]').each(function () {
+    form.find(":input").val("");
+    form.find('input[type=text], [type=number], [type=email], [type=date]').each(function () {
         this.value = "";
         this.removeAttribute('readonly');
     });
     form.find(":input:checkbox").each(function () {
         this.checked = false;
     });
-    form.find("select").each(function () {
-        this.setAttribute('style', "pointer-events: auto;");
-    });
+    // form.find("select").each(function () {
+    //     this.setAttribute('style', "pointer-events: auto;");
+    // });
+    form.find("select").prop('disabled', false);
 
     let now = new Date();
     let day = ("0" + now.getDate()).slice(-2);
@@ -32,6 +34,26 @@ function add() {
 
     $("#editRow").modal();
 }
+
+// function updateRow(id) {
+//     form.find(":input").val("");
+//     $.get(ctx.ajaxUrl + id, function (data) {
+//         $.each(data, function (key, value) {
+//             form.find("input[id='" + key + "']").val(value);
+//             if (key === "roles") {
+//                 form.find("input[id=userRole]").prop("checked", value.includes("USER"));
+//                 form.find("input[id=adminRole]").prop("checked", value.includes("ADMIN"));
+//             }
+//             if (key === "restaurant") {
+//                 form.find("select[name=restaurantId]").prop("value", value.id);
+//             }
+//             if (key === "inputDate") {
+//                 form.find("input[id=inputDate]").prop('readonly', true);
+//             }
+//         });
+//         $('#editRow').modal();
+//     });
+// }
 
 function deleteRow(id) {
     if (confirm('Are you sure?')) {

@@ -33,6 +33,12 @@ public class AdminUIRestaurantController extends AbstractRestaurantController {
         return super.getAll();
     }
 
+    @Override
+    @GetMapping("/{id}")
+    public Restaurant get(@PathVariable int id) {
+        return super.get(id);
+    }
+
     @GetMapping("/update")
     public String update(HttpServletRequest request, Model model) {
         Restaurant restaurant = restaurantService.get(getId(request));
@@ -54,7 +60,6 @@ public class AdminUIRestaurantController extends AbstractRestaurantController {
         if (id.isEmpty()) {
             super.create(restaurant);
         } else {
-
             int restaurantId = Integer.parseInt(id);
             restaurant.setId(restaurantId);
             super.update(restaurant, restaurantId);

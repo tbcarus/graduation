@@ -49,12 +49,7 @@
                             ${dish.inputDate}
                     </td>
                     <td>
-                        <a class="edit" id="${dish.id}" style="cursor: pointer" onclick="edit('${dish.id}')"
-                           data-restaurantId="${dish.restaurant.id}"
-                           data-name="${dish.name}"
-                           data-price = "${dish.price}"
-                           data-date = "${dish.inputDate}"
-                        >
+                        <a class="edit" id = "${dish.id}" style="cursor: pointer" onclick="updateRow('${dish.id}')">
                             <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
                         </a>
                         <br>
@@ -83,7 +78,7 @@
             </div>
             <div class="modal-body">
                 <form id="detailsForm">
-                    <input type="hidden" id="id" name="id" value="${dish.id}">
+                    <input type="" id="id" name="id" value="${dish.id}">
 
                     <div class="form-group">
                         <label for="name" class="col-form-label"><spring:message code="dishes.name"/></label>
@@ -99,7 +94,7 @@
 
                     <div class="form-group">
                         <label for="price" class="col-form-label"><spring:message code="dishes.date"/></label>
-                        <input type="date" class="form-control" id="date" name="date"
+                        <input type="date" class="form-control" id="inputDate" name="inputDate"
                                value="${DateTimeUtil.getNow().toLocalDate()}"/>
                     </div>
 

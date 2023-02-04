@@ -20,6 +20,12 @@ public class AdminUIUserController extends AbstractUserController {
     }
 
     @Override
+    @GetMapping("/{id}")
+    public User get(@PathVariable int id) {
+        return super.get(id);
+    }
+
+    @Override
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
@@ -33,6 +39,7 @@ public class AdminUIUserController extends AbstractUserController {
                        @RequestParam String name,
                        @RequestParam String email,
                        @RequestParam String password,
+                       @RequestParam(required = false) String enabled,
                        @RequestParam(required = false) String userRole,
                        @RequestParam(required = false) String adminRole) {
         User user = new User(null, name, email, password);
@@ -41,6 +48,9 @@ public class AdminUIUserController extends AbstractUserController {
         }
         if (adminRole != null) {
             user.setRole(Role.ADMIN);
+        }
+        if (enabled == null) {
+            user.setEnabled(false);
         }
         if (id.isEmpty()) {
             super.create(user);

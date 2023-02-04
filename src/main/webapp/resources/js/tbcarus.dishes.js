@@ -30,6 +30,18 @@ function edit(dishId) {
     modalWindow.modal();
 }
 
+function updateRow(id) {
+    form.find(":input").val("");
+    $.get(ctx.ajaxUrl + id, function (dish) {
+        $.each(dish, function (key, value) {
+            form.find("input[id='" + key + "']").val(value);
+        });
+        $("#inputDate").prop("readonly", true);
+        form.find("select[id=restaurantId]").prop('disabled', true);
+        $('#editRow').modal();
+    });
+}
+
 // $(document).ready(function () {
 $(function () {
     makeEditable(

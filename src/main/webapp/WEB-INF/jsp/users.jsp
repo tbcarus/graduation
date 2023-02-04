@@ -49,12 +49,7 @@
                         </c:forEach>
                     </td>
                     <td>
-                        <a class="edit" id = "${user.email}" style="cursor: pointer" onclick="edit('${user.email}')"
-                           data-id = "${user.id}"
-                           data-name = "${user.name}"
-                           data-password = "${user.password}"
-                           data-roles = "${user.roles}"
-                           >
+                        <a class="edit" id = "${user.email}" style="cursor: pointer" onclick="updateRow('${user.id}')">
                             <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
                         </a>
                         <br>
@@ -103,6 +98,15 @@
                         <label for="password" class="col-form-label"><spring:message code="user.password"/></label>
                         <input type="password" class="form-control" id="password" name="password"
                                placeholder="<spring:message code="user.password"/>">
+                    </div>
+
+                    <div class="form-group">
+                        <c:if test="${user.enabled}">
+                            <input type="checkbox" id="enabled" name="enabled" checked> Enabled
+                        </c:if>
+                        <c:if test="${!user.enabled}">
+                            <input type="checkbox" id="enabled" name="enabled"> Enabled
+                        </c:if>
                     </div>
 
                     <div class="form-group">

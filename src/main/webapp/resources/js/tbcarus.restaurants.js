@@ -10,10 +10,13 @@ const ctx = {
     }
 }
 
-function edit(restaurantId) {
-    let modalWindow = $("#editRow");
-    document.getElementById("id").value = restaurantId;
-    modalWindow.modal();
+function updateRow(restaurantId) {
+    form.find(":input").val("");
+    $.get(ctx.ajaxUrl + restaurantId, function (restaurant) {
+        form.find("input[id=id]").val(restaurant.id);
+        form.find("input[id=name]").val(restaurant.name);
+        $('#editRow').modal();
+    });
 }
 
 // $(document).ready(function () {

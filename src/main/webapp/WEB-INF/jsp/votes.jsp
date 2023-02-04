@@ -42,9 +42,7 @@
                     <td>${restaurant.name}</td>
                     <td>
                         <c:if test="${vote.canRevote}">
-                            <a class="edit" id = "${restaurant.id}" style="cursor: pointer" onclick="edit('${restaurant.id}')"
-                               data-id = "${vote.id}"
-                            >
+                            <a class="edit" id = "${restaurant.id}" style="cursor: pointer" onclick="updateRow('${vote.id}')">
                                 <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
                             </a>
                             <br>

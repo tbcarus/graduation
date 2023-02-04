@@ -25,24 +25,21 @@ function enable(chkbox, id) {
     });
 }
 
-function edit(email) {
-    let modalWindow = $("#editRow");
-    let element = document.getElementById(email);
-
-    let id = element.getAttribute("data-id");
-    let name = element.getAttribute("data-name");
-    let password = element.getAttribute("data-password");
-    let roles = element.getAttribute("data-roles");
-
-    document.getElementById("id").value = id;
-    document.getElementById("name").value = name;
-    document.getElementById("email").value = email;
-    document.getElementById("email").setAttribute('readonly', true);
-    document.getElementById("password").value = password;
-    document.getElementById("userRole").checked = roles.includes("USER");
-    document.getElementById("adminRole").checked = roles.includes("ADMIN");
-
-    modalWindow.modal();
+function updateRow(id) {
+    form.find(":input").val("");
+    $.get(ctx.ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[id='" + key + "']").val(value);
+            if (key === "email") {
+                form.find("input[id=email]").prop('readonly', true);
+            }
+            if (key === "roles") {
+                form.find("input[id=userRole]").prop("checked", value.includes("USER"));
+                form.find("input[id=adminRole]").prop("checked", value.includes("ADMIN"));
+            }
+        });
+        $('#editRow').modal();
+    });
 }
 
 // $(document).ready(function () {
