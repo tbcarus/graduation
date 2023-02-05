@@ -53,10 +53,10 @@ public class AdminUIDishController extends AbstractDishController {
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void create(@RequestParam(required = false) String id,
-                       @RequestParam(required = false) int restaurantId,
                        @RequestParam String name,
                        @RequestParam int price,
-                       @RequestParam String inputDate) {
+                       @RequestParam(required = false) String inputDate,
+                       @RequestParam(required = false) int restaurantId) {
         LocalDate dishDate = LocalDate.parse(inputDate);
         Dish dish = new Dish(name, price, dishDate);
         if (id.isEmpty()) {
@@ -64,7 +64,7 @@ public class AdminUIDishController extends AbstractDishController {
         } else {
             int dishId = Integer.parseInt(id);
             dish.setId(dishId);
-            super.update(dish, restaurantId,dishId);
+            super.update(dish, restaurantId, dishId);
         }
     }
 

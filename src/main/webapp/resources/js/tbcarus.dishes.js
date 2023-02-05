@@ -30,14 +30,19 @@ function edit(dishId) {
     modalWindow.modal();
 }
 
-function updateRow(id) {
+function updateRow(id, restaurantId) {
     form.find(":input").val("");
     $.get(ctx.ajaxUrl + id, function (dish) {
         $.each(dish, function (key, value) {
             form.find("input[id='" + key + "']").val(value);
+            if(key === "inputDate"){
+                // form.find("input[id=inputDate]").prop('readonly', true);
+            }
         });
-        $("#inputDate").prop("readonly", true);
-        form.find("select[id=restaurantId]").prop('disabled', true);
+        // $("#inputDate").prop("readonly", true);
+        form.find("input[id=inputDate]").prop('readonly', true);
+        form.find("select[id=restaurantId]").prop('readonly', true);
+        $("#restaurantId").val(restaurantId);
         $('#editRow').modal();
     });
 }
