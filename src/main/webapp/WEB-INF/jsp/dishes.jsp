@@ -78,7 +78,7 @@
             </div>
             <div class="modal-body">
                 <form id="detailsForm">
-                    <input type="" id="id" name="id" value="${dish.id}">
+                    <input type="hidden" id="id" name="id" value="${dish.id}">
 
                     <div class="form-group">
                         <label for="name" class="col-form-label"><spring:message code="dishes.name"/></label>

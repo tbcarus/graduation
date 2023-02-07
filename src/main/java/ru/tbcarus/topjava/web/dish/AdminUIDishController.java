@@ -4,10 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.tbcarus.topjava.model.Dish;
-import ru.tbcarus.topjava.util.DateTimeUtil;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @RestController
@@ -52,11 +50,11 @@ public class AdminUIDishController extends AbstractDishController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void create(@RequestParam(required = false) String id,
-                       @RequestParam String name,
-                       @RequestParam int price,
-                       @RequestParam(required = false) String inputDate,
-                       @RequestParam(required = false) int restaurantId) {
+    public void createOrUpdate(@RequestParam(required = false) String id,
+                                                 @RequestParam String name,
+                                                 @RequestParam int price,
+                                                 @RequestParam(required = false) String inputDate,
+                                                 @RequestParam(required = false) int restaurantId) {
         LocalDate dishDate = LocalDate.parse(inputDate);
         Dish dish = new Dish(name, price, dishDate);
         if (id.isEmpty()) {

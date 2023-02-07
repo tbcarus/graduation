@@ -2,12 +2,15 @@ package ru.tbcarus.topjava.web.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "ui/admin/users", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,14 +38,21 @@ public class AdminUIUserController extends AbstractUserController {
     //OK
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void create(@RequestParam String id,
-                       @RequestParam String name,
-                       @RequestParam String email,
-                       @RequestParam String password,
-                       @RequestParam(required = false) String enabled,
-                       @RequestParam(required = false) String userRole,
-                       @RequestParam(required = false) String adminRole) {
-        User user = new User(null, name, email, password);
+    public ResponseEntity<String> createOrUpdate(/*@RequestParam String id,
+                                                 @RequestParam String name,
+                                                 @RequestParam String email,
+                                                 @RequestParam String password,*/
+            @RequestParam(required = false) String enabled,
+            @RequestParam(required = false) String userRole,
+            @RequestParam(required = false) String adminRole,
+            @Valid User user,
+            BindingResult result) {
+        if (result.hasErrors()) {
+            String errorFieldsMsg = result.getFieldErrors().stream()
+                    .map(fe -> String.format("[%s] %s", fe.getField(), fe.getDefaultMessage()))
+                    .collect(Collectors.joining("<br>"));
+            return ResponseEntity.unprocessableEntity().body(errorFieldsMsg);
+        }
         if (userRole != null) {
             user.setRole(Role.USER);
         }
@@ -51,15 +61,15 @@ public class AdminUIUserController extends AbstractUserController {
         }
         if (enabled == null) {
             user.setEnabled(false);
+        } else {
+            user.setEnabled(true);
         }
-        if (id.isEmpty()) {
+        if (user.isNew()) {
             super.create(user);
         } else {
-            int userId = Integer.parseInt(id);
-            user.setId(userId);
-            super.update(user, userId);
-
+            super.update(user, user.getId());
         }
+        return ResponseEntity.ok().build();
     }
 
     @Override

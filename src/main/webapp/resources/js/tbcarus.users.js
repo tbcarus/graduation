@@ -33,6 +33,9 @@ function updateRow(id) {
             if (key === "email") {
                 form.find("input[id=email]").prop('readonly', true);
             }
+            if (key === "enabled") {
+                form.find("input[id=enabled]").prop("checked", value);
+            }
             if (key === "roles") {
                 form.find("input[id=userRole]").prop("checked", value.includes("USER"));
                 form.find("input[id=adminRole]").prop("checked", value.includes("ADMIN"));
