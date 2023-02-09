@@ -51,6 +51,10 @@ function updateRow(id, restaurantId) {
 $(function () {
     makeEditable(
         $("#datatable").DataTable({
+            "ajax": {
+                "url": dishAjaxUrl+"?restaurantId="+document.getElementById("restaurantId").value,
+                "dataSrc": ""
+            },
             "paging": false,
             "info": true,
             "columns": [
@@ -64,12 +68,14 @@ $(function () {
                     "data": "inputDate"
                 },
                 {
-                    "defaultContent": "Edit",
-                    "orderable": false
+                    "orderable": false,
+                    "defaultContent": "",
+                    "render": renderEditBtn
                 },
                 {
-                    "defaultContent": "Delete",
-                    "orderable": false
+                    "orderable": false,
+                    "defaultContent": "",
+                    "render": renderDeleteBtn
                 }
             ],
             "order": [

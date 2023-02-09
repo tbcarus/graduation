@@ -48,10 +48,12 @@ public class AdminUIUserController extends AbstractUserController {
             @Valid User user,
             BindingResult result) {
         if (result.hasErrors()) {
-            String errorFieldsMsg = result.getFieldErrors().stream()
-                    .map(fe -> String.format("[%s] %s", fe.getField(), fe.getDefaultMessage()))
-                    .collect(Collectors.joining("<br>"));
-            return ResponseEntity.unprocessableEntity().body(errorFieldsMsg);
+            if (result.getFieldErrors().size() > 1 || !result.getFieldErrors().get(0).getField().equals("enabled")) {
+                String errorFieldsMsg = result.getFieldErrors().stream()
+                        .map(fe -> String.format("[%s] %s", fe.getField(), fe.getDefaultMessage()))
+                        .collect(Collectors.joining("<br>"));
+                return ResponseEntity.unprocessableEntity().body(errorFieldsMsg);
+            }
         }
         if (userRole != null) {
             user.setRole(Role.USER);

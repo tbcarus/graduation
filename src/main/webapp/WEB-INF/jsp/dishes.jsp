@@ -26,6 +26,7 @@
                     <c:set var="restaurant" value="${requestScope.restaurant}"/>
                     <jsp:useBean id="restaurant" type="ru.tbcarus.topjava.model.Restaurant"/>
                     ${restaurant.name} - ${restaurant.id()}
+                    <input type="text" id = "restaurantId" value="${restaurant.id}">
                 </th>
             </tr>
             <tr>
@@ -36,35 +37,35 @@
                 <th><spring:message code="common.delete"/></th>
             </tr>
             </thead>
-            <c:forEach var="dish" items="${requestScope.dishes}">
-                <jsp:useBean id="dish" type="ru.tbcarus.topjava.model.Dish"/>
-                <tr>
-                    <td>
-                        <a href="dishes/update?id=${dish.id}">${dish.name}</a>
-                    </td>
-                    <td>
-                            ${dish.price}
-                    </td>
-                    <td>
-                            ${dish.inputDate}
-                    </td>
-                    <td>
-                        <a class="edit" id = "${dish.id}" style="cursor: pointer" onclick="updateRow('${dish.id}', '${restaurant.id}')">
-                            <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
-                        </a>
-                        <br>
-                        <a href="dishes/update?id=${dish.id}">
-                            <span class="fa fa-pencil"><spring:message code="common.update"/> - JSP</a>
-                    </td>
-                    <td>
-                        <a class="delete" style="cursor: pointer" onclick="deleteRow(${dish.id})">
-                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - AJAX</a>
-                        <br>
-                        <a href="dishes/delete?id=${dish.id}&restaurantId=${restaurant.id}">
-                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - JSP</a>
-                    </td>
-                </tr>
-            </c:forEach>
+<%--            <c:forEach var="dish" items="${requestScope.dishes}">--%>
+<%--                <jsp:useBean id="dish" type="ru.tbcarus.topjava.model.Dish"/>--%>
+<%--                <tr>--%>
+<%--                    <td>--%>
+<%--                        <a href="dishes/update?id=${dish.id}">${dish.name}</a>--%>
+<%--                    </td>--%>
+<%--                    <td>--%>
+<%--                            ${dish.price}--%>
+<%--                    </td>--%>
+<%--                    <td>--%>
+<%--                            ${dish.inputDate}--%>
+<%--                    </td>--%>
+<%--                    <td>--%>
+<%--                        <a class="edit" id = "${dish.id}" style="cursor: pointer" onclick="updateRow('${dish.id}', '${restaurant.id}')">--%>
+<%--                            <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal--%>
+<%--                        </a>--%>
+<%--                        <br>--%>
+<%--                        <a href="dishes/update?id=${dish.id}">--%>
+<%--                            <span class="fa fa-pencil"><spring:message code="common.update"/> - JSP</a>--%>
+<%--                    </td>--%>
+<%--                    <td>--%>
+<%--                        <a class="delete" style="cursor: pointer" onclick="deleteRow(${dish.id})">--%>
+<%--                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - AJAX</a>--%>
+<%--                        <br>--%>
+<%--                        <a href="dishes/delete?id=${dish.id}&restaurantId=${restaurant.id}">--%>
+<%--                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - JSP</a>--%>
+<%--                    </td>--%>
+<%--                </tr>--%>
+<%--            </c:forEach>--%>
         </table>
     </div>
 </div>

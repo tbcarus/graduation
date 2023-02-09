@@ -30,39 +30,41 @@
                 <th></th>
             </tr>
             </thead>
-            <c:forEach var="vote" items="${requestScope.votesTo}">
-                <jsp:useBean id="vote" type="ru.tbcarus.topjava.to.VoteTo"/>
-                <tr>
-                    <td>${vote.date}</td>
-                    <c:set var="user" value="${vote.user}"/>
-                    <jsp:useBean id="user" type="ru.tbcarus.topjava.model.User"/>
-                    <td>${user.name}</td>
-                    <c:set var="restaurant" value="${vote.restaurant}"/>
-                    <jsp:useBean id="restaurant" type="ru.tbcarus.topjava.model.Restaurant"/>
-                    <td>${restaurant.name}</td>
-                    <td>
-                        <c:if test="${vote.canRevote}">
-                            <a class="edit" id = "${restaurant.id}" style="cursor: pointer" onclick="updateRow('${vote.id}')">
-                                <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal
-                            </a>
-                            <br>
-                            <a href="votes/update?id=${vote.id}">
-                                <span class="fa fa-pencil"><spring:message code="common.update"/> - JSP</a>
-                        </c:if>
-                        <c:if test="${!vote.canRevote}">
-                            Can't revote
-                        </c:if>
-                    </td>
-                    <td>
-                        <a class="delete" style="cursor: pointer" onclick="deleteRow(${vote.id})">
-                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - AJAX</a>
-                        <br>
-                        <a href="votes/delete?id=${vote.id}">
-                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - JSP</a>
-                    </td>
-                </tr>
+            <tbody>
+<%--            <c:forEach var="vote" items="${requestScope.votesTo}">--%>
+<%--                <jsp:useBean id="vote" type="ru.tbcarus.topjava.to.VoteTo"/>--%>
+<%--                <tr>--%>
+<%--                    <td>${vote.date}</td>--%>
+<%--                    <c:set var="user" value="${vote.user}"/>--%>
+<%--                    <jsp:useBean id="user" type="ru.tbcarus.topjava.model.User"/>--%>
+<%--                    <td>${user.name}</td>--%>
+<%--                    <c:set var="restaurant" value="${vote.restaurant}"/>--%>
+<%--                    <jsp:useBean id="restaurant" type="ru.tbcarus.topjava.model.Restaurant"/>--%>
+<%--                    <td>${restaurant.name}</td>--%>
+<%--                    <td>--%>
+<%--                        <c:if test="${vote.canRevote}">--%>
+<%--                            <a class="edit" id = "${restaurant.id}" style="cursor: pointer" onclick="updateRow('${vote.id}')">--%>
+<%--                                <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal--%>
+<%--                            </a>--%>
+<%--                            <br>--%>
+<%--                            <a href="votes/update?id=${vote.id}">--%>
+<%--                                <span class="fa fa-pencil"><spring:message code="common.update"/> - JSP</a>--%>
+<%--                        </c:if>--%>
+<%--                        <c:if test="${!vote.canRevote}">--%>
+<%--                            Can't revote--%>
+<%--                        </c:if>--%>
+<%--                    </td>--%>
+<%--                    <td>--%>
+<%--                        <a class="delete" style="cursor: pointer" onclick="deleteRow(${vote.id})">--%>
+<%--                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - AJAX</a>--%>
+<%--                        <br>--%>
+<%--                        <a href="votes/delete?id=${vote.id}">--%>
+<%--                            <span class="fa fa-remove"></span><spring:message code="common.delete"/> - JSP</a>--%>
+<%--                    </td>--%>
+<%--                </tr>--%>
 
-            </c:forEach>
+<%--            </c:forEach>--%>
+            </tbody>
         </table>
     </div>
 </div>

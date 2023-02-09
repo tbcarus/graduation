@@ -35,8 +35,8 @@ public class JspRestaurantController {
     @GetMapping()
     public String getRestaurants(Model model) {
         log.info("restaurants");
-        List<Restaurant> restaurants = restaurantService.getAll();
-        model.addAttribute("restaurants", restaurants);
+//        List<Restaurant> restaurants = restaurantService.getAll();
+//        model.addAttribute("restaurants", restaurants);
         return "restaurants";
     }
 

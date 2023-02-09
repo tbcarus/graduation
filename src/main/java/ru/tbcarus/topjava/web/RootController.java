@@ -44,10 +44,10 @@ public class RootController {
     }
 
     @GetMapping("/users")
-    public String getUsers(Model model) {
+    public String getUsers(/*Model model*/) {
         log.info("users");
-        model.addAttribute("user", userService.get(SecurityUtil.authUserId()));
-        model.addAttribute("users", userService.getAll());
+//        model.addAttribute("user", userService.get(SecurityUtil.authUserId()));
+//        model.addAttribute("users", userService.getAll());
         return "users";
     }
 }

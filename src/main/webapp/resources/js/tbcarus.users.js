@@ -49,31 +49,61 @@ function updateRow(id) {
 $(function () {
     makeEditable(
         $("#datatable").DataTable({
+            "ajax": {
+                "url": userAjaxUrl,
+                "dataSrc": ""
+            },
             "paging": false,
             "info": true,
             "columns": [
                 {
-                    "data": "name"
+                    "data": "name",
+                    "render": function (data, type, row) {
+                        if (type === "display") {
+                            return "<a href='users/" + row.id + "'>" + data + "</a>";
+                        }
+                        return data;
+                    }
                 },
                 {
-                    "data": "email"
+                    "data": "email",
+                    "render": function (data, type, row) {
+                        if (type === "display") {
+                            return "<a href='mailto:" + data + "'>" + data + "</a>";
+                        }
+                        return data;
+                    }
                 },
                 {
-                    "data": "enabled"
+                    "data": "enabled",
+                    "render": function (data, type, row) {
+                        if (type === "display") {
+                            return "<input type='checkbox' " + (data ? "checked" : "") + " onclick='enable($(this)," + row.id + ");'/>";
+                        }
+                        return data;
+                    }
                 },
                 {
-                    "data": "registered"
+                    "data": "registered",
+                    "render": function (date, type, row) {
+                        if (type === "display") {
+                            return date.substring(0, 10);
+                        }
+                        return date;
+                    }
                 },
                 {
                     "data": "roles"
                 },
                 {
-                    "defaultContent": "Edit",
-                    "orderable": false
+                    "orderable": false,
+                    "defaultContent": "",
+                    "render": renderEditBtn
                 },
                 {
-                    "defaultContent": "Delete",
-                    "orderable": false
+                    "orderable": false,
+                    "defaultContent": "",
+                    "render": renderDeleteBtn
                 }
             ],
             "order": [
@@ -81,7 +111,12 @@ $(function () {
                     0,
                     "asc"
                 ]
-            ]
+            ],
+            "createdRow": function (row, data, dataIndex) {
+                if (!data.enabled) {
+                    $(row).attr("data-user-enabled", false);
+                }
+            }
         })
     );
 });

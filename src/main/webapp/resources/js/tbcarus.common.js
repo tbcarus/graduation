@@ -102,6 +102,22 @@ function successNoty(text) {
     }).show();
 }
 
+function renderEditBtn(data, type, row) {
+    if (type === "display") {
+        return "<a style='cursor: pointer' onclick='updateRow(" + row.id + ")'><span class='fa fa-pencil'></span> modal</a>" +
+            "<br>" +
+            "<a style='cursor: pointer' href='" + window.location.pathname + "/update?id=" + row.id + "'><span class='fa fa-pencil'> JSP</a>";
+    }
+}
+
+function renderDeleteBtn(data, type, row) {
+    if (type === "display") {
+        return "<a style='cursor: pointer' onclick='deleteRow(" + row.id + ")'><span class='fa fa-remove'></span> modal</a>" +
+            "<br>" +
+            "<a style='cursor: pointer' href='" + window.location.pathname + "/delete?id=" + row.id + "'><span class='fa fa-remove'></span> JSP</a>";
+    }
+}
+
 function failNoty(jqXHR) {
     closeNoty();
     failedNote = new Noty({

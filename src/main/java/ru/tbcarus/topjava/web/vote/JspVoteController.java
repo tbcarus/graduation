@@ -36,10 +36,10 @@ public class JspVoteController {
     @GetMapping()
     public String getVotes(Model model) {
         log.info("votes");
-        List<Vote> votes = voteService.getAllByUserId(authUserId());
-        List<Restaurant> restaurants = restaurantService.getAll();
-        model.addAttribute("votesTo", VoteUtils.getTos(votes));
-        model.addAttribute("restaurants", restaurants);
+//        List<Vote> votes = voteService.getAllByUserId(authUserId());
+//        List<Restaurant> restaurants = restaurantService.getAll();
+//        model.addAttribute("votesTo", VoteUtils.getTos(votes));
+//        model.addAttribute("restaurants", restaurants);
         return "votes";
     }
 

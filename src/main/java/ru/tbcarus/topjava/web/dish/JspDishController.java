@@ -36,12 +36,12 @@ public class JspDishController {
     public String getDishes(Model model, HttpServletRequest request) {
         log.info("dishes");
         int restaurantId = Integer.parseInt(request.getParameter("restaurantId"));
-        List<Dish> dishes = dishService.getAllByRestaurantId(restaurantId);
-        model.addAttribute("dishes", dishes);
+//        List<Dish> dishes = dishService.getAllByRestaurantId(restaurantId);
+//        model.addAttribute("dishes", dishes);
         Restaurant restaurant = restaurantService.get(restaurantId);
         model.addAttribute("restaurant", restaurant);
-        List<Restaurant> restaurants = restaurantService.getAll();
-        model.addAttribute("restaurants", restaurants);
+//        List<Restaurant> restaurants = restaurantService.getAll();
+//        model.addAttribute("restaurants", restaurants);
         return "dishes";
     }
 
