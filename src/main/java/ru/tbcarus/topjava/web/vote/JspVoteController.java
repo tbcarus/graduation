@@ -37,9 +37,9 @@ public class JspVoteController {
     public String getVotes(Model model) {
         log.info("votes");
 //        List<Vote> votes = voteService.getAllByUserId(authUserId());
-//        List<Restaurant> restaurants = restaurantService.getAll();
+        List<Restaurant> restaurants = restaurantService.getAll();
 //        model.addAttribute("votesTo", VoteUtils.getTos(votes));
-//        model.addAttribute("restaurants", restaurants);
+        model.addAttribute("restaurants", restaurants);
         return "votes";
     }
 

@@ -22,13 +22,13 @@
                 <th>Дата</th>
             </tr>
             </thead>
-            <tr>
-                <c:set var="currentChoice" value="${requestScope.currentChoice}"/>
-                <jsp:useBean id="currentChoice" class="ru.tbcarus.topjava.model.Vote"/>
-                <td>${currentChoice.restaurant.name}</td>
-                <td></td>
-                <td>${currentChoice.date}</td>
-            </tr>
+<%--            <tr>--%>
+<%--                <c:set var="currentChoice" value="${requestScope.currentChoice}"/>--%>
+<%--                <jsp:useBean id="currentChoice" class="ru.tbcarus.topjava.model.Vote"/>--%>
+<%--                <td>${currentChoice.restaurant.name}</td>--%>
+<%--                <td></td>--%>
+<%--                <td>${currentChoice.date}</td>--%>
+<%--            </tr>--%>
         </table>
         <br><br>
 

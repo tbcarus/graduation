@@ -16,6 +16,14 @@ public class VoteTo {
     private final Restaurant restaurant;
     private final boolean canRevote;
 
+    public VoteTo(LocalDate date, boolean canRevote) {
+        this.id = 0;
+        this.date = date;
+        this.user = null;
+        this.restaurant = null;
+        this.canRevote = canRevote;
+    }
+
     public VoteTo(int id, LocalDate date, User user, Restaurant restaurant, boolean canRevote) {
         this.id = id;
         this.date = date;

@@ -5,7 +5,7 @@ const ctx = {
     updateTable: function () {
         $.ajax({
             type: "GET",
-            url: voteAjaxUrl+"today/"
+            url: voteAjaxUrl + "today/"
         }).done(updateTableByData);
     }
 }
@@ -17,12 +17,10 @@ function edit(restaurantId) {
 }
 
 function vote(restaurantId, voteId) {
-
-
     $.ajax({
         type: "POST",
         url: ctx.ajaxUrl,
-        data: "id="+voteId+"&restaurantId="+restaurantId
+        data: "id=" + voteId + "&restaurantId=" + restaurantId
     }).done(function () {
         ctx.updateTable();
     });
@@ -31,22 +29,36 @@ function vote(restaurantId, voteId) {
         let newPath = window.location.href.split("?")[0];
         window.location.replace(newPath);
     }
-
 }
 
 // $(document).ready(function () {
 $(function () {
     makeEditable(
         $("#datatable").DataTable({
+            "ajax": {
+                "url": voteAjaxUrl + "today/",
+                "dataSrc": ""
+            },
             "paging": false,
             "info": true,
             "columns": [
                 {
-                    "data": "restaurant.name"
+                    data: function (data, type, row) {
+                        if (type === "display") {
+                            return data.id === 0 ? "Не выбрано" : data.restaurant.name;
+                        }
+                        return data;
+                    }
                 },
                 {
                     "defaultContent": "Can revote?",
-                    "orderable": false
+                    "orderable": false,
+                    "render": function (data, type, row) {
+                        if (type === "display") {
+                            return row.canRevote;
+                        }
+                        return data;
+                    }
                 },
                 {
                     "data": "date"
