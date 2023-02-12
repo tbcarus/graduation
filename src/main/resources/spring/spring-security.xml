@@ -27,6 +27,14 @@ http://www.springframework.org/schema/security ">
     <!-- Конфигурируем хранение пароля в открытом виде (сделаем шифрацию позднее) -->
     <beans:bean name="noopEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
 
+    <http>
+        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <form-login/>
+        <logout/>
+        <csrf disabled="true"/>
+    </http>
+
     <!--Настройка аутентификации пользователей -->
     <authentication-manager>
         <authentication-provider>
