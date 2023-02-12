@@ -13,6 +13,7 @@ function makeEditable(datatableApi) {
 }
 
 function add() {
+    $("#modalTitle").html(i18n["addTitle"]);
     form.find(":input").val("");
     form.find('input[type=text], [type=number], [type=email], [type=date]').each(function () {
         this.value = "";
@@ -92,10 +93,10 @@ function closeNoty() {
     }
 }
 
-function successNoty(text) {
+function successNoty(key) {
     closeNoty();
     new Noty({
-        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + text,
+        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + i18n[key],
         type: 'success',
         layout: "bottomRight",
         timeout: 2000
@@ -104,17 +105,17 @@ function successNoty(text) {
 
 function renderEditBtn(data, type, row) {
     if (type === "display") {
-        return "<a style='cursor: pointer' onclick='updateRow(" + row.id + ")'><span class='fa fa-pencil'></span> modal</a>" +
+        return "<a style='cursor: pointer' onclick='updateRow(" + row.id + ")'><span class='fa fa-pencil'></span>" + i18n["common.update"] + " modal</a>" +
             "<br>" +
-            "<a style='cursor: pointer' href='" + window.location.pathname + "/update?id=" + row.id + "'><span class='fa fa-pencil'> JSP</a>";
+            "<a style='cursor: pointer' href='" + window.location.pathname + "/update?id=" + row.id + "'><span class='fa fa-pencil'>" + i18n["common.update"] + " JSP</a>";
     }
 }
 
 function renderDeleteBtn(data, type, row) {
     if (type === "display") {
-        return "<a style='cursor: pointer' onclick='deleteRow(" + row.id + ")'><span class='fa fa-remove'></span> modal</a>" +
+        return "<a style='cursor: pointer' onclick='deleteRow(" + row.id + ")'><span class='fa fa-remove'></span>" + i18n["common.delete"] + " modal</a>" +
             "<br>" +
-            "<a style='cursor: pointer' href='" + window.location.pathname + "/delete?id=" + row.id + "'><span class='fa fa-remove'></span> JSP</a>";
+            "<a style='cursor: pointer' href='" + window.location.pathname + "/delete?id=" + row.id + "'><span class='fa fa-remove'></span>" + i18n["common.delete"] + " JSP</a>";
     }
 }
 

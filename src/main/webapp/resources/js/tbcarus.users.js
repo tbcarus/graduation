@@ -19,7 +19,7 @@ function enable(chkbox, id) {
         data: "enabled=" + enabled
     }).done(function () {
         chkbox.closest("tr").attr("data-user-enabled", enabled);
-        successNoty(enabled ? "Enabled" : "Disabled");
+        successNoty(enabled ? "common.enabled" : "common.disabled");
     }).fail(function () {
         $(chkbox).prop("checked", !enabled);
     });
@@ -27,6 +27,7 @@ function enable(chkbox, id) {
 
 function updateRow(id) {
     form.find(":input").val("");
+    $("#modalTitle").html(i18n["editTitle"]);
     $.get(ctx.ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[id='" + key + "']").val(value);

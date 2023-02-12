@@ -35,37 +35,6 @@
             </tr>
             </thead>
             <tbody>
-<%--            <c:forEach var="user" items="${requestScope.users}">--%>
-<%--                <jsp:useBean id="user" class="ru.tbcarus.topjava.model.User"/>--%>
-<%--                <tr id="${user.id}" data-user-enabled="${user.enabled}">--%>
-<%--                    <td><a href="users/${user.id}">${user.name}</a></td>--%>
-<%--                    <td>${user.email}</td>--%>
-<%--                    <td>${user.enabled} <input type="checkbox" <c:if test="${user.enabled}">checked</c:if> onclick="enable($(this), ${user.id})"></td>--%>
-<%--                    <td>${DateTimeUtil.toString(user.registered)}</td>--%>
-<%--                    <td>--%>
-<%--                        <c:forEach var="role" items="${user.roles}">--%>
-<%--                            <jsp:useBean id="role" type="ru.tbcarus.topjava.model.Role"/>--%>
-<%--                            ${role.name()}--%>
-<%--                        </c:forEach>--%>
-<%--                    </td>--%>
-<%--                    <td>--%>
-<%--                        <a class="edit" id = "${user.email}" style="cursor: pointer" onclick="updateRow('${user.id}')">--%>
-<%--                            <span class="fa fa-pencil"></span><spring:message code="common.update"/> - modal--%>
-<%--                        </a>--%>
-<%--                        <br>--%>
-<%--                        <a href="users/update?id=${user.id}"><span class="fa fa-pencil"></span><spring:message--%>
-<%--                                code="common.update"/> - JSP</a>--%>
-<%--                    </td>--%>
-<%--                        &lt;%&ndash;<td><a href="users/delete?id=${user.id}"><span class="fa fa-remove"></span><spring:message code="common.delete"/></a></td>&ndash;%&gt;--%>
-<%--                    <td>--%>
-<%--                        <a class="delete" style="cursor: pointer" onclick="deleteRow(${user.id})"> <span--%>
-<%--                                class="fa fa-remove"></span><spring:message code="common.delete"/> - AJAX</a>--%>
-<%--                        <br>--%>
-<%--                        <a href="users/delete?id=${user.id}"><span class="fa fa-remove"></span><spring:message--%>
-<%--                                code="common.delete"/> - JSP</a>--%>
-<%--                    </td>--%>
-<%--                </tr>--%>
-<%--            </c:forEach>--%>
             </tbody>
         </table>
     </div>
@@ -75,7 +44,9 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><spring:message code="user.add"/></h4>
+                <h4 class="modal-title" id="modalTitle">
+                    <%--                    <spring:message code="user.add"/>--%>
+                </h4>
                 <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
             </div>
             <div class="modal-body">
@@ -142,4 +113,13 @@
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<script type="text/javascript">
+    const i18n = [];
+    i18n["addTitle"] = '<spring:message code="user.add"/>';
+    i18n["editTitle"] = '<spring:message code="user.edit"/>';
+
+    <c:forEach var="key" items='<%=new String[]{"common.deleted","common.saved","common.enabled","common.disabled","common.errorStatus","common.confirm", "common.update", "common.delete"}%>'>
+    i18n["${key}"] = "<spring:message code="${key}"/>";
+    </c:forEach>
+</script>
 </html>

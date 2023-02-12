@@ -43,7 +43,7 @@ $(function () {
             "info": true,
             "columns": [
                 {
-                    data: function (data, type, row) {
+                    "data": function (data, type, row) {
                         if (type === "display") {
                             return data.id === 0 ? "Не выбрано" : data.restaurant.name;
                         }
