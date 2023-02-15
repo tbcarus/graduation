@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-dark bg-dark py-0">
     <div class="container">
-        <a href="restaurants" class="navbar-brand"><img src="resources/images/icon-meal.png"> <spring:message code="app.title"/></a>
+        <a href="/vote" class="navbar-brand"><img src="resources/images/icon-meal.png"> <spring:message code="app.title"/></a>
         <form class="form-inline my-2">
             <a class="btn btn-info mr-1" href="users"><spring:message code="user.title"/></a>
             <a class="btn btn-primary" href="logout">

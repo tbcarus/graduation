@@ -50,4 +50,10 @@ public class RootController {
 //        model.addAttribute("users", userService.getAll());
         return "users";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        log.info("login");
+        return "login";
+    }
 }
