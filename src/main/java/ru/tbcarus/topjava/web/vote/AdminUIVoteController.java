@@ -14,7 +14,7 @@ import java.util.List;
 import static ru.tbcarus.topjava.web.SecurityUtil.authUserId;
 
 @RestController
-@RequestMapping(value = "ui/admin/votes", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "ui/rest/votes", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminUIVoteController extends AbstractVoteController {
 
     @Override

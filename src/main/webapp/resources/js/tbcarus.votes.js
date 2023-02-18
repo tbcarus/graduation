@@ -1,4 +1,4 @@
-const voteAjaxUrl = "ui/admin/votes/";
+const voteAjaxUrl = "ui/rest/votes/";
 // https://stackoverflow.com/a/5064235/548473
 const ctx = {
     ajaxUrl: voteAjaxUrl,
