@@ -55,9 +55,9 @@ public class JspVoteController {
     public String setUser(HttpServletRequest request) {
         String action = request.getParameter("button");
         if ("toVotes".equals(action)) {
-            int userId = Integer.parseInt(request.getParameter("userId"));
-            log.info("setUser {} in votes", userId);
-            SecurityUtil.setAuthUserId(userId);
+//            int userId = Integer.parseInt(request.getParameter("userId"));
+//            log.info("setUser {} in votes", userId);
+//            SecurityUtil.setAuthUserId(userId);
             return "redirect:votes";
         }
         return "redirect:qwerty";

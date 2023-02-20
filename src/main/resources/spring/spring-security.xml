@@ -42,18 +42,18 @@ http://www.springframework.org/schema/security ">
 
     <!--Настройка аутентификации пользователей -->
     <authentication-manager>
-        <authentication-provider>
+        <authentication-provider user-service-ref="userService">
 
             <!-- Кодировщик паролей -->
             <password-encoder ref="noopEncoder"/>
 
             <!-- Явно задаем данные пользователей в конфигурации (изменим на дальше на реальные, из базы) -->
-            <user-service>
-                <user name="admin@gov.ru" password="superAdmin" authorities="ROLE_ADMIN"/>
-                <user name="ivan@mail.ru" password="ivanpass" authorities="ROLE_USER"/>
-                <user name="maria@mail.ru" password="mariapass" authorities="ROLE_USER"/>
-                <user name="vasily@mail.ru" password="vasilypass" authorities="ROLE_USER"/>
-            </user-service>
+<!--            <user-service>-->
+<!--                <user name="admin@gov.ru" password="superAdmin" authorities="ROLE_ADMIN"/>-->
+<!--                <user name="ivan@mail.ru" password="ivanpass" authorities="ROLE_USER"/>-->
+<!--                <user name="maria@mail.ru" password="mariapass" authorities="ROLE_USER"/>-->
+<!--                <user name="vasily@mail.ru" password="vasilypass" authorities="ROLE_USER"/>-->
+<!--            </user-service>-->
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

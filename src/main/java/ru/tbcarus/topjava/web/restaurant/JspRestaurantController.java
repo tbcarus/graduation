@@ -68,17 +68,17 @@ public class JspRestaurantController {
 
     @PostMapping("/voting")
     public String setUserForVoting(HttpServletRequest request) {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        log.info("setUser {} in restaurants", userId);
-        SecurityUtil.setAuthUserId(userId);
+//        int userId = Integer.parseInt(request.getParameter("userId"));
+//        log.info("setUser {} in restaurants", userId);
+//        SecurityUtil.setAuthUserId(userId);
         return "redirect:voting";
     }
 
     @PostMapping()
     public String setUser(HttpServletRequest request) {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        log.info("setUser {} in restaurants", userId);
-        SecurityUtil.setAuthUserId(userId);
+//        int userId = Integer.parseInt(request.getParameter("userId"));
+//        log.info("setUser {} in restaurants", userId);
+//        SecurityUtil.setAuthUserId(userId);
         return "redirect:restaurants";
     }
 

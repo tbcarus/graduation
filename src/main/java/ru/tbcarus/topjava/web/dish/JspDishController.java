@@ -47,9 +47,9 @@ public class JspDishController {
 
     @PostMapping()
     public String setUser(HttpServletRequest request) {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        log.info("setUser {} in dishes", userId);
-        SecurityUtil.setAuthUserId(userId);
+//        int userId = Integer.parseInt(request.getParameter("userId"));
+//        log.info("setUser {} in dishes", userId);
+//        SecurityUtil.setAuthUserId(userId);
         return "redirect:dishes?restaurantId="+Integer.parseInt(request.getParameter("restaurantId"));
     }
 
