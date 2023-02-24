@@ -38,10 +38,7 @@ public class AdminUIUserController extends AbstractUserController {
     //OK
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> createOrUpdate(/*@RequestParam String id,
-                                                 @RequestParam String name,
-                                                 @RequestParam String email,
-                                                 @RequestParam String password,*/
+    public ResponseEntity<String> createOrUpdate(
             @RequestParam(required = false) String enabled,
             @RequestParam(required = false) String userRole,
             @RequestParam(required = false) String adminRole,
