@@ -5,12 +5,8 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc.xsd
-       http://www.springframework.org/schema/securit
-       http://www.springframework.org/schema/security/spring-security.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
     <bean class="ru.tbcarus.topjava.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
 
@@ -45,4 +41,8 @@
         <property name="basenames" value="file:///#{systemEnvironment[VOTES_ROOT]}/config/messages/app"/>
         <property name="fallbackToSystemLocale" value="false"/>
     </bean>
+
+    <mvc:interceptors>
+        <bean class="ru.tbcarus.topjava.web.interceptor.ModelInterceptor"/>
+    </mvc:interceptors>
 </beans>
