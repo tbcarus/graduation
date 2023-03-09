@@ -52,11 +52,11 @@
                                    disabled></td>
                     </tr>
                     <tr>
-                        <td><ftm:message key="common.password"/></td>
+                        <td><spring:message code="common.password"/>:</td>
                         <td><input type="text" name="password" value="${user.password}"></td>
                     </tr>
                     <tr>
-                        <td rowspan="2"><ftm:message key="user.roles"/></td>
+                        <td rowspan="2"><spring:message code="user.roles"/>:</td>
                         <td>
                             <c:if test="${user.roles.contains(Role.USER)}">
                                 <input type="checkbox" name="userRole" checked> User
