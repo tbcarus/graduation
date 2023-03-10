@@ -18,6 +18,7 @@
         </c:if>
         <sec:authorize access="isAnonymous()">
             <div class="pt-2">
+                <a class="btn btn-lg btn-info mt-2" href="profile/register"><spring:message code="app.register"/> &raquo;</a>
                 <button type="submit" class="btn btn-lg btn-primary mt-2"
                         onclick="login('vasily@mail.ru', 'vasilypass')">
                     <spring:message code="app.login"/> Vasiliy
@@ -64,7 +65,15 @@
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 <script type="text/javascript">
+    <c:if test="${not empty param.username}">
+    setCredentials("${param.username}", "");
+    </c:if>
+
     function login(username, password) {
+        setCredentials(username, password);
+        $("#login_form").submit();
+    }
+    function setCredentials(username, password) {
         $('input[name="username"]').val(username);
         $('input[name="password"]').val(password);
         $("#login_form").submit();
