@@ -15,19 +15,19 @@
             <jsp:include page="fragments/bodyCommon.jsp"/>
             <hr>
             <h2>${param.id != null ? 'Edit user' : 'Add user'}</h2>
-            <jsp:useBean id="user" type="ru.tbcarus.topjava.model.User" scope="request"/>
+            <jsp:useBean id="userEdit" type="ru.tbcarus.topjava.model.User" scope="request"/>
             <form method="post" action="users/create-or-update">
-                <input type="hidden" name="id" value="${user.id}">
+                <input type="hidden" name="id" value="${userEdit.id}">
                 <table border="0">
                     <tr>
                         <td><spring:message code="user.name"/>:</td>
-                        <td><input type="text" name="name" value="${user.name}"></td>
+                        <td><input type="text" name="name" value="${userEdit.name}"></td>
                     </tr>
                     <tr>
                         <td><spring:message code="user.email"/>:</td>
                         <td>
                             <c:if test="${user.email != null}">
-                                <input type="text" name="email" value="${user.email}" disabled>
+                                <input type="text" name="email" value="${userEdit.email}" disabled>
                             </c:if>
                             <c:if test="${user.email == null}">
                                 <input type="text" name="email" value="email@example.com">
@@ -37,10 +37,10 @@
                     <tr>
                         <td><spring:message code="user.active"/>:</td>
                         <td>
-                            <c:if test="${user.enabled}">
+                            <c:if test="${userEdit.enabled}">
                                 <input type="checkbox" name="enabled" checked>
                             </c:if>
-                            <c:if test="${!user.enabled}">
+                            <c:if test="${!userEdit.enabled}">
                                 <input type="checkbox" name="enabled">
                             </c:if>
                         </td>
@@ -48,30 +48,30 @@
                     <tr>
                         <td><spring:message code="user.registered"/>:</td>
                         <td><input type="datetime-local" name="registered"
-                                   value="${DateTimeUtil.toString(user.registered)}"
+                                   value="${DateTimeUtil.toString(userEdit.registered)}"
                                    disabled></td>
                     </tr>
                     <tr>
                         <td><spring:message code="common.password"/>:</td>
-                        <td><input type="text" name="password" value="${user.password}"></td>
+                        <td><input type="text" name="password" value="${userEdit.password}"></td>
                     </tr>
                     <tr>
                         <td rowspan="2"><spring:message code="user.roles"/>:</td>
                         <td>
-                            <c:if test="${user.roles.contains(Role.USER)}">
+                            <c:if test="${userEdit.roles.contains(Role.USER)}">
                                 <input type="checkbox" name="userRole" checked> User
                             </c:if>
-                            <c:if test="${!user.roles.contains(Role.USER)}">
+                            <c:if test="${!userEdit.roles.contains(Role.USER)}">
                                 <input type="checkbox" name="userRole"> User
                             </c:if>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <c:if test="${user.roles.contains(Role.ADMIN)}">
+                            <c:if test="${userEdit.roles.contains(Role.ADMIN)}">
                                 <input type="checkbox" name="adminRole" checked> Admin
                             </c:if>
-                            <c:if test="${!user.roles.contains(Role.ADMIN)}">
+                            <c:if test="${!userEdit.roles.contains(Role.ADMIN)}">
                                 <input type="checkbox" name="adminRole"> Admin
                             </c:if>
                         </td>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
@@ -15,36 +16,42 @@
         Active User: ${activeUser.id()} - ${activeUser.name}
         <br><br>
 
-        <form method="post" action="users">
-            <b style="font-size: large"><spring:message code="user.title"/></b>
-            <button type="submit" name="button" value="toUsers"><spring:message code="common.go"/></button>
-        </form>
+        <sec:authorize access="hasRole('ADMIN')">
+            <form method="post" action="users">
+                <b style="font-size: large"><spring:message code="user.title"/></b>
+                <button type="submit" name="button" value="toUsers"><spring:message code="common.go"/></button>
+            </form>
+        </sec:authorize>
 
         <form method="post" action="votes">
             <b style="font-size: large"><spring:message code="vote.title"/></b>
             <button type="submit" name="button" value="toVotes"><spring:message code="common.go"/></button>
         </form>
 
-        <form method="post" action="restaurants">
-            <b style="font-size: large"><spring:message code="restaurant.tittle"/></b>
-            <button type="submit"><spring:message code="common.go"/></button>
-        </form>
+        <sec:authorize access="hasRole('ADMIN')">
+            <form method="post" action="restaurants">
+                <b style="font-size: large"><spring:message code="restaurant.tittle"/></b>
+                <button type="submit"><spring:message code="common.go"/></button>
+            </form>
+        </sec:authorize>
 
         <form method="post" action="restaurants/voting">
             <b style="font-size: large"><spring:message code="restaurant.tittle"/></b>
             <button type="submit"><spring:message code="vote.vote"/></button>
         </form>
 
-        <form method="post" action="dishes">
-            <b style="font-size: large"><spring:message code="dishes.tittle"/></b>
-            <select name="restaurantId">
-                <c:forEach var="restaurant" items="${requestScope.restaurants}">
-                    <jsp:useBean id="restaurant" type="ru.tbcarus.topjava.model.Restaurant"/>
-                    <option value="${restaurant.id}">${restaurant.name}</option>
-                </c:forEach>
-            </select>
-            <button type="submit"><spring:message code="common.go"/></button>
-        </form>
+        <sec:authorize access="hasRole('ADMIN')">
+            <form method="post" action="dishes">
+                <b style="font-size: large"><spring:message code="dishes.tittle"/></b>
+                <select name="restaurantId">
+                    <c:forEach var="restaurant" items="${requestScope.restaurants}">
+                        <jsp:useBean id="restaurant" type="ru.tbcarus.topjava.model.Restaurant"/>
+                        <option value="${restaurant.id}">${restaurant.name}</option>
+                    </c:forEach>
+                </select>
+                <button type="submit"><spring:message code="common.go"/></button>
+            </form>
+        </sec:authorize>
 
         <hr>
         <h4><a href="votes/today"><spring:message code="vote.today"/></a></h4>

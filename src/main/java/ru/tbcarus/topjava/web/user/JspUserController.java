@@ -52,7 +52,7 @@ public class JspUserController {
     @GetMapping("/update")
     public String update(@RequestParam int id, HttpServletRequest request, Model model) {
         User user = userService.get(id);
-        model.addAttribute("user", user);
+        model.addAttribute("userEdit", user);
         return "userForm";
     }
 

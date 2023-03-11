@@ -62,11 +62,13 @@ public class User extends AbstractNamedEntity {
     private Set<Role> roles = new HashSet<>();
 
     public User() {
+        this.roles.add(Role.USER);
     }
 
     public User(LocalDateTime registered) {
         super(null, null);
         this.registered = registered;
+        this.roles.add(Role.USER);
     }
 
     public User(User u) {

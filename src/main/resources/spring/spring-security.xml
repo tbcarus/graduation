@@ -19,9 +19,6 @@ http://www.springframework.org/schema/security ">
 
         <intercept-url pattern="/rest/profile" method="POST" access="isAnonymous()"/>
 
-        <!--Ко всем остальным endpoint будут иметь доступ только аутентифицированные пользователи-->
-        <intercept-url pattern="/**" access="isAuthenticated()"/>
-
         <!--Выключаем защиту от межсайтовой подделки запросов, будем смотреть на нее и включим позже-->
         <csrf disabled="true"/>
     </http>
@@ -35,6 +32,7 @@ http://www.springframework.org/schema/security ">
         <intercept-url pattern="/profile/register" access="isAnonymous()"/>
 
         <intercept-url pattern="/**/admin/**" access="hasRole('ADMIN')"/>
+        <!--Ко всем остальным endpoint будут иметь доступ только аутентифицированные пользователи-->
         <intercept-url pattern="/**" access="isAuthenticated()"/>
 
         <form-login login-page="/login" default-target-url="/"
