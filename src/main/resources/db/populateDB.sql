@@ -11,10 +11,10 @@ FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO users(name, email, password)
-VALUES ('Admin', 'admin@gov.ru', 'superAdmin'), --100000
-       ('Ivan', 'ivan@mail.ru', 'ivanpass'),    --100001
-       ('Maria', 'maria@mail.ru', 'mariapass'), --100002
-       ('Vasily', 'vasily@mail.ru', 'vasilypass'); --100003
+VALUES ('Admin', 'admin@gov.ru', '{noop}superAdmin'), --100000
+       ('Ivan', 'ivan@mail.ru', '{noop}ivanpass'),    --100001
+       ('Maria', 'maria@mail.ru', '{noop}mariapass'), --100002
+       ('Vasily', 'vasily@mail.ru', '{noop}vasilypass'); --100003
 
 INSERT INTO restaurant(name)
 VALUES ('KFC'),       --100004

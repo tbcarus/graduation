@@ -1,5 +1,6 @@
 package ru.tbcarus.topjava.util;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
 
@@ -21,4 +22,10 @@ public class UserUtil {
 //        user.setPassword(userTo.getPassword());
 //        return user;
 //    }
+
+    public static User prepareToSave(User user, PasswordEncoder passwordEncoder) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEmail(user.getEmail().toLowerCase());
+        return user;
+    }
 }

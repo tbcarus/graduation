@@ -23,8 +23,8 @@ http://www.springframework.org/schema/security ">
         <csrf disabled="true"/>
     </http>
 
-    <!-- Конфигурируем хранение пароля в открытом виде (сделаем шифрацию позднее) -->
-    <beans:bean name="noopEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
+    <!-- Конфигурируем хранение пароля -->
+    <beans:bean class="org.springframework.security.crypto.factory.PasswordEncoderFactories" id="passwordEncoder" factory-method="createDelegatingPasswordEncoder"/>
 
     <http>
         <intercept-url pattern="/login" access="permitAll()"/>
@@ -47,7 +47,7 @@ http://www.springframework.org/schema/security ">
         <authentication-provider user-service-ref="userService">
 
             <!-- Кодировщик паролей -->
-            <password-encoder ref="noopEncoder"/>
+            <password-encoder ref="passwordEncoder"/>
 
             <!-- Явно задаем данные пользователей в конфигурации (изменим на дальше на реальные, из базы) -->
 <!--            <user-service>-->

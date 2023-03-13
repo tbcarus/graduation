@@ -38,7 +38,7 @@ public class User extends AbstractNamedEntity {
 
     @Column(name = "password", nullable = false)
     @NotBlank
-    @Size(min = 5, max = 32, message = "length must be between 5 and 32 characters")
+    @Size(min = 5, max = 128, message = "length must be between 5 and 32 characters")
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private String password;
 

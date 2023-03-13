@@ -6,12 +6,14 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.tbcarus.topjava.AuthorizedUser;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.repository.datajpa.UserRepository;
+import ru.tbcarus.topjava.util.UserUtil;
 import ru.tbcarus.topjava.util.ValidationUtil;
 
 import java.util.List;
@@ -22,14 +24,16 @@ public class UserService implements UserDetailsService {
     private static final Sort SORT_NAME_EMAIL = Sort.by(Sort.Direction.ASC, "name", "email");
 
     private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.repository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User create(User user) {
         Assert.notNull(user, "tbca: user mest be not null");
-        return repository.save(user);
+        return prepareAndSave(user);
     }
 
     public void delete(int id) {
@@ -51,7 +55,8 @@ public class UserService implements UserDetailsService {
 
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
-        ValidationUtil.checkNotFoundWithId(repository.save(user), user.id());
+//        ValidationUtil.checkNotFoundWithId(repository.save(user), user.id());
+        prepareAndSave(user);
     }
 
     @CacheEvict(value = "users", allEntries = true)
@@ -69,4 +74,9 @@ public class UserService implements UserDetailsService {
         }
         return new AuthorizedUser(user);
     }
+
+    private User prepareAndSave(User user) {
+        return repository.save(UserUtil.prepareToSave(user, passwordEncoder));
+    }
+
 }
