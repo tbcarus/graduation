@@ -27,7 +27,7 @@ public class ProfileUIController extends AbstractUserController {
             return "profile";
         } else {
             super.update(user, SecurityUtil.authUserId());
-            SecurityUtil.get().update(user);
+            SecurityUtil.get().setNewUser(user);
             status.setComplete();
             return "redirect:/";
         }
