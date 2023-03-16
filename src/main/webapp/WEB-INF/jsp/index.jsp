@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
@@ -17,31 +18,32 @@
         <br><br>
 
         <sec:authorize access="hasRole('ADMIN')">
-            <form method="post" action="users">
+            <form method="post" action="users?${_csrf.parameterName}=${_csrf.token}">
                 <b style="font-size: large"><spring:message code="user.title"/></b>
                 <button type="submit" name="button" value="toUsers"><spring:message code="common.go"/></button>
             </form>
         </sec:authorize>
 
         <form method="post" action="votes">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <b style="font-size: large"><spring:message code="vote.title"/></b>
             <button type="submit" name="button" value="toVotes"><spring:message code="common.go"/></button>
         </form>
 
         <sec:authorize access="hasRole('ADMIN')">
-            <form method="post" action="restaurants">
+            <form:form method="post" action="restaurants">
                 <b style="font-size: large"><spring:message code="restaurant.tittle"/></b>
                 <button type="submit"><spring:message code="common.go"/></button>
-            </form>
+            </form:form>
         </sec:authorize>
 
-        <form method="post" action="restaurants/voting">
+        <form:form method="post" action="restaurants/voting">
             <b style="font-size: large"><spring:message code="restaurant.tittle"/></b>
             <button type="submit"><spring:message code="vote.vote"/></button>
-        </form>
+        </form:form>
 
         <sec:authorize access="hasRole('ADMIN')">
-            <form method="post" action="dishes">
+            <form:form method="post" action="dishes">
                 <b style="font-size: large"><spring:message code="dishes.tittle"/></b>
                 <select name="restaurantId">
                     <c:forEach var="restaurant" items="${requestScope.restaurants}">
@@ -50,7 +52,7 @@
                     </c:forEach>
                 </select>
                 <button type="submit"><spring:message code="common.go"/></button>
-            </form>
+            </form:form>
         </sec:authorize>
 
         <hr>
