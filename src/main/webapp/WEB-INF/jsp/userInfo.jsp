@@ -8,7 +8,7 @@
 <body>
 <jsp:include page="fragments/bodyCommon.jsp"/>
 <hr>
-<c:set var="user" value="${requestScope.user}"/>
+<c:set var="user" value="${requestScope.userEdit}"/>
 <jsp:useBean id="user" class="ru.tbcarus.topjava.model.User" scope="request"/>
 <h2><spring:message code="user.user"/></h2>
 <table border="1">
