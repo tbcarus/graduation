@@ -8,6 +8,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.web.dish.AbstractDishController;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
@@ -52,7 +53,7 @@ public class AdminRestDishController extends AbstractDishController {
     }
 
     @PostMapping(value = "/{restId}/dishes", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dish> createRest(@RequestBody Dish dish, @PathVariable int restId) {
+    public ResponseEntity<Dish> createRest(@Valid @RequestBody Dish dish, @PathVariable int restId) {
         Dish created = super.create(dish, restId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/dishes/{id}")
@@ -70,7 +71,7 @@ public class AdminRestDishController extends AbstractDishController {
     @Override
     @PutMapping(value = "/{restId}/dishes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody Dish dish, @PathVariable int restId, @PathVariable int id) {
+    public void update(@Valid @RequestBody Dish dish, @PathVariable int restId, @PathVariable int id) {
         super.update(dish, restId, id);
     }
 }

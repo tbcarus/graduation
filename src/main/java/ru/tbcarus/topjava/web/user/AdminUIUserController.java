@@ -38,20 +38,12 @@ public class AdminUIUserController extends AbstractUserController {
     //OK
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> createOrUpdate(
+    public void createOrUpdate(
             @RequestParam(required = false) String enabled,
             @RequestParam(required = false) String userRole,
             @RequestParam(required = false) String adminRole,
-            @Valid User user,
-            BindingResult result) {
-        if (result.hasErrors()) {
-            if (result.getFieldErrors().size() > 1 || !result.getFieldErrors().get(0).getField().equals("enabled")) {
-                String errorFieldsMsg = result.getFieldErrors().stream()
-                        .map(fe -> String.format("[%s] %s", fe.getField(), fe.getDefaultMessage()))
-                        .collect(Collectors.joining("<br>"));
-                return ResponseEntity.unprocessableEntity().body(errorFieldsMsg);
-            }
-        }
+            @Valid User user) {
+
         if (userRole != null) {
             user.setRole(Role.USER);
         }
@@ -68,7 +60,6 @@ public class AdminUIUserController extends AbstractUserController {
         } else {
             super.update(user, user.getId());
         }
-        return ResponseEntity.ok().build();
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.web.restaurant.AbstractRestaurantController;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class AdminRestRestaurantController extends AbstractRestaurantController 
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> createRest(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<Restaurant> createRest(@Valid @RequestBody Restaurant restaurant) {
         Restaurant created = super.create(restaurant);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
@@ -48,7 +49,7 @@ public class AdminRestRestaurantController extends AbstractRestaurantController 
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody Restaurant restaurant, @PathVariable int id) {
+    public void update(@Valid @RequestBody Restaurant restaurant, @PathVariable int id) {
         super.update(restaurant, id);
     }
 }

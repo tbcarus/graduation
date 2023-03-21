@@ -8,6 +8,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.web.user.AbstractUserController;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 import static ru.tbcarus.topjava.web.SecurityUtil.authUserId;
@@ -31,7 +32,7 @@ public class ProfileRestUserController extends AbstractUserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<User> register(@RequestBody User user) {
+    public ResponseEntity<User> register(@Valid @RequestBody User user) {
         User created = super.create(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL).build().toUri();
@@ -41,7 +42,7 @@ public class ProfileRestUserController extends AbstractUserController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody User user) {
+    public void update(@Valid @RequestBody User user) {
         super.update(user, authUserId());
     }
 
