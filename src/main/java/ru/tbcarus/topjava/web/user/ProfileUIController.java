@@ -1,5 +1,6 @@
 package ru.tbcarus.topjava.web.user;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -25,11 +26,16 @@ public class ProfileUIController extends AbstractUserController {
     public String updateProfile(@Valid User user, BindingResult result, SessionStatus status) {
         if (result.hasErrors()) {
             return "profile";
-        } else {
+        }
+        try {
             super.update(user, SecurityUtil.authUserId());
             SecurityUtil.get().setNewUser(user);
             status.setComplete();
             return "redirect:/";
+
+        } catch (DataIntegrityViolationException ex) {
+            result.rejectValue("email", EXCEPTION_DUPLICATE_EMAIL);
+            return "profile";
         }
     }
 
@@ -45,10 +51,15 @@ public class ProfileUIController extends AbstractUserController {
         if (result.hasErrors()) {
             model.addAttribute("register", true);
             return "profile";
-        } else {
+        }
+        try {
             super.create(user);
             status.setComplete();
             return "redirect:/login?message=app.registered&username=" + user.getEmail();
+        } catch (DataIntegrityViolationException ex) {
+            result.rejectValue("email", EXCEPTION_DUPLICATE_EMAIL);
+            model.addAttribute("register", true);
+            return "profile";
         }
     }
 }

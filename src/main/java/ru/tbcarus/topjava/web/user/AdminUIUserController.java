@@ -1,5 +1,9 @@
 package ru.tbcarus.topjava.web.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
+import ru.tbcarus.topjava.util.exception.IllegalRequestDataException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -15,6 +20,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "ui/admin/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminUIUserController extends AbstractUserController {
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Override
     @GetMapping
@@ -44,21 +52,25 @@ public class AdminUIUserController extends AbstractUserController {
             @RequestParam(required = false) String adminRole,
             @Valid User user) {
 
-        if (userRole != null) {
-            user.setRole(Role.USER);
-        }
-        if (adminRole != null) {
-            user.setRole(Role.ADMIN);
-        }
-        if (enabled == null) {
-            user.setEnabled(false);
-        } else {
-            user.setEnabled(true);
-        }
-        if (user.isNew()) {
-            super.create(user);
-        } else {
-            super.update(user, user.getId());
+        try {
+            if (userRole != null) {
+                user.setRole(Role.USER);
+            }
+            if (adminRole != null) {
+                user.setRole(Role.ADMIN);
+            }
+            if (enabled == null) {
+                user.setEnabled(false);
+            } else {
+                user.setEnabled(true);
+            }
+            if (user.isNew()) {
+                super.create(user);
+            } else {
+                super.update(user, user.getId());
+            }
+        } catch (DataIntegrityViolationException e) {
+            throw new IllegalRequestDataException(messageSource.getMessage(EXCEPTION_DUPLICATE_EMAIL, null, LocaleContextHolder.getLocale()));
         }
     }
 
