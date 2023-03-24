@@ -7,7 +7,7 @@ import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.repository.datajpa.DishRepository;
 import ru.tbcarus.topjava.repository.datajpa.RestaurantRepository;
 import ru.tbcarus.topjava.util.DateTimeUtil;
-import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.util.validation.ValidationUtil;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ru.tbcarus.topjava.util;
+package ru.tbcarus.topjava.util.validation;
 
 import org.slf4j.Logger;
 import org.springframework.core.NestedExceptionUtils;

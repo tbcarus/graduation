@@ -9,7 +9,7 @@ import ru.tbcarus.topjava.repository.datajpa.RestaurantRepository;
 import ru.tbcarus.topjava.repository.datajpa.UserRepository;
 import ru.tbcarus.topjava.repository.datajpa.VoteRepository;
 import ru.tbcarus.topjava.util.DateTimeUtil;
-import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.util.validation.ValidationUtil;
 import ru.tbcarus.topjava.util.VoteUtils;
 
 import java.time.LocalDate;

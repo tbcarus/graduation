@@ -4,10 +4,12 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import ru.tbcarus.topjava.View;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.web.SecurityUtil;
 
@@ -23,7 +25,7 @@ public class ProfileUIController extends AbstractUserController {
     }
 
     @PostMapping
-    public String updateProfile(@Valid User user, BindingResult result, SessionStatus status) {
+    public String updateProfile(@Validated(View.Web.class) User user, BindingResult result, SessionStatus status) {
         if (result.hasErrors()) {
             return "profile";
         }
@@ -47,7 +49,7 @@ public class ProfileUIController extends AbstractUserController {
     }
 
     @PostMapping("/register")
-    public String saveRegister(@Valid User user, BindingResult result, SessionStatus status, ModelMap model) {
+    public String saveRegister(@Validated(View.Web.class) User user, BindingResult result, SessionStatus status, ModelMap model) {
         if (result.hasErrors()) {
             model.addAttribute("register", true);
             return "profile";

@@ -4,10 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.tbcarus.topjava.model.Restaurant;
-import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.service.RestaurantService;
-import ru.tbcarus.topjava.service.UserService;
-import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.util.validation.ValidationUtil;
 
 import java.util.List;
 

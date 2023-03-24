@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 import ru.tbcarus.topjava.AuthorizedUser;
-import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.util.validation.ValidationUtil;
 import ru.tbcarus.topjava.util.exception.ErrorType;
 
 import javax.servlet.http.HttpServletRequest;

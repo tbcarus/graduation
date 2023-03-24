@@ -3,8 +3,10 @@ package ru.tbcarus.topjava.web.user.rest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.tbcarus.topjava.View;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.web.user.AbstractUserController;
 
@@ -32,7 +34,7 @@ public class ProfileRestUserController extends AbstractUserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<User> register(@Valid @RequestBody User user) {
+    public ResponseEntity<User> register(@Validated(View.Web.class) @RequestBody User user) {
         User created = super.create(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL).build().toUri();
@@ -42,7 +44,7 @@ public class ProfileRestUserController extends AbstractUserController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@Valid @RequestBody User user) {
+    public void update(@Validated(View.Web.class) @RequestBody User user) {
         super.update(user, authUserId());
     }
 

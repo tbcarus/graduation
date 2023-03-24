@@ -7,6 +7,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
+import ru.tbcarus.topjava.View;
+import ru.tbcarus.topjava.util.validation.NoHtml;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -34,6 +36,7 @@ public class User extends AbstractNamedEntity {
     @Email
     @NotBlank
     @Size(max = 128)
+    @NoHtml(groups = {View.Web.class})
     private String email;
 
     @Column(name = "password", nullable = false)

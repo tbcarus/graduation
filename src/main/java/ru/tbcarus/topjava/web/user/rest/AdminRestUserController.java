@@ -3,8 +3,10 @@ package ru.tbcarus.topjava.web.user.rest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.tbcarus.topjava.View;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.web.user.AbstractUserController;
 
@@ -31,7 +33,7 @@ public class AdminRestUserController extends AbstractUserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createWithLocations(@Valid@RequestBody User user) {
+    public ResponseEntity<User> createWithLocations(@Validated(View.Web.class) @RequestBody User user) {
         User created = super.create(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
@@ -49,7 +51,7 @@ public class AdminRestUserController extends AbstractUserController {
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@Valid @RequestBody User user, @PathVariable int id) {
+    public void update(@Validated(View.Web.class) @RequestBody User user, @PathVariable int id) {
         super.update(user, id);
     }
 

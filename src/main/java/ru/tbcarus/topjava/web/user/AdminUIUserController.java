@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.tbcarus.topjava.View;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.util.exception.IllegalRequestDataException;
@@ -50,7 +52,7 @@ public class AdminUIUserController extends AbstractUserController {
             @RequestParam(required = false) String enabled,
             @RequestParam(required = false) String userRole,
             @RequestParam(required = false) String adminRole,
-            @Valid User user) {
+            @Validated(View.Web.class) User user) {
 
         try {
             if (userRole != null) {

@@ -6,7 +6,7 @@ import org.springframework.util.Assert;
 import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.repository.datajpa.DishRepository;
 import ru.tbcarus.topjava.repository.datajpa.RestaurantRepository;
-import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.util.validation.ValidationUtil;
 
 import java.util.List;
 

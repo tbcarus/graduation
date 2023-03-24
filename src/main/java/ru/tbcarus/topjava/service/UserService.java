@@ -14,7 +14,7 @@ import ru.tbcarus.topjava.AuthorizedUser;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.repository.datajpa.UserRepository;
 import ru.tbcarus.topjava.util.UserUtil;
-import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.util.validation.ValidationUtil;
 
 import java.util.List;
 

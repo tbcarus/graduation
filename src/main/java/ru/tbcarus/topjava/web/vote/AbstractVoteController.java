@@ -5,10 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.service.VoteService;
-import ru.tbcarus.topjava.util.ValidationUtil;
-import ru.tbcarus.topjava.web.SecurityUtil;
+import ru.tbcarus.topjava.util.validation.ValidationUtil;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

@@ -3,25 +3,19 @@ package ru.tbcarus.topjava.web.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
-import ru.tbcarus.topjava.service.RestaurantService;
 import ru.tbcarus.topjava.service.UserService;
-import ru.tbcarus.topjava.util.ValidationUtil;
-import ru.tbcarus.topjava.web.SecurityUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Controller

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.tbcarus.topjava.model.Dish;
 import ru.tbcarus.topjava.service.DishService;
 import ru.tbcarus.topjava.util.DateTimeUtil;
-import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.util.validation.ValidationUtil;
 
 import java.time.LocalDate;
 import java.util.List;

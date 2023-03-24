@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import ru.tbcarus.topjava.util.ValidationUtil;
+import ru.tbcarus.topjava.util.validation.ValidationUtil;
 import ru.tbcarus.topjava.util.exception.ErrorInfo;
 import ru.tbcarus.topjava.util.exception.ErrorType;
 import ru.tbcarus.topjava.util.exception.IllegalRequestDataException;
