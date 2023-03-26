@@ -17,7 +17,7 @@
         <intercept-url pattern="/rest/admin/**" access="hasRole('ROLE_ADMIN')"/>
 
         <intercept-url pattern="/rest/profile" method="POST" access="isAnonymous()"/>
-
+        <intercept-url pattern="/**" access="isAuthenticated()"/>
         <!--Выключаем защиту от межсайтовой подделки запросов, будем смотреть на нее и включим позже-->
         <csrf disabled="true"/>
     </http>
