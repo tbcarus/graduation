@@ -12,10 +12,12 @@ import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.service.RestaurantService;
 import ru.tbcarus.topjava.service.UserService;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@ApiIgnore
 @Controller
 public class RootController {
     private static final Logger log = LoggerFactory.getLogger(RootController.class);

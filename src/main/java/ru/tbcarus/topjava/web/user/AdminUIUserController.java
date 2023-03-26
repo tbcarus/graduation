@@ -6,19 +6,17 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.tbcarus.topjava.View;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.util.exception.IllegalRequestDataException;
+import springfox.documentation.annotations.ApiIgnore;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
+@ApiIgnore
 @RestController
 @RequestMapping(value = "ui/admin/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminUIUserController extends AbstractUserController {

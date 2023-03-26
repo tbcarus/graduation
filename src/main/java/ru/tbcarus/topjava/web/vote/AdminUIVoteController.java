@@ -7,12 +7,14 @@ import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.to.VoteTo;
 import ru.tbcarus.topjava.util.VoteUtils;
 import ru.tbcarus.topjava.web.SecurityUtil;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static ru.tbcarus.topjava.web.SecurityUtil.authUserId;
 
+@ApiIgnore
 @RestController
 @RequestMapping(value = "ui/rest/votes", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminUIVoteController extends AbstractVoteController {

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.tbcarus.topjava.model.Role;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.service.UserService;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+@ApiIgnore
 @Controller
 @RequestMapping(value = "/users")
 public class JspUserController {

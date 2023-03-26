@@ -12,12 +12,14 @@ import ru.tbcarus.topjava.model.Restaurant;
 import ru.tbcarus.topjava.service.RestaurantService;
 import ru.tbcarus.topjava.service.VoteService;
 import ru.tbcarus.topjava.web.SecurityUtil;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Objects;
 
+@ApiIgnore
 @RestController
 @RequestMapping(value = "ui/admin/restaurants", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminUIRestaurantController extends AbstractRestaurantController {

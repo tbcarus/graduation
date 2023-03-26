@@ -16,6 +16,7 @@ import ru.tbcarus.topjava.model.Vote;
 import ru.tbcarus.topjava.service.RestaurantService;
 import ru.tbcarus.topjava.service.VoteService;
 import ru.tbcarus.topjava.web.SecurityUtil;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -23,6 +24,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+@ApiIgnore
 @Controller
 @RequestMapping("/restaurants")
 public class JspRestaurantController {

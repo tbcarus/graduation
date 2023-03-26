@@ -15,6 +15,7 @@ import ru.tbcarus.topjava.service.RestaurantService;
 import ru.tbcarus.topjava.service.VoteService;
 import ru.tbcarus.topjava.util.VoteUtils;
 import ru.tbcarus.topjava.web.SecurityUtil;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ import java.util.Objects;
 
 import static ru.tbcarus.topjava.web.SecurityUtil.authUserId;
 
+@ApiIgnore
 @Controller
 @RequestMapping("/votes")
 public class JspVoteController {

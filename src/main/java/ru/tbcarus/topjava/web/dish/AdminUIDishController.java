@@ -4,10 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.tbcarus.topjava.model.Dish;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@ApiIgnore
 @RestController
 @RequestMapping(value = "ui/admin/dishes", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminUIDishController extends AbstractDishController {

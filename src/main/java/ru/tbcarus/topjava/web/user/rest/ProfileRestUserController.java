@@ -3,12 +3,15 @@ package ru.tbcarus.topjava.web.user.rest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.tbcarus.topjava.AuthorizedUser;
 import ru.tbcarus.topjava.View;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.web.user.AbstractUserController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -22,14 +25,14 @@ public class ProfileRestUserController extends AbstractUserController {
     public static final String REST_URL = "/rest/profile";
 
     @GetMapping
-    public User get() {
-        return super.get(authUserId());
+    public User get(@AuthenticationPrincipal @ApiIgnore AuthorizedUser authUser) {
+        return super.get(authUser.getId());
     }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete() {
-        super.delete(authUserId());
+    public void delete(@AuthenticationPrincipal @ApiIgnore AuthorizedUser authUser) {
+        super.delete(authUser.getId());
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -44,8 +47,8 @@ public class ProfileRestUserController extends AbstractUserController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@Validated(View.Web.class) @RequestBody User user) {
-        super.update(user, authUserId());
+    public void update(@Validated(View.Web.class) @RequestBody User user, @ApiIgnore @AuthenticationPrincipal AuthorizedUser authUser) {
+        super.update(user, authUser.getId());
     }
 
     @GetMapping("/text")

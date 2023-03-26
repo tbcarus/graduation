@@ -12,9 +12,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import ru.tbcarus.topjava.View;
 import ru.tbcarus.topjava.model.User;
 import ru.tbcarus.topjava.web.SecurityUtil;
+import springfox.documentation.annotations.ApiIgnore;
 
-import javax.validation.Valid;
-
+@ApiIgnore
 @Controller
 @RequestMapping("/profile")
 public class ProfileUIController extends AbstractUserController {
