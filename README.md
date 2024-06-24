@@ -1,6 +1,7 @@
 ## Выпускной проект [стажировки TopJava](https://javaops.ru/view/topjava)
 
 Оригиниальное задание ниже (нему добавлена часть frontand'а):
+
 Design and implement a REST API using Hibernate/Spring/SpringMVC (or Spring-Boot) **without frontend**.
 
 The task is:
